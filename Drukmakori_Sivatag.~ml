@@ -45119,7 +45119,7 @@ majd ez kifolyik bel&#337;le &#233;s nem marad v&#237;z a cs&#337;be.
 <XPD:OBJ name="NameLabel" type="EdgeLabelView" guid="NO9FjIvPT0WhLJb9tzjdwgAA">
 <XPD:ATTR name="Alpha" type="real">1,5707953267949</XPD:ATTR>
 <XPD:ATTR name="Distance" type="real">10</XPD:ATTR>
-<XPD:ATTR name="Text" type="string">ConnectPipe(p, n)</XPD:ATTR>
+<XPD:ATTR name="Text" type="string">ConnectPipe(pipe, pump)</XPD:ATTR>
 <XPD:REF name="Model">b70x7S5KzkObEO57hbI+TwAA</XPD:REF>
 <XPD:REF name="HostEdge">ECZ7cHdnuEe7s4QjM6ALDAAA</XPD:REF>
 </XPD:OBJ>
@@ -45153,7 +45153,7 @@ majd ez kifolyik bel&#337;le &#233;s nem marad v&#237;z a cs&#337;be.
 <XPD:OBJ name="NameLabel" type="EdgeLabelView" guid="+XBtpwaAJUuyLINJWDZutQAA">
 <XPD:ATTR name="Alpha" type="real">-4,60173220318211</XPD:ATTR>
 <XPD:ATTR name="Distance" type="real">9,05538513813742</XPD:ATTR>
-<XPD:ATTR name="Text" type="string">Connect(n)</XPD:ATTR>
+<XPD:ATTR name="Text" type="string">Connect(pump)</XPD:ATTR>
 <XPD:REF name="Model">aKMj/w5T7UuWWe3g8aUcZwAA</XPD:REF>
 <XPD:REF name="HostEdge">tznaT6A1CkqM3WVeGVCENQAA</XPD:REF>
 </XPD:OBJ>
@@ -45222,7 +45222,7 @@ majd ez kifolyik bel&#337;le &#233;s nem marad v&#237;z a cs&#337;be.
 <XPD:OBJ name="NameLabel" type="EdgeLabelView" guid="s2J+34aes0uZO7QOcBLWWQAA">
 <XPD:ATTR name="Alpha" type="real">-4,62172934123357</XPD:ATTR>
 <XPD:ATTR name="Distance" type="real">11,0453610171873</XPD:ATTR>
-<XPD:ATTR name="Text" type="string">Connect(p)</XPD:ATTR>
+<XPD:ATTR name="Text" type="string">Connect(pipe)</XPD:ATTR>
 <XPD:REF name="Model">C+pm4CrzrkGQnWOoLlZ7EwAA</XPD:REF>
 <XPD:REF name="HostEdge">VfTqlqvgfES425510HGaYAAA</XPD:REF>
 </XPD:OBJ>
@@ -45317,6 +45317,7 @@ majd ez kifolyik bel&#337;le &#233;s nem marad v&#237;z a cs&#337;be.
 </XPD:OBJ>
 <XPD:ATTR name="#ParticipatingStimuli" type="integer">6</XPD:ATTR>
 <XPD:OBJ name="ParticipatingStimuli[0]" type="UMLStimulus" guid="b70x7S5KzkObEO57hbI+TwAA">
+<XPD:ATTR name="Arguments" type="string">pipe, pump</XPD:ATTR>
 <XPD:REF name="Sender">G2hal4vouU2kRBBujT7goAAA</XPD:REF>
 <XPD:REF name="Receiver">e72hBt8CVkmbTNeETvQXGwAA</XPD:REF>
 <XPD:OBJ name="Action" type="UMLCallAction" guid="nrlUaSerx0mkFGeZsxe8IAAA">
@@ -45331,6 +45332,7 @@ majd ez kifolyik bel&#337;le &#233;s nem marad v&#237;z a cs&#337;be.
 <XPD:REF name="Views[3]">wqx9NOIpFEeweCbaTSuO3AAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="ParticipatingStimuli[1]" type="UMLStimulus" guid="aKMj/w5T7UuWWe3g8aUcZwAA">
+<XPD:ATTR name="Arguments" type="string">pump</XPD:ATTR>
 <XPD:REF name="Sender">e72hBt8CVkmbTNeETvQXGwAA</XPD:REF>
 <XPD:REF name="Receiver">UmX1tePAQE2TS9z3HG8yVwAA</XPD:REF>
 <XPD:OBJ name="Action" type="UMLCallAction" guid="QQ02IMLdUE2O/6AP7cIsWwAA">
@@ -45359,6 +45361,7 @@ majd ez kifolyik bel&#337;le &#233;s nem marad v&#237;z a cs&#337;be.
 <XPD:REF name="Views[3]">oNqeRcLx8E6y16RzaF/tOAAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="ParticipatingStimuli[3]" type="UMLStimulus" guid="C+pm4CrzrkGQnWOoLlZ7EwAA">
+<XPD:ATTR name="Arguments" type="string">pipe</XPD:ATTR>
 <XPD:REF name="Sender">e72hBt8CVkmbTNeETvQXGwAA</XPD:REF>
 <XPD:REF name="Receiver">++nHAGte2U+Gp5rT9feYSgAA</XPD:REF>
 <XPD:OBJ name="Action" type="UMLCallAction" guid="ZXAdc9IPyUuaBMplcQC2IQAA">
