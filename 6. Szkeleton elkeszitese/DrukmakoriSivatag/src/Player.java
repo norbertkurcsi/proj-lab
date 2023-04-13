@@ -8,5 +8,7 @@ public abstract class Player {
         
     }
 
+    public void setPosition(Field f) {
 
+    }
 }
