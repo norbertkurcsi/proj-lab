@@ -44,10 +44,10 @@ public class Pipe {
     }
 
     public List<Node> getEnds() {
-        return new ArrayList<Node>();
+        return null;
     }
 
     public Pipe cut() {
-        return new Pipe();
+        return null;
     }
 }
