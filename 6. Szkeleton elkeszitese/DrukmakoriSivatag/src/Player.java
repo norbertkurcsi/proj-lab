@@ -4,7 +4,9 @@ public abstract class Player {
 
     }
 
-    public void SetPumpDirection(Pump pump, Pipe from, Pipe to) {
+    public void setPumpDirection(Pump pump, Pipe from, Pipe to) {
         
     }
+
+
 }
