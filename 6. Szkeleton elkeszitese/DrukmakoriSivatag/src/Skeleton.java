@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.util.Scanner;
 
 public class Skeleton {
@@ -69,10 +70,9 @@ public class Skeleton {
 
     }
     public static void main(String[] args) {
-        Skeleton s = new Skeleton();
+        //Skeleton s = new Skeleton();
         //kiir kerdes
         //kiir szekvencia nev
-        callFunction(s, "mechanic", "PickupPipe");
-
+        //callFunction(s, "mechanic", "PickupPipe");
     }
 }
