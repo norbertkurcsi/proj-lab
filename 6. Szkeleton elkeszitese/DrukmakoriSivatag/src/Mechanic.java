@@ -3,25 +3,37 @@ public class Mechanic extends Player{
     private Pump pump;
 
 
+    /**
+     * Konstruktor.
+     */
+    public Mechanic() {
+        super();
+        this.pipe = null;
+        this.pump = null;
+    }
+
+    /**
+     * A szerelő megjavít egy kilyukasztott csövet.
+     *
+     * @param p - A megjavítandó cső.
+     */
     public void fixPipe(Pipe p){
         p.repair();
     }
 
+    /**
+     * A szerelő megjavít egy meghibásodott pumpát.
+     *
+     * @param p - A megjavítandó pumpa.
+     */
     public void fixPump(Pump p) {
         p.repair();
     }
 
-    public void pickupPipe() {
-        if(this.pipe == null) {
-            Pipe newPipe = this.position.takePipe();
-            if(newPipe != null) {
-                setPipe(newPipe);
-            }
-        }
-    }
-
+    /**
+     * A szerelő felvesz egy csövet.
+     */
     public void placePipe(FieldNode n) {
-
         boolean hasPipe = Skeleton.yesNoQuestion("Does he have a pipe?");
         if (hasPipe) {
             n.connect(pipe);
