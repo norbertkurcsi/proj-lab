@@ -1,11 +1,10 @@
+import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Node {
-    protected List<Pipe> pipes;
+public interface  Node {
+    List<Pipe> pipes = new ArrayList<>();
 
-    public void connect(Pipe p) {
-    }
+    public void connect(Pipe p);
 
-    public void disconnect(Pipe p) {
-    }
+    public void disconnect(Pipe p);
 }

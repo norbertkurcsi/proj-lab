@@ -1,4 +1,4 @@
-public class Cistern {
+public class Cistern extends Field implements Tickable, Node{
     private int drainedWater;
     private boolean pipeAvailable;
     public void addDrainedWater(int amount){
@@ -6,10 +6,6 @@ public class Cistern {
     }
     public boolean addPlayer(Player p){
         return false;
-    }
-
-    public void tick(){
-
     }
 
     public Pipe takePipe(){
@@ -27,4 +23,18 @@ public class Cistern {
         return "Cistern";
     }
 
+    @Override
+    public void connect(Pipe p) {
+
+    }
+
+    @Override
+    public void disconnect(Pipe p) {
+
+    }
+
+    @Override
+    public void tick() {
+
+    }
 }

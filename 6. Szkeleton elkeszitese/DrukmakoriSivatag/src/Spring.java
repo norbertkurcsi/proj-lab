@@ -1,16 +1,27 @@
-public class Spring {
+public class Spring extends Field implements Tickable, Node{
     private static int MAX_FLOW = Integer.MAX_VALUE;
-
-    public void tick(){
-
-    }
 
     public boolean addPlayer(Player p){
         return false;
     }
 
-    public String getClass(){
+    public String GetClass(){
         return "Spring";
+    }
+
+    @Override
+    public void connect(Pipe p) {
+
+    }
+
+    @Override
+    public void disconnect(Pipe p) {
+
+    }
+
+    @Override
+    public void tick() {
+
     }
 }
 

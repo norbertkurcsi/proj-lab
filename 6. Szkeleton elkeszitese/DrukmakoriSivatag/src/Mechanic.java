@@ -23,7 +23,7 @@ public class Mechanic extends Player{
     public void placePipe(Node n) {
         if(this.pipe != null) {
             n.connect(this.pipe);
-
+            //TODO nem tudom
         }
     }
 

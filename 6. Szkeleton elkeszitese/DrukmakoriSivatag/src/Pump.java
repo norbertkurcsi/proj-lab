@@ -1,4 +1,4 @@
-public class Pump extends Field implements Tickable{
+public class Pump extends Field implements Tickable, Node{
     private Pipe pipeIn;
     private Pipe pipeOut;
     private boolean isBroken;
@@ -33,6 +33,16 @@ public class Pump extends Field implements Tickable{
         return false;
     }
     public void tick() {
+
+    }
+
+    @Override
+    public void connect(Pipe p) {
+
+    }
+
+    @Override
+    public void disconnect(Pipe p) {
 
     }
 }

@@ -3,7 +3,7 @@ import java.util.List;
 
 public class Pipe extends Field {
     private boolean isBroken;
-    private int maxVolume;
+    private final int maxVolume;
     private int currentVolume;
     private int wastedWater;
 
@@ -92,7 +92,7 @@ public class Pipe extends Field {
      * Removes the specified node from the pipe's ends.
      * 
      * @param n The specified Node to disconnect.
-     * @return Returns whether the operation was successfull.
+     * @return Returns whether the operation was successful.
      */
     public boolean disconnect(Node n) {
         boolean hasPlayer = Skeleton.yesNoQuestion("Van már játékos a csövön?");
