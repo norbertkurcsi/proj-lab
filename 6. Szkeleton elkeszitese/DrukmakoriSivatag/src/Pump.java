@@ -8,10 +8,6 @@ public class Pump extends Field implements Tickable{
         this.maxVolume = maxVolume;
         this.currentVolume = 0;
     }
-
-    public boolean getIsBroken() {
-        return this.isBroken;
-    }
     public void breakPump() {
 
     }
