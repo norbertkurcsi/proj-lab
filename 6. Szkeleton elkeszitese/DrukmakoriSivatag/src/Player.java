@@ -1,5 +1,5 @@
 public abstract class Player {
-    private Field position;
+    protected Field position;
     public void moveTo(Field f){
 
     }

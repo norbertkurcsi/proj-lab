@@ -1,5 +1,5 @@
 public class Saboteur extends Player {
-    public void BreakPipe(Pipe p) {
+    public void breakPipe(Pipe p) {
 
     }
 }
