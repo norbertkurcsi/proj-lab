@@ -1,4 +1,4 @@
-public class Spring extends Field implements Tickable, Node{
+public class Spring extends Field implements Tickable{
     private static int MAX_FLOW = Integer.MAX_VALUE;
 
     public boolean addPlayer(Player p){
@@ -7,16 +7,6 @@ public class Spring extends Field implements Tickable, Node{
 
     public String GetClass(){
         return "Spring";
-    }
-
-    @Override
-    public void connect(Pipe p) {
-
-    }
-
-    @Override
-    public void disconnect(Pipe p) {
-
     }
 
     @Override

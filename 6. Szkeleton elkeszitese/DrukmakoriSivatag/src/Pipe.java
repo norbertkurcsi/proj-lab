@@ -7,7 +7,7 @@ public class Pipe extends Field {
     private int currentVolume;
     private int wastedWater;
 
-    private List<Node> ends;
+    private List<FieldNode> ends;
 
     /**
      * Creates a new pipe.
@@ -81,7 +81,7 @@ public class Pipe extends Field {
      * @param n The specified Node to connect.
      * @return Returns whether the pipe could be connected to the Node.
      */
-    public boolean connect(Node n) {
+    public boolean connect(FieldNode n) {
         if (2 <= ends.size()) {
             return false;
         }
@@ -94,7 +94,7 @@ public class Pipe extends Field {
      * @param n The specified Node to disconnect.
      * @return Returns whether the operation was successful.
      */
-    public boolean disconnect(Node n) {
+    public boolean disconnect(FieldNode n) {
         boolean hasPlayer = Skeleton.yesNoQuestion("Van már játékos a csövön?");
         boolean hasWater = Skeleton.yesNoQuestion("Van-e víz a csőben?");
 
@@ -118,7 +118,7 @@ public class Pipe extends Field {
         return maxVolume - currentVolume;
     }
 
-    public List<Node> getEnds() {
+    public List<FieldNode> getEnds() {
         return ends;
     }
 
@@ -135,7 +135,7 @@ public class Pipe extends Field {
             return null;
         }
 
-        Node node = this.ends.get(0);
+        FieldNode node = this.ends.get(0);
         Pipe newPipe = new Pipe(maxVolume);
 
         Skeleton.callFunction(node, "node", "Disconnect");

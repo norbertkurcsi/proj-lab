@@ -1,4 +1,4 @@
-public class Cistern extends Field implements Tickable, Node{
+public class Cistern extends Field implements Tickable{
     private int drainedWater;
     private boolean pipeAvailable;
     public void addDrainedWater(int amount){
@@ -21,16 +21,6 @@ public class Cistern extends Field implements Tickable, Node{
 
     public String GetClass(){
         return "Cistern";
-    }
-
-    @Override
-    public void connect(Pipe p) {
-
-    }
-
-    @Override
-    public void disconnect(Pipe p) {
-
     }
 
     @Override

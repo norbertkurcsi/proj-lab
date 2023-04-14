@@ -20,18 +20,18 @@ public class Mechanic extends Player{
         }
     }
 
-    public void placePipe(Node n) {
+    public void placePipe(FieldNode n) {
         if(this.pipe != null) {
             n.connect(this.pipe);
             //TODO nem tudom
         }
     }
 
-    public void connectPipe(Pipe p, Node n) {
+    public void connectPipe(Pipe p, FieldNode n) {
 
     }
 
-    public void disconnectPipe(Pipe p, Node n) {
+    public void disconnectPipe(Pipe p, FieldNode n) {
 
     }
 
