@@ -1,4 +1,4 @@
-public class Spring extends Field implements Tickable{
+public class Spring extends FieldNode implements Tickable{
     private static int MAX_FLOW = Integer.MAX_VALUE;
 
     public boolean addPlayer(Player p){

@@ -1,4 +1,4 @@
-public class Cistern extends Field implements Tickable{
+public class Cistern extends FieldNode implements Tickable{
     private int drainedWater;
     private boolean pipeAvailable;
     public void addDrainedWater(int amount){

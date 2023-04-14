@@ -1,4 +1,4 @@
-public class Pump extends Field implements Tickable{
+public class Pump extends FieldNode implements Tickable{
     private Pipe pipeIn;
     private Pipe pipeOut;
     private boolean isBroken;
