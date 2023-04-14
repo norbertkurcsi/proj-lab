@@ -74,5 +74,6 @@ public class Skeleton {
         //kiir kerdes
         //kiir szekvencia nev
         //callFunction(s, "mechanic", "PickupPipe");
+        Menu.runMenu(Menu.MAIN_MENU);
     }
 }
