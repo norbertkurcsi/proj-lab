@@ -3,15 +3,26 @@ public class Pump extends Field implements Tickable{
     private int maxVolume;
     private int currentVolume;
 
+    public Pump(int maxVolume) {
+        this.isBroken = false;
+        this.maxVolume = maxVolume;
+        this.currentVolume = 0;
+    }
+
+    public boolean getIsBroken() {
+        return this.isBroken;
+    }
     public void breakPump() {
 
     }
 
     public int addVolume(int amount) {
-        return 0;
+        if((this.currentVolume + amount) > maxVolume)
+            throw new RuntimeException("Meghaladtad a maximális mennyiséget!");
+        return this.currentVolume + amount;
     }
     public int decreaseVolume(int amount) {
-        return 0;
+        return this.currentVolume - amount;
     }
     public void changeFlow(Pipe in, Pipe out) {
 

@@ -4,7 +4,8 @@ public class Mechanic extends Player{
     }
 
     public void fixPump(Pump p) {
-
+        if(p.getIsBroken())
+            p.repair();
     }
 
     public void pickupPipe(Node n) {
