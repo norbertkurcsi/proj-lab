@@ -1,11 +1,20 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Field {
     protected List<Player> players;
 
-    public abstract boolean addPlayer(Player p);
+    public Field() {
+        players = new ArrayList<>();
+    }
+
+    public boolean addPlayer(Player p) {
+        players.add(p);
+        return true;
+    }
 
     public void removePlayer(Player p) {
+        players.remove(p);
     }
 
     public int getNumberOfPlayers() {
