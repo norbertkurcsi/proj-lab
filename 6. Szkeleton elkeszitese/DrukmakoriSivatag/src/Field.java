@@ -8,6 +8,7 @@ public abstract class Field {
         players = new ArrayList<>();
     }
 
+
     public boolean addPlayer(Player p) {
         players.add(p);
         return true;
@@ -18,7 +19,7 @@ public abstract class Field {
     }
 
     public int getNumberOfPlayers() {
-        return 0;
+        return players.size();
     }
 
     public Pipe takePipe() {
