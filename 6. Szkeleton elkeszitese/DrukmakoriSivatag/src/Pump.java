@@ -5,13 +5,21 @@ public class Pump extends FieldNode implements Tickable{
     private int maxVolume;
     private int currentVolume;
 
+    /**
+     * Konstruktor
+     * @param maxVolume - a pumpa maximális kapacítása
+     */
     public Pump(int maxVolume) {
         this.isBroken = false;
         this.maxVolume = maxVolume;
         this.currentVolume = 0;
     }
-    public void breakPump() {
 
+    /**
+     * A pumpa meghibásodik.
+     */
+    public void breakPump() {
+        this.isBroken = true;
     }
 
     public int addVolume(int amount) {
@@ -27,7 +35,7 @@ public class Pump extends FieldNode implements Tickable{
 
     }
     public void repair() {
-
+        this.isBroken = true;
     }
     public boolean addPlayer(Player p) {
         return false;
