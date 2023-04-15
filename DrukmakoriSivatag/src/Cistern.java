@@ -11,7 +11,7 @@ public class Cistern extends FieldNode implements Tickable{
      * A cső elérhatőségét (pumpAvailable) hamisra állítja. Csövet nem vehet fel a Szerelő.
      */
     public Cistern(){
-        Skeleton.callFunction(this, "Cistern", null);
+        Skeleton.callFunction(this, "create", null);
         drainedWater = 0;
         pipeAvailable = false;
         Skeleton.endFunction();

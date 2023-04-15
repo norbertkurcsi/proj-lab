@@ -10,6 +10,8 @@ public class Mechanic extends Player {
         super();
         this.pipe = null;
         this.pump = null;
+        Skeleton.callFunction(this, "create", null);
+        Skeleton.endFunction();
     }
 
     /**

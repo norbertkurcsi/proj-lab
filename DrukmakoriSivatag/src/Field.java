@@ -9,6 +9,8 @@ public abstract class Field {
      */
     public Field() {
         players = new ArrayList<>();
+        Skeleton.callFunction(this, "create", null);
+        Skeleton.endFunction();
     }
 
 

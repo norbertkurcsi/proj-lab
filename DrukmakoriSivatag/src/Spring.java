@@ -9,7 +9,7 @@ public class Spring extends FieldNode implements Tickable{
      * Konstruktor
      */
     public Spring(){
-        Skeleton.callFunction(this, "Spring", null);
+        Skeleton.callFunction(this, "create", null);
         Skeleton.endFunction();
     }
     /**

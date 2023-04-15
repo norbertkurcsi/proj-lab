@@ -294,4 +294,3 @@ public class Initialize {
 //        Skeleton.names.clear();
 //    }
 }
-

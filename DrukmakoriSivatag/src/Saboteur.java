@@ -1,5 +1,9 @@
 public class Saboteur extends Player {
 
+    public Saboteur() {
+        Skeleton.callFunction(this, "create", null);
+        Skeleton.endFunction();
+    }
     /**
      * A szabotőr egy paraméterként kapott csövet kilyukaszt, amennyiben jelenleg a csövön áll.
      *
