@@ -101,7 +101,7 @@ public class Menu {
             new MenuOption() {
                 public void execute() {
                     System.out.println(getName());
-                    Initialize.initNetworkBranchFilledUp();
+                    //Initialize.initNetworkBranchFilledUp();
                 }
                 public String getName() {
                     return "Network branch filled up";
@@ -112,7 +112,7 @@ public class Menu {
     private static final MenuOption[] WATER_FLOWS_SUBMENU = {
             new MenuOption() {
                 public void execute() {
-                    System.out.println("Water flows from spring to pipe");
+                    System.out.println(getName());
                     //Initialize.initWaterFlowsFromSpingToPipe();
                 }
                 public String getName() {
@@ -121,7 +121,7 @@ public class Menu {
             },
             new MenuOption() {
                 public void execute() {
-                    System.out.println("Cistern drains water");
+                    System.out.println(getName());
                     //Initialize.initCisternDrainsWater();
                 }
                 public String getName() {
@@ -130,7 +130,7 @@ public class Menu {
             },
             new MenuOption() {
                 public void execute() {
-                    System.out.println("Pump pumps");
+                    System.out.println(getName());
                     //Initialize.initPumpPumps();
                 }
                 public String getName() {
@@ -139,7 +139,7 @@ public class Menu {
             },
             new MenuOption() {
                 public void execute() {
-                    System.out.println("Water flows into pipe");
+                    System.out.println(getName());
                     //Initialize.initWaterFlowsIntoPipe();
                 }
                 public String getName() {
@@ -148,7 +148,7 @@ public class Menu {
             },
             new MenuOption() {
                 public void execute() {
-                    System.out.println("Water is drained from pipe");
+                    System.out.println(getName());
                     //Initialize.initWaterIsDrainedFromPipe();
                 }
                 public String getName() {
@@ -157,7 +157,7 @@ public class Menu {
             },
             new MenuOption() {
                 public void execute() {
-                    System.out.println("Water leaks from punctured pipe");
+                    System.out.println(getName());
                     //Initialize.initWaterLeaksFromPuncturedPipe();
                 }
                 public String getName() {
@@ -166,7 +166,7 @@ public class Menu {
             },
             new MenuOption() {
                 public void execute() {
-                    System.out.println("Water leaks from pipe with free end");
+                    System.out.println(getName());
                     //Initialize.initWaterLeaksFromPipeWithFreeEnd();
                 }
                 public String getName() {
