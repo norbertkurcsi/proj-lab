@@ -52,14 +52,6 @@ public abstract class Field {
      */
     public Pipe takePipe() {
         Skeleton.callFunction(this, "takePipe", null);
-        boolean canTakePipe = Skeleton.yesNoQuestion("Were there available pipes?");
-        if(canTakePipe) {
-            int volume = Skeleton.numberQuestion("Enter the pump's maximum volume");
-            Skeleton.endFunction();
-            Pipe newPipe = new Pipe(volume);
-            Skeleton.names.put(newPipe, "newPipe");
-            return newPipe;
-        }
         Skeleton.endFunction();
         return null;
     }
@@ -70,11 +62,8 @@ public abstract class Field {
      * @return az elvett pumpa vagy null
      */
     public Pump takePump() {
-        boolean canTakePump = Skeleton.yesNoQuestion("Were there available pumps?");
-        if (canTakePump) {
-            int volume = Skeleton.numberQuestion("Enter the pump's maximum volume");
-            return new Pump(volume);
-        }
+        Skeleton.callFunction(this, "takePump", null);
+        Skeleton.endFunction();
         return null;
     }
 }
