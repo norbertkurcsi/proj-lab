@@ -10,7 +10,8 @@ public abstract class  FieldNode extends Field{
      * @param p - A cső amelyiket csatlakoztatjuk.
      */
     public void connect(Pipe p){
-
+        Skeleton.callFunction(this, "connect", null);
+        Skeleton.endFunction();
     }
 
     /**
@@ -19,6 +20,7 @@ public abstract class  FieldNode extends Field{
      * @param p - A cső amelyiket lecsatlakoztatjuk.
      */
     public void disconnect(Pipe p){
-
+        Skeleton.callFunction(this, "disconnect", null);
+        Skeleton.endFunction();
     }
 }
