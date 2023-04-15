@@ -17,7 +17,6 @@ public class Pump extends FieldNode implements Tickable {
      * A pumpa meghibásodik.
      */
     public void breakPump() {
-        ;
         Skeleton.callFunction(this, "breakPump", null);
         Skeleton.endFunction();
     }

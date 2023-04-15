@@ -177,7 +177,6 @@ public class Initialize {
         Pipe dest = new Pipe();
         Skeleton.names.put(dest, "dest");
 
-
         dest.connect(pos);
         pos.connect(dest);
         mechanic.moveTo(pos);
@@ -191,7 +190,6 @@ public class Initialize {
         Skeleton.names.put(pos, "pos");
         Pump dest = new Pump();
         Skeleton.names.put(dest, "dest");
-
 
         dest.connect(pos);
         pos.connect(dest);
@@ -207,7 +205,6 @@ public class Initialize {
         Cistern dest = new Cistern();
         Skeleton.names.put(dest, "dest");
 
-
         dest.connect(pos);
         pos.connect(dest);
         mechanic.moveTo(pos);
@@ -221,7 +218,6 @@ public class Initialize {
         Skeleton.names.put(pos, "pos");
         Spring dest = new Spring();
         Skeleton.names.put(dest, "dest");
-
 
         dest.connect(pos);
         pos.connect(dest);
@@ -260,8 +256,8 @@ public class Initialize {
 
         spring.tick();
         pump1.tick();
-        //pipe1.setWaterVolume
-        //pipe2.setWaterVolume
+        // pipe1.setWaterVolume
+        // pipe2.setWaterVolume
 
         spring.tick();
         pump1.tick();
@@ -299,6 +295,80 @@ public class Initialize {
         spring.tick();
         pump1.tick();
         pump2.tick();
+
+        Skeleton.names.clear();
+    }
+
+    public static void initWaterFlowsFromSpingToPipe() {
+        Pipe pipe = new Pipe();
+        Skeleton.names.put(pipe, "p");
+
+        Spring spring = new Spring();
+        Skeleton.names.put(spring, "s");
+
+        Pump pump = new Pump();
+        Skeleton.names.put(pump, "pump");
+
+        pipe.connect(spring);
+        spring.connect(pipe);
+
+        pump.connect(pipe);
+        pipe.connect(pump);
+
+        spring.tick();
+        Skeleton.names.clear();
+    }
+
+    public static void initCisternDrainsWater() {
+        Pipe pipe = new Pipe();
+        Skeleton.names.put(pipe, "pipe");
+
+        Cistern cistern = new Cistern();
+        Skeleton.names.put(cistern, "cistern");
+
+        pipe.connect(cistern);
+        cistern.connect(pipe);
+
+        Integer amount = Skeleton.numberQuestion("Enter the amount of water you want in the pipe");
+        Skeleton.names.put(amount, "amount");
+        pipe.setWaterVolume(amount);
+
+        cistern.tick();
+        Skeleton.names.clear();
+    }
+
+    public static void initPumpPumps() {
+        Pump pump = new Pump();
+        Skeleton.names.put(pump, "pump");
+
+        Spring spring = new Spring();
+        Skeleton.names.put(spring, "spring");
+
+        Pipe pipe2 = new Pipe(), pipe1 = new Pipe();
+        Skeleton.names.put(pipe2, "pipe2");
+        Skeleton.names.put(pipe1, "pipe1");
+
+        Cistern cistern = new Cistern();
+        Skeleton.names.put(cistern, "cistern");
+
+        pump.connect(pipe1);
+        pump.connect(pipe2);
+
+        pipe2.connect(pump);
+        pipe2.connect(spring);
+
+        pipe1.connect(pump);
+        pipe1.connect(cistern);
+
+        cistern.connect(pipe1);
+
+        spring.connect(pipe2);
+        spring.tick();
+
+        // TODO: Fel kell tenni a kommunikációs diagrammra
+        pump.changeFlow(pipe2, pipe1);
+
+        pump.tick();
 
         Skeleton.names.clear();
     }

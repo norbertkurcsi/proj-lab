@@ -113,7 +113,7 @@ public class Menu {
             new MenuOption() {
                 public void execute() {
                     System.out.println(getName());
-                    //Initialize.initWaterFlowsFromSpingToPipe();
+                    Initialize.initWaterFlowsFromSpingToPipe();
                 }
                 public String getName() {
                     return "Water flows from spring to pipe";
@@ -122,7 +122,7 @@ public class Menu {
             new MenuOption() {
                 public void execute() {
                     System.out.println(getName());
-                    //Initialize.initCisternDrainsWater();
+                    Initialize.initCisternDrainsWater();
                 }
                 public String getName() {
                     return "Cistern drains water";
@@ -131,7 +131,7 @@ public class Menu {
             new MenuOption() {
                 public void execute() {
                     System.out.println(getName());
-                    //Initialize.initPumpPumps();
+                    Initialize.initPumpPumps();
                 }
                 public String getName() {
                     return "Pump pumps";

@@ -16,6 +16,14 @@ public class Pipe extends Field {
     }
 
     /**
+     * Beállítja hogy mennyi víz van a csőben.
+     */
+    public void setWaterVolume(Integer amount) {
+        Skeleton.callFunction(this, "setWaterVolume", new Object[] { amount });
+        Skeleton.endFunction();
+    }
+
+    /**
      * Kilyukasztja a csövet, úgy hogy az összes benne lévő és rajta átfolyó víz
      * kifolyik belőle.
      */
@@ -41,7 +49,7 @@ public class Pipe extends Field {
     public int flow(Integer amount) {
         Skeleton.callFunction(this, "flow", new Object[] { amount });
 
-        int consumed = Skeleton.numberQuestion("How much water has flown into the pipe?");
+        int consumed = Skeleton.numberQuestion("Enter the amount of water that has flown into the pipe");
 
         Skeleton.endFunction();
         return consumed;
@@ -56,7 +64,7 @@ public class Pipe extends Field {
     public int drain(Integer amount) {
         Skeleton.callFunction(this, "drain", new Object[] { amount });
 
-        int consumed = Skeleton.numberQuestion("How much water has been drained from the pipe?");
+        int consumed = Skeleton.numberQuestion("Enter the amount of water that has been drained from the pipe");
 
         Skeleton.endFunction();
         return consumed;
@@ -84,6 +92,7 @@ public class Pipe extends Field {
     public boolean connect(FieldNode n) {
         Skeleton.callFunction(this, "connect", new Object[] { n });
 
+        // TODO: Kell ezt megkérdezni?
         boolean success = Skeleton.yesNoQuestion(
                 String.format("Can the pipe be connected to the %s?", n.getClass().getName()));
         if (success) {
@@ -103,6 +112,7 @@ public class Pipe extends Field {
     public boolean disconnect(FieldNode n) {
         Skeleton.callFunction(this, "connect", new Object[] { n });
 
+        // TODO: Kell ezt megkérdezni?
         boolean success = Skeleton.yesNoQuestion(
                 String.format("Can the pipe be disconnected from the %s?", n.getClass().getName()));
         if (success) {
@@ -130,7 +140,6 @@ public class Pipe extends Field {
 
         Pipe newPipe = new Pipe();
         FieldNode fn = ends.get(0);
-
 
         this.disconnect(fn);
         fn.disconnect(this);

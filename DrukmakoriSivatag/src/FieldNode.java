@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class  FieldNode extends Field{
+public abstract class FieldNode extends Field {
     protected List<Pipe> pipes = new ArrayList<>();
 
     /**
@@ -9,8 +9,8 @@ public abstract class  FieldNode extends Field{
      *
      * @param p - A cső amelyiket csatlakoztatjuk.
      */
-    public void connect(Pipe p){
-        Skeleton.callFunction(this, "connect", null);
+    public void connect(Pipe p) {
+        Skeleton.callFunction(this, "connect", new Object[] { p });
         pipes.add(p);
         Skeleton.endFunction();
     }
@@ -20,9 +20,9 @@ public abstract class  FieldNode extends Field{
      *
      * @param p - A cső amelyiket lecsatlakoztatjuk.
      */
-    public void disconnect(Pipe p){
-        Skeleton.callFunction(this, "disconnect", null);
-        if(pipes != null) {
+    public void disconnect(Pipe p) {
+        Skeleton.callFunction(this, "disconnect", new Object[] { p });
+        if (pipes != null) {
             pipes.remove(p);
         }
         Skeleton.endFunction();
