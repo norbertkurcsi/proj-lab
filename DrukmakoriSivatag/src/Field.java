@@ -49,9 +49,8 @@ public abstract class Field {
     public Pipe takePipe() {
         boolean canTakePipe = Skeleton.yesNoQuestion("Were there available pipes?");
         if(canTakePipe) {
-            return new Pipe(100); //TODO itt a konstruktor elvar egy szamot parameterkent,
-            // de szerintem igy nem jo, megoldasnak gondoltam hogy legyen egy parameternelkuli konstruktora
-            //mert hogy ugyis csak a skeletonba lesz hasznalva igy
+            int volume = Skeleton.numberQuestion("Enter the pump's maximum volume");
+            return new Pipe(volume);
         }
         return null;
     }
@@ -64,7 +63,8 @@ public abstract class Field {
     public Pump takePump() {
         boolean canTakePump = Skeleton.yesNoQuestion("Were there available pumps?");
         if (canTakePump) {
-            return new Pump(100);//TODO ugyanaz mint az elozonel
+            int volume = Skeleton.numberQuestion("Enter the pump's maximum volume");
+            return new Pump(volume);
         }
         return null;
     }

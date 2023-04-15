@@ -197,7 +197,7 @@ public class Menu {
             },
             new MenuOption() {
                 public void execute() {
-                    System.out.println("Pickup pipe");
+                    Initialize.initPickupPipe();
                 }
                 public String getName() {
                     return "Pickup pipe";

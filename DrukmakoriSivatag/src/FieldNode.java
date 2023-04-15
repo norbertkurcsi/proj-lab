@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class  FieldNode extends Field{
+public abstract class  FieldNode extends Field{
     protected List<Pipe> pipes = new ArrayList<>();
 
     /**
