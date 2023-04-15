@@ -25,7 +25,9 @@ public abstract class Player {
      * @param to   Ebbe a csőbe fogja pumpálni a pumpa a vizet.
      */
     public void setPumpDirection(Pump pump, Pipe from, Pipe to) {
+        Skeleton.callFunction(this, "setPumpDirection", new Object[]{pump, from, to});
         pump.changeFlow(from, to);
+        Skeleton.endFunction();
     }
 
     /**

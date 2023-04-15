@@ -6,8 +6,11 @@ public class Saboteur extends Player {
      * @param p A kilyukasztandó cső.
      */
     public void breakPipe(Pipe p) {
+        Skeleton.callFunction(this, "breakPipe", new Object[]{p});
         boolean standingThere = Skeleton.yesNoQuestion("Is he standing on the pipe?");
-        if (standingThere)
+        if (standingThere) {
             p.breakPipe();
+        }
+        Skeleton.endFunction();
     }
 }

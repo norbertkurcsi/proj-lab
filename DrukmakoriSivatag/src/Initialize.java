@@ -1,42 +1,42 @@
 public class Initialize {
     public static void initConnectPipe() {
         Pipe pipe = new Pipe();
-        Skeleton.names.put(pipe,"pipe");
+        Skeleton.names.put(pipe, "pipe");
         Mechanic m = new Mechanic();
-        Skeleton.names.put(m,"mechanic");
+        Skeleton.names.put(m, "mechanic");
         Pump pump = new Pump(0);
-        Skeleton.names.put(pump,"pump");
+        Skeleton.names.put(pump, "pump");
 
-        m.connectPipe(pipe,pump);
+        m.connectPipe(pipe, pump);
 
         Skeleton.names.clear();
     }
 
     public static void initDisconnectPipe() {
         Pipe pipe = new Pipe();
-        Skeleton.names.put(pipe,"pipe");
+        Skeleton.names.put(pipe, "pipe");
         Mechanic m = new Mechanic();
-        Skeleton.names.put(m,"m");
+        Skeleton.names.put(m, "m");
         Pump pump = new Pump(0);
-        Skeleton.names.put(pump,"pump");
+        Skeleton.names.put(pump, "pump");
         Cistern c = new Cistern();
-        Skeleton.names.put(c,"c");
+        Skeleton.names.put(c, "c");
 
         pipe.connect(pump);
         pipe.connect(c);
         pump.connect(pipe);
         c.connect(pipe);
 
-        m.disconnectPipe(pipe,pump);
+        m.disconnectPipe(pipe, pump);
 
         Skeleton.names.clear();
     }
 
     public static void initFixPipe() {
         Mechanic m = new Mechanic();
-        Skeleton.names.put(m,"m");
+        Skeleton.names.put(m, "m");
         Pipe p = new Pipe();
-        Skeleton.names.put(p,"p");
+        Skeleton.names.put(p, "p");
 
         m.moveTo(p);
         p.addPlayer(m);
@@ -48,11 +48,11 @@ public class Initialize {
 
     public static void initPlacePipe() {
         Mechanic m = new Mechanic();
-        Skeleton.names.put(m,"m");
+        Skeleton.names.put(m, "m");
         Pipe p = new Pipe();
-        Skeleton.names.put(p,"p");
+        Skeleton.names.put(p, "p");
         Pump pump = new Pump(0);
-        Skeleton.names.put(pump,"pump");
+        Skeleton.names.put(pump, "pump");
 
         m.moveTo(p);
         pump.addPlayer(m);
@@ -63,7 +63,7 @@ public class Initialize {
     static public void initPickupPipe() {
         Mechanic mechanic = new Mechanic();
         Skeleton.names.put(mechanic, "mechanic");
-        Cistern cistern  = new Cistern();
+        Cistern cistern = new Cistern();
         Skeleton.names.put(cistern, "cistern");
 
         mechanic.moveTo(cistern);
@@ -75,9 +75,9 @@ public class Initialize {
 
     public static void initPuncturePipe() {
         Saboteur s = new Saboteur();
-        Skeleton.names.put(s,"s");
+        Skeleton.names.put(s, "s");
         Pipe pipe = new Pipe();
-        Skeleton.names.put(pipe,"pipe");
+        Skeleton.names.put(pipe, "pipe");
 
         s.moveTo(pipe);
         pipe.addPlayer(s);
@@ -91,9 +91,9 @@ public class Initialize {
 
     public static void initFixPump() {
         Mechanic m = new Mechanic();
-        Skeleton.names.put(m,"m");
+        Skeleton.names.put(m, "m");
         Pump p = new Pump(0);
-        Skeleton.names.put(p,"p");
+        Skeleton.names.put(p, "p");
 
         m.moveTo(p);
         p.addPlayer(m);
@@ -105,11 +105,11 @@ public class Initialize {
 
     public static void initPlacePump() {
         Mechanic m = new Mechanic();
-        Skeleton.names.put(m,"m");
+        Skeleton.names.put(m, "m");
         Pump p = new Pump(0);
-        Skeleton.names.put(p,"p");
+        Skeleton.names.put(p, "p");
         Pipe pipe = new Pipe();
-        Skeleton.names.put(pipe,"pipe");
+        Skeleton.names.put(pipe, "pipe");
 
         m.setPump(p);
         m.moveTo(pipe);
@@ -122,45 +122,45 @@ public class Initialize {
 
     public static void initMechanicSetsPump() {
         Mechanic m = new Mechanic();
-        Skeleton.names.put(m,"m");
+        Skeleton.names.put(m, "m");
         Pump pump = new Pump(0);
         Skeleton.names.put(pump, "pump");
         Pipe to = new Pipe();
-        Skeleton.names.put(to,"to");
+        Skeleton.names.put(to, "to");
         Pipe from = new Pipe();
-        Skeleton.names.put(from,"from");
+        Skeleton.names.put(from, "from");
 
         m.moveTo(pump);
         pump.addPlayer(m);
 
-        m.setPumpDirection(pump,from,to);
+        m.setPumpDirection(pump, from, to);
 
         Skeleton.names.clear();
     }
 
     public static void initSaboteurSetsPump() {
         Saboteur s = new Saboteur();
-        Skeleton.names.put(s,"s");
+        Skeleton.names.put(s, "s");
         Pump pump = new Pump(0);
         Skeleton.names.put(pump, "pump");
         Pipe to = new Pipe();
-        Skeleton.names.put(to,"to");
+        Skeleton.names.put(to, "to");
         Pipe from = new Pipe();
-        Skeleton.names.put(from,"from");
+        Skeleton.names.put(from, "from");
 
         s.moveTo(pump);
         pump.addPlayer(s);
 
-        s.setPumpDirection(pump,from,to);
+        s.setPumpDirection(pump, from, to);
 
         Skeleton.names.clear();
     }
 
     public static void initTakePump() {
         Mechanic m = new Mechanic();
-        Skeleton.names.put(m,"m");
+        Skeleton.names.put(m, "m");
         Cistern c = new Cistern();
-        Skeleton.names.put(c,"c");
+        Skeleton.names.put(c, "c");
 
         m.moveTo(c);
         c.addPlayer(m);
@@ -169,7 +169,8 @@ public class Initialize {
 
         Skeleton.names.clear();
     }
-    static public void initMoveToPipeFromPump(){
+
+    static public void initMoveToPipeFromPump() {
         int pumpVolume = 0;
         Mechanic mechanic = new Mechanic();
         Skeleton.names.put(mechanic, "mechanic");
@@ -184,7 +185,8 @@ public class Initialize {
 
         Skeleton.names.clear();
     }
-    static public void initMovetoPumpFromPipe(){
+
+    static public void initMovetoPumpFromPipe() {
         int pumpVolume = 0;
         Mechanic mechanic = new Mechanic();
         Skeleton.names.put(mechanic, "mechanic");
@@ -199,7 +201,8 @@ public class Initialize {
 
         Skeleton.names.clear();
     }
-    static public void initMoveToCisternFromPipe(){
+
+    static public void initMoveToCisternFromPipe() {
         Mechanic mechanic = new Mechanic();
         Skeleton.names.put(mechanic, "mechanic");
         Pipe pos = new Pipe();
@@ -213,7 +216,8 @@ public class Initialize {
 
         Skeleton.names.clear();
     }
-    static public void initMoveToSpringFromPipe(){
+
+    static public void initMoveToSpringFromPipe() {
         Mechanic mechanic = new Mechanic();
         Skeleton.names.put(mechanic, "mechanic");
         Pipe pos = new Pipe();
@@ -226,6 +230,28 @@ public class Initialize {
         pos.connect(dest);
 
         Skeleton.names.clear();
+    }
+
+    static public void initNetworkBranchFilledUp() {
+        Spring spring = new Spring();
+        Skeleton.names.put(spring, "spring");
+        Pipe pipe1 = new Pipe();
+        Skeleton.names.put(pipe1, "pipe1");
+        pipe1.connect(spring);
+        spring.connect(pipe1);
+
+        Pump pump1 = new Pump();
+        Skeleton.names.put(pump1, "pump1");
+        Pipe pipe2 = new Pipe();
+        Skeleton.names.put(pipe2, "pipe2");
+        pump1.connect(pipe1);
+
+        Pump pump2 = new Pump();
+        Skeleton.names.put(pump2, "pump2");
+        pipe2.connect(pump2);
+        pump2.connect(pipe2);
+
+        pump2.addVolume();
     }
 }
 
