@@ -3,13 +3,18 @@ public abstract class Player {
 
     /**
      * A játékos pozíciót vált.
+     *
      * @param f A játékos célpozíciója.
      */
-    public void moveTo(Field f){
-        if(f.addPlayer(this)) {
-            position.removePlayer(this);
+    public void moveTo(Field f) {
+        Skeleton.callFunction(this,"moveTo", new Object[]{f});
+        if (f.addPlayer(this)) {
+            if (position != null) {
+                position.removePlayer(this);
+            }
             setPosition(f);
         }
+        Skeleton.endFunction();
     }
 
     /**
@@ -17,7 +22,7 @@ public abstract class Player {
      *
      * @param pump Az átállítandó pumpa.
      * @param from Ebből a csőből fogja pumpálni a pumpa a vizet.
-     * @param to Ebbe a csőbe fogja pumpálni a pumpa a vizet.
+     * @param to   Ebbe a csőbe fogja pumpálni a pumpa a vizet.
      */
     public void setPumpDirection(Pump pump, Pipe from, Pipe to) {
         pump.changeFlow(from, to);
@@ -29,6 +34,8 @@ public abstract class Player {
      * @param f A játékos új pozicíója.
      */
     public void setPosition(Field f) {
+        Skeleton.callFunction(this, "setPosition", new Object[]{f});
         position = f;
+        Skeleton.endFunction();
     }
 }

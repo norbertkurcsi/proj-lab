@@ -4,67 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2fd7463a-af9c-4cbd-b36b-aeb2a9afec79" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DrukmakoriSivatag.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DrukmakoriSivatag/Cistern.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DrukmakoriSivatag/Field.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DrukmakoriSivatag/FieldNode.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DrukmakoriSivatag/Mechanic.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DrukmakoriSivatag/Menu$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DrukmakoriSivatag/Menu$10.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DrukmakoriSivatag/Menu$11.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DrukmakoriSivatag/Menu$12.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DrukmakoriSivatag/Menu$13.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DrukmakoriSivatag/Menu$14.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DrukmakoriSivatag/Menu$15.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DrukmakoriSivatag/Menu$16.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DrukmakoriSivatag/Menu$17.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DrukmakoriSivatag/Menu$18.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DrukmakoriSivatag/Menu$19.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DrukmakoriSivatag/Menu$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DrukmakoriSivatag/Menu$20.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DrukmakoriSivatag/Menu$21.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DrukmakoriSivatag/Menu$22.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DrukmakoriSivatag/Menu$23.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DrukmakoriSivatag/Menu$24.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DrukmakoriSivatag/Menu$25.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DrukmakoriSivatag/Menu$26.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DrukmakoriSivatag/Menu$27.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DrukmakoriSivatag/Menu$28.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DrukmakoriSivatag/Menu$29.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DrukmakoriSivatag/Menu$3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DrukmakoriSivatag/Menu$4.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DrukmakoriSivatag/Menu$5.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DrukmakoriSivatag/Menu$6.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DrukmakoriSivatag/Menu$7.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DrukmakoriSivatag/Menu$8.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DrukmakoriSivatag/Menu$9.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DrukmakoriSivatag/Menu$MenuOption.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DrukmakoriSivatag/Menu.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DrukmakoriSivatag/Pipe.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DrukmakoriSivatag/Player.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DrukmakoriSivatag/Pump.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DrukmakoriSivatag/Saboteur.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DrukmakoriSivatag/Skeleton.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DrukmakoriSivatag/Spring.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DrukmakoriSivatag/Tickable.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Cistern.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Field.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FieldNode.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Mechanic.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Menu.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pipe.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Player.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pump.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Saboteur.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Skeleton.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Spring.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tickable.java" beforeDir="false" />
-    </list>
+    <list default="true" id="2fd7463a-af9c-4cbd-b36b-aeb2a9afec79" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -81,6 +21,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="ProjectId" id="2OO5ifdudVOevqezHh53Mnln6s5" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -90,7 +31,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Google Drive/4. felev/Szoftver projekt laboratórium/proj-lab/DrukmakoriSivatag",
+    "last_opened_file_path": "D:/Projekt lab/proj-lab/DrukmakoriSivatag",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -99,18 +40,6 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager">
-    <configuration default="true" type="GroovyScriptRunConfiguration" factoryName="Groovy">
-      <setting name="path" value="" />
-      <setting name="vmparams" value="" />
-      <setting name="params" value="" />
-      <setting name="workDir" value="file://$PROJECT_DIR$" />
-      <setting name="debug" value="false" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -130,5 +59,16 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
