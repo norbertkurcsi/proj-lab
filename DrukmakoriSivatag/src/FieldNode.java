@@ -11,6 +11,7 @@ public abstract class  FieldNode extends Field{
      */
     public void connect(Pipe p){
         Skeleton.callFunction(this, "connect", null);
+        pipes.add(p);
         Skeleton.endFunction();
     }
 
@@ -21,6 +22,9 @@ public abstract class  FieldNode extends Field{
      */
     public void disconnect(Pipe p){
         Skeleton.callFunction(this, "disconnect", null);
+        if(pipes != null) {
+            pipes.remove(p);
+        }
         Skeleton.endFunction();
     }
 }

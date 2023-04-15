@@ -29,7 +29,7 @@ public class Pump extends FieldNode implements Tickable {
         return volume;
     }
 
-    public int decreaseVolume(int amount) {
+    public int decreaseVolume(Integer amount) {
         Skeleton.callFunction(this, "decreaseVolume", new Object[] { amount });
         int volume = Skeleton.numberQuestion("How much will be the current volume?");
         Skeleton.endFunction();
@@ -58,7 +58,10 @@ public class Pump extends FieldNode implements Tickable {
 
         int amountDrain = Skeleton.numberQuestion("How much do you want to pump?");
         int gotWater = pipeIn.drain(amountDrain);
-        pipeOut.flow(gotWater);
+        addVolume(gotWater);
+        if(pipeOut != null) {
+            decreaseVolume(pipeOut.flow(gotWater));
+        }
 
         Skeleton.endFunction();
     }

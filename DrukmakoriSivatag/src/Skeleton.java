@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class Skeleton {
-    static public int indent = 0;
+    static public int indent = 1;
 
     static public HashMap<Object, String> names = new HashMap<>();
     static private final Scanner scanner = new Scanner(System.in);
@@ -19,7 +19,11 @@ public class Skeleton {
     static public void callFunction(Object object, String functionName, Object[] params) {
         System.out.print(">");
         printIndent();
-        System.out.printf("[%s: %s].%s(", names.get(object), object.getClass().getName(), functionName);
+        if(names.get(object) == null) {
+            System.out.printf("[%s].%s(", object.getClass().getName(), functionName);
+        } else {
+            System.out.printf("[%s: %s].%s(", names.get(object), object.getClass().getName(), functionName);
+        }
         if (params != null) {
             for (Object o : params) {
                 // At kell alakitani hekas
@@ -61,8 +65,11 @@ public class Skeleton {
             System.out.print("+");
             printIndent();
             System.out.print(message + ": ");
-            if (scanner.hasNextInt())
-                return scanner.nextInt();
+            try {
+                return Integer.parseInt(scanner.nextLine());
+            } catch (Exception e) {
+
+            }
         }
     }
 

@@ -92,7 +92,7 @@ public class Menu {
             new MenuOption() {
                 public void execute() {
                     System.out.println("Pumping into broken pump");
-                    //Initialize.initPumpingIntoBrokenPump();
+                    Initialize.initPumpingIntoBrokenPump();
                 }
                 public String getName() {
                     return "Pumping into broken pump";
@@ -101,7 +101,7 @@ public class Menu {
             new MenuOption() {
                 public void execute() {
                     System.out.println(getName());
-                    //Initialize.initNetworkBranchFilledUp();
+                    Initialize.initNetworkBranchFilledUp();
                 }
                 public String getName() {
                     return "Network branch filled up";

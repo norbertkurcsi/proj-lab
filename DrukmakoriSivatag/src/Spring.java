@@ -19,8 +19,10 @@ public class Spring extends FieldNode implements Tickable{
     @Override
     public void tick() {
         Skeleton.callFunction(this, "tick", null);
+        Integer amount = Skeleton.numberQuestion("How much water do you want to flow");
+        Skeleton.names.put(amount, "amount");
         for (Pipe pipe : pipes){
-            pipe.flow(MAX_FLOW);
+            pipe.flow(amount);
         }
         Skeleton.endFunction();
     }

@@ -57,7 +57,7 @@ public class Mechanic extends Player {
      */
     public void connectPipe(Pipe p, FieldNode n) {
         Skeleton.callFunction(this, "connectPipe", new Object[]{p, n});
-        if (pipe.connect(n)) {
+        if (p.connect(n)) {
             n.connect(p);
         }
         Skeleton.endFunction();

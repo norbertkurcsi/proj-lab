@@ -55,7 +55,7 @@ public class Cistern extends FieldNode implements Tickable{
         if (pumpAvailable) {
             int volume = Skeleton.numberQuestion("Enter the pump's maximum volume");
             Skeleton.endFunction();
-            Pump newPump = new Pump(volume);
+            Pump newPump = new Pump();
             Skeleton.names.put(newPump, "newPump");
             return newPump;
         }

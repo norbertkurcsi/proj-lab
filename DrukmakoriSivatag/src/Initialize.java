@@ -80,7 +80,6 @@ public class Initialize {
         Skeleton.names.put(pipe, "pipe");
 
         s.moveTo(pipe);
-        pipe.addPlayer(s);
 
         s.breakPipe(pipe);
 
@@ -178,10 +177,10 @@ public class Initialize {
         Pipe dest = new Pipe();
         Skeleton.names.put(dest, "dest");
 
-        mechanic.moveTo(pos);
+
         dest.connect(pos);
         pos.connect(dest);
-
+        mechanic.moveTo(pos);
         Skeleton.names.clear();
     }
 
@@ -193,10 +192,10 @@ public class Initialize {
         Pump dest = new Pump();
         Skeleton.names.put(dest, "dest");
 
-        mechanic.moveTo(pos);
+
         dest.connect(pos);
         pos.connect(dest);
-
+        mechanic.moveTo(pos);
         Skeleton.names.clear();
     }
 
@@ -208,10 +207,10 @@ public class Initialize {
         Cistern dest = new Cistern();
         Skeleton.names.put(dest, "dest");
 
-        mechanic.moveTo(pos);
+
         dest.connect(pos);
         pos.connect(dest);
-
+        mechanic.moveTo(pos);
         Skeleton.names.clear();
     }
 
@@ -223,72 +222,84 @@ public class Initialize {
         Spring dest = new Spring();
         Skeleton.names.put(dest, "dest");
 
-        mechanic.moveTo(pos);
+
         dest.connect(pos);
         pos.connect(dest);
+        mechanic.moveTo(pos);
+        Skeleton.names.clear();
+    }
+
+    static public void initNetworkBranchFilledUp() {
+        Spring spring = new Spring();
+        Skeleton.names.put(spring, "spring");
+        Pipe pipe1 = new Pipe();
+        Skeleton.names.put(pipe1, "pipe1");
+        pipe1.connect(spring);
+        spring.connect(pipe1);
+
+        Pump pump1 = new Pump();
+        Skeleton.names.put(pump1, "pump1");
+        pipe1.connect(pump1);
+        pump1.connect(pipe1);
+        Pipe pipe2 = new Pipe();
+        Skeleton.names.put(pipe2, "pipe2");
+        pipe2.connect(pump1);
+        pump1.connect(pipe2);
+
+        Pump pump2 = new Pump();
+        Skeleton.names.put(pump2, "pump2");
+        pipe2.connect(pump2);
+        pump2.connect(pipe2);
+
+        pump1.changeFlow(pipe1, pipe2);
+        pump2.changeFlow(pipe2, new Pipe());
+        Integer volume = Skeleton.numberQuestion("Enter the max volume of the pumps");
+        Skeleton.names.put(volume, "volume");
+        pump2.addVolume(volume);
+        pump1.addVolume(volume);
+
+        spring.tick();
+        pump1.tick();
+        //pipe1.setWaterVolume
+        //pipe2.setWaterVolume
+
+        spring.tick();
+        pump1.tick();
+        pump2.tick();
 
         Skeleton.names.clear();
     }
 
-//    static public void initNetworkBranchFilledUp() {
-//        Spring spring = new Spring();
-//        Skeleton.names.put(spring, "spring");
-//        Pipe pipe1 = new Pipe();
-//        Skeleton.names.put(pipe1, "pipe1");
-//        pipe1.connect(spring);
-//        spring.connect(pipe1);
-//
-//        Pump pump1 = new Pump();
-//        Skeleton.names.put(pump1, "pump1");
-//        pipe1.connect(pump1);
-//        pump1.connect(pipe1);
-//        Pipe pipe2 = new Pipe();
-//        Skeleton.names.put(pipe2, "pipe2");
-//        pipe2.connect(pump1);
-//        pump1.connect(pipe2);
-//
-//        Pump pump2 = new Pump();
-//        Skeleton.names.put(pump2, "pump2");
-//        pipe2.connect(pump2);
-//        pump2.connect(pipe2);
-//
-//        pump2.addVolume();
-//        pump1.addVolume();
-//
-//        spring.tick();
-//        pump1.tick();
-//        //pipe2.setWaterVolume
-//        //pipe1.setWaterVolume
-//
-//        spring.tick();
-//        pump1.tick();
-//        pump2.tick();
-//
-//        Skeleton.names.clear();
-//    }
-//
-//    static public void initPumpingIntoBrokenPump() {
-//        Spring spring = new Spring();
-//        Skeleton.names.put(spring, "spring");
-//        Pipe pipe1 = new Pipe();
-//        Skeleton.names.put(pipe1, "pipe1");
-//        pipe1.connect(spring);
-//        spring.connect(pipe1);
-//
-//        Pump pump1 = new Pump();
-//        Skeleton.names.put(pump1, "pump1");
-//        pipe1.connect(pump1);
-//        pump1.connect(pipe1);
-//        Pipe pipe2 = new Pipe();
-//        Skeleton.names.put(pipe2, "pipe2");
-//        pipe2.connect(pump1);
-//        pump1.connect(pipe2);
-//        Pump pump2 = new Pump();
-//        Skeleton.names.put(pump2, "pump2");
-//        pipe2.connect(pump2);
-//        pump2.connect(pipe2);
-//
-//        pump2.breakPump();
-//        Skeleton.names.clear();
-//    }
+    static public void initPumpingIntoBrokenPump() {
+        Spring spring = new Spring();
+        Skeleton.names.put(spring, "spring");
+        Pipe pipe1 = new Pipe();
+        Skeleton.names.put(pipe1, "pipe1");
+        pipe1.connect(spring);
+        spring.connect(pipe1);
+
+        Pump pump1 = new Pump();
+        Skeleton.names.put(pump1, "pump1");
+        pipe1.connect(pump1);
+        pump1.connect(pipe1);
+        Pipe pipe2 = new Pipe();
+        Skeleton.names.put(pipe2, "pipe2");
+        pipe2.connect(pump1);
+        pump1.connect(pipe2);
+        Pump pump2 = new Pump();
+        Skeleton.names.put(pump2, "pump2");
+        pipe2.connect(pump2);
+        pump2.connect(pipe2);
+
+        pump1.changeFlow(pipe1, pipe2);
+        pump2.changeFlow(pipe2, new Pipe());
+
+        pump2.breakPump();
+
+        spring.tick();
+        pump1.tick();
+        pump2.tick();
+
+        Skeleton.names.clear();
+    }
 }
