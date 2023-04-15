@@ -2,150 +2,142 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Pipe extends Field {
-    private boolean isBroken;
-    private final int maxVolume;
-    private int currentVolume;
-    private int wastedWater;
-
     private List<FieldNode> ends;
 
     /**
-     * Creates a new pipe.
-     * 
-     * @param maxVolume The maximum amount of water that the pipe can store.
+     * Egy új csövet készít.
      */
-    public Pipe(int maxVolume) {
-        this.isBroken = false;
-        this.currentVolume = 0;
-        this.wastedWater = 0;
-        this.maxVolume = maxVolume;
+    public Pipe() {
+        super();
         this.ends = new ArrayList<>();
+
+        Skeleton.callFunction(this, "create", null);
+        Skeleton.endFunction();
     }
 
     /**
-     * Breaks the pipe so that all the water flows out of it.
+     * Kilyukasztja a csövet, úgy hogy az összes benne lévő és rajta átfolyó víz
+     * kifolyik belőle.
      */
     public void breakPipe() {
-        isBroken = true;
-        wastedWater += currentVolume;
-        currentVolume = 0;
+        Skeleton.callFunction(this, "breakPipe", null);
+        Skeleton.endFunction();
     }
 
     /**
-     * Repairs the pipe so that water can flow through it again.
+     * Ha van lyuk a csövön akkor megfoltozza azt.
      */
     public void repair() {
-        isBroken = false;
+        Skeleton.callFunction(this, "repair", null);
+        Skeleton.endFunction();
     }
 
     /**
-     * Fills the pipe with water.
+     * Vizet tölt a csőbe.
      * 
-     * @param amount The amount of water that we fill the pipe with.
-     * @return The amount of water that was successfully flown into the pipe.
+     * @param amount A víz mennyisége amit a csőbe szeretnénk tölteni.
+     * @return A annak a víznek a mennyisége amit sikeresen betöltöttünk a csőbe.
      */
-    public int flow(int amount) {
-        int consumed = Math.min(maxVolume - currentVolume, amount);
-        if (isBroken) {
-            wastedWater += consumed;
-            return consumed;
-        }
-        currentVolume += consumed;
+    public int flow(Integer amount) {
+        Skeleton.callFunction(this, "flow", new Object[] { amount });
+
+        int consumed = Skeleton.numberQuestion("How much water has flown into the pipe?");
+
+        Skeleton.endFunction();
         return consumed;
     }
 
     /**
-     * Drains the water from the pipe.
+     * Kiszívja a vizet a csőből.
      * 
-     * @param amount The amount of water that we want to drain.
-     * @return The amount of water that was successfully drained from the pipe.
+     * @param amount A víz mennyisége amit ki akarunk szívni.
+     * @return A víz mennyisége amit sikeresen leszívtunk.
      */
-    public int drain(int amount) {
-        int drained = Math.min(currentVolume, amount);
-        currentVolume -= drained;
-        return drained;
+    public int drain(Integer amount) {
+        Skeleton.callFunction(this, "drain", new Object[] { amount });
+
+        int consumed = Skeleton.numberQuestion("How much water has been drained from the pipe?");
+
+        Skeleton.endFunction();
+        return consumed;
     }
 
     @Override
     public boolean addPlayer(Player p) {
-        boolean hasPlayer = Skeleton.yesNoQuestion("Van már játékos a csövön?");
-        if (hasPlayer) {
-            return false;
+        Skeleton.callFunction(this, "addPlayer", new Object[] { p });
+
+        boolean success = Skeleton.yesNoQuestion("Can player move to pipe?");
+        if (success) {
+            players.add(p);
         }
-        return super.addPlayer(p);
+
+        Skeleton.endFunction();
+        return success;
     }
 
     /**
-     * Sets the specified node as one of the pipe's end.
+     * Beállítja a megadott csomópontot a cső egyik végének.
      * 
-     * @param n The specified Node to connect.
-     * @return Returns whether the pipe could be connected to the Node.
+     * @param n A megadott csomópont amihez csatlakozni szeretnénk.
+     * @return Visszaadja, hogy sikerült-e csatlakozni a csomóponthoz.
      */
     public boolean connect(FieldNode n) {
-        if (2 <= ends.size()) {
-            return false;
+        Skeleton.callFunction(this, "connect", new Object[] { n });
+
+        boolean success = Skeleton.yesNoQuestion(
+                String.format("Can the pipe be connected to the %s?", n.getClass().getName()));
+        if (success) {
+            ends.add(n);
         }
-        return ends.add(n);
+
+        Skeleton.endFunction();
+        return success;
     }
 
     /**
-     * Removes the specified node from the pipe's ends.
+     * Eltávolítja a megadott csomópontot a cső végei közül.
      * 
-     * @param n The specified Node to disconnect.
-     * @return Returns whether the operation was successful.
+     * @param n A csomópont amit el akarunk távolítani.
+     * @return Visszaadja, hogy sikerült-e eltávolítani a csomópontot.
      */
     public boolean disconnect(FieldNode n) {
-        boolean hasPlayer = Skeleton.yesNoQuestion("Van már játékos a csövön?");
-        boolean hasWater = Skeleton.yesNoQuestion("Van-e víz a csőben?");
+        Skeleton.callFunction(this, "connect", new Object[] { n });
 
-        if (hasPlayer || hasWater) {
-            return false;
+        boolean success = Skeleton.yesNoQuestion(
+                String.format("Can the pipe be disconnected from the %s?", n.getClass().getName()));
+        if (success) {
+            ends.remove(n);
         }
-        return ends.remove(n);
+
+        Skeleton.endFunction();
+        return success;
     }
 
     /**
-     * Returns the amount of water that is in the pipe.
-     */
-    public int getVolume() {
-        return currentVolume;
-    }
-
-    /**
-     * Returns the amount of water that can still flow into the pipe.
-     */
-    public int getCapacity() {
-        return maxVolume - currentVolume;
-    }
-
-    public List<FieldNode> getEnds() {
-        return ends;
-    }
-
-    /**
-     * Cuts the pipe in half, producing a new pipe.
+     * Félbevágja a csövet, ezzel egy új csövet készítve.
      * 
-     * @return Returns the newly created pipe or if the cut could not be made null.
+     * @return Visszaadja az ujonnan elkészült csövet, ha sikerült a félbevágás
+     *         különben pedig null-t ad vissza.
      */
     public Pipe cut() {
-        boolean hasPlayer = Skeleton.yesNoQuestion("Van már játékos a csövön?");
-        boolean hasWater = Skeleton.yesNoQuestion("Van-e víz a csőben?");
+        Skeleton.callFunction(this, "cut", null);
 
-        if (ends.size() != 2 || hasPlayer || hasWater) {
+        boolean success = Skeleton.yesNoQuestion("Can we cut the pipe in half?");
+        if (!success) {
+            Skeleton.endFunction();
             return null;
         }
 
-        FieldNode node = this.ends.get(0);
-        Pipe newPipe = new Pipe(maxVolume);
+        Pipe newPipe = new Pipe();
+        FieldNode fn = ends.get(0);
 
-        node.disconnect(this);
+        this.disconnect(fn);
+        fn.disconnect(this);
 
-        this.disconnect(node);
+        newPipe.connect(fn);
+        fn.connect(newPipe);
 
-        newPipe.connect(node);
-
-        node.connect(newPipe);
-
+        Skeleton.endFunction();
         return newPipe;
     }
 }
