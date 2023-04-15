@@ -114,4 +114,14 @@ public class Mechanic extends Player{
     public void setPipe(Pipe pipe) {
         this.pipe = pipe;
     }
+
+    public void pickupPipe() {
+        boolean hasPipe = Skeleton.yesNoQuestion("Does the mechanic have a pipe?");
+        if(hasPipe) return;
+
+        Pipe newPipe = this.position.takePipe();
+        if(newPipe != null) {
+            setPipe(newPipe);
+        }
+    }
 }
