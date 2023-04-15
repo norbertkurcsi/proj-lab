@@ -76,25 +76,6 @@ public class Skeleton {
         }
     }
 
-    // static public void printSequenceDiagram() {
-    // while(true){
-    // int response = numberQuestion("adja meg az utasítás számát");
-    // switch(response){
-    // case 1:
-    // String letter = question("adja meg az utasítás számát");
-    // break;
-    // case 2:
-    //
-    // break;
-    // case 3:
-    // break;
-    // case 4:
-    // break;
-    // default:
-    // continue;
-    // }
-    // }
-    // }
     public static void main(String[] args) {
         Menu.runMenu(Menu.MAIN_MENU);
     }

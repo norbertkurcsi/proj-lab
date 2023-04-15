@@ -140,7 +140,8 @@ public class Menu {
             new MenuOption() {
                 public void execute() {
                     System.out.println(getName());
-                    //Initialize.initWaterFlowsIntoPipe();
+                    // TODO: Mi legyen vele? Ez a refes téma.
+                    // Initialize.initWaterFlowsIntoPipe();
                 }
                 public String getName() {
                     return "Water flows into pipe";
@@ -149,6 +150,7 @@ public class Menu {
             new MenuOption() {
                 public void execute() {
                     System.out.println(getName());
+                    // TODO: Mi legyen vele? Ez a refes téma.
                     //Initialize.initWaterIsDrainedFromPipe();
                 }
                 public String getName() {
@@ -158,7 +160,7 @@ public class Menu {
             new MenuOption() {
                 public void execute() {
                     System.out.println(getName());
-                    //Initialize.initWaterLeaksFromPuncturedPipe();
+                    Initialize.initWaterLeaksFromPuncturedPipe();
                 }
                 public String getName() {
                     return "Water leaks from punctured pipe";
@@ -167,7 +169,7 @@ public class Menu {
             new MenuOption() {
                 public void execute() {
                     System.out.println(getName());
-                    //Initialize.initWaterLeaksFromPipeWithFreeEnd();
+                    Initialize.initWaterLeaksFromPipeWithFreeEnd();
                 }
                 public String getName() {
                     return "Water leaks from pipe with free end";

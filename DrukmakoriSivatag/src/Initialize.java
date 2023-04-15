@@ -372,4 +372,42 @@ public class Initialize {
 
         Skeleton.names.clear();
     }
+
+    public static void initWaterLeaksFromPuncturedPipe() {
+        Pipe puncturedPipe = new Pipe();
+        Skeleton.names.put(puncturedPipe, "puncturedPipe");
+
+        Spring spring = new Spring();
+        Skeleton.names.put(spring, "s");
+
+        Pump pump = new Pump();
+        Skeleton.names.put(pump, "pump");
+
+        puncturedPipe.connect(spring);
+        spring.connect(puncturedPipe);
+
+        pump.connect(puncturedPipe);
+        puncturedPipe.connect(pump);
+
+        puncturedPipe.breakPipe();
+
+        spring.tick();
+
+        Skeleton.names.clear();
+    }
+
+    public static void initWaterLeaksFromPipeWithFreeEnd() {
+        Pipe puncturedPipe = new Pipe();
+        Skeleton.names.put(puncturedPipe, "pipe");
+
+        Spring spring = new Spring();
+        Skeleton.names.put(spring, "s");
+
+        puncturedPipe.connect(spring);
+        spring.connect(puncturedPipe);
+
+        spring.tick();
+
+        Skeleton.names.clear();
+    }
 }
