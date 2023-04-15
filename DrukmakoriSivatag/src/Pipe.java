@@ -131,6 +131,7 @@ public class Pipe extends Field {
         Pipe newPipe = new Pipe();
         FieldNode fn = ends.get(0);
 
+
         this.disconnect(fn);
         fn.disconnect(this);
 
