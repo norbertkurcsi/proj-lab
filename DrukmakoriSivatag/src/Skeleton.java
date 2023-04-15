@@ -1,6 +1,4 @@
-import javax.sound.midi.SysexMessage;
-import javax.swing.*;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -19,18 +17,23 @@ public class Skeleton {
     static public void callFunction(Object object, String functionName, Object[] params) {
         System.out.print(">");
         printIndent();
-        if(names.get(object) == null) {
-            System.out.printf("[%s].%s(", object.getClass().getName(), functionName);
-        } else {
-            System.out.printf("[%s: %s].%s(", names.get(object), object.getClass().getName(), functionName);
-        }
+
+        String paramsString = "";
         if (params != null) {
-            for (Object o : params) {
-                // At kell alakitani hekas
-                System.out.printf("[%s: %s],", names.get(o), o.getClass().getName());
-            }
+            paramsString = String.join(", ", Arrays.asList(params).stream()
+                    .map((param) -> {
+                        return String.format("[%s: %s]", names.get(param), param.getClass().getName());
+                    })
+                    .toList());
         }
-        System.out.println(")");
+
+        if (names.get(object) == null) {
+            System.out.printf("[%s].%s(%s)\n", object.getClass().getName(), functionName, paramsString);
+        } else {
+            System.out.printf("[%s: %s].%s(%s)\n", names.get(object), object.getClass().getName(), functionName,
+                    paramsString);
+        }
+
         indent++;
     }
 
@@ -73,25 +76,25 @@ public class Skeleton {
         }
     }
 
-    //    static public void printSequenceDiagram() {
-//        while(true){
-//            int response = numberQuestion("adja meg az utasítás számát");
-//            switch(response){
-//                case 1:
-//                    String letter = question("adja meg az utasítás számát");
-//                    break;
-//                case 2:
-//
-//                    break;
-//                case 3:
-//                    break;
-//                case 4:
-//                    break;
-//                default:
-//                    continue;
-//            }
-//        }
-//    }
+    // static public void printSequenceDiagram() {
+    // while(true){
+    // int response = numberQuestion("adja meg az utasítás számát");
+    // switch(response){
+    // case 1:
+    // String letter = question("adja meg az utasítás számát");
+    // break;
+    // case 2:
+    //
+    // break;
+    // case 3:
+    // break;
+    // case 4:
+    // break;
+    // default:
+    // continue;
+    // }
+    // }
+    // }
     public static void main(String[] args) {
         Menu.runMenu(Menu.MAIN_MENU);
     }
