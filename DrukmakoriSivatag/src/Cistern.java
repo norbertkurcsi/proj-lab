@@ -21,8 +21,8 @@ public class Cistern extends FieldNode implements Tickable{
      * Függvény, ami a ciszternába folyt vizet növeli a paraméterként átadott értékkel.
      * @param amount az az int mennyiség, amivel növeli a ciszternába folyt vizet.
      */
-    public void addDrainedWater(int amount){
-        Skeleton.callFunction(this, "addDrainedWater", new Object[]{amount});
+    public void addDrainedWater(int amount) {
+        Skeleton.callFunction(this, "addDrainedWater", new Object[] { amount });
         // drainedWater += amount;
         Skeleton.endFunction();
     }
@@ -34,10 +34,10 @@ public class Cistern extends FieldNode implements Tickable{
     public Pipe takePipe(){
         Skeleton.callFunction(this, "takePipe", null);
         pipeAvailable = Skeleton.yesNoQuestion("Were there available pipes?");
-        if(pipeAvailable) {
-            int volume = Skeleton.numberQuestion("Enter the pipe's maximum volume");
+        if (pipeAvailable) {
+            // int volume = Skeleton.numberQuestion("Enter the pipe's maximum volume");
             Skeleton.endFunction();
-            Pipe newPipe = new Pipe(volume);
+            Pipe newPipe = new Pipe();
             Skeleton.names.put(newPipe, "newPipe");
             return newPipe;
         }
@@ -52,7 +52,7 @@ public class Cistern extends FieldNode implements Tickable{
     public Pump takePump(){
         Skeleton.callFunction(this, "takePump", null);
         boolean pumpAvailable = Skeleton.yesNoQuestion("Were there available pumps?");
-        if(pumpAvailable) {
+        if (pumpAvailable) {
             int volume = Skeleton.numberQuestion("Enter the pump's maximum volume");
             Skeleton.endFunction();
             Pump newPump = new Pump(volume);
@@ -81,8 +81,8 @@ public class Cistern extends FieldNode implements Tickable{
     @Override
     public void tick() {
         Skeleton.callFunction(this, "tick", null);
-        for (Pipe pipe : pipes){
-            addDrainedWater(pipe.drain(pipe.getVolume()));
+        for (Pipe pipe : pipes) {
+            addDrainedWater(pipe.drain(Integer.MAX_VALUE));
         }
         Skeleton.endFunction();
     }
