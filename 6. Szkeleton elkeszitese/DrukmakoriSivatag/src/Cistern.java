@@ -4,9 +4,6 @@ public class Cistern extends FieldNode implements Tickable{
     public void addDrainedWater(int amount){
 
     }
-    public boolean addPlayer(Player p){
-        return false;
-    }
 
     public Pipe takePipe(){
         return null;
@@ -16,7 +13,7 @@ public class Cistern extends FieldNode implements Tickable{
     }
 
     public int getDrainedWater(){
-        return 0;
+        return drainedWater;
     }
 
     public String GetClass(){
@@ -25,6 +22,8 @@ public class Cistern extends FieldNode implements Tickable{
 
     @Override
     public void tick() {
-
+        for (Pipe pipe : pipes){
+            addDrainedWater(pipe.drain(pipe.getVolume()));
+        }
     }
 }
