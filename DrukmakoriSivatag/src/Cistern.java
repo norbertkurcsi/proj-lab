@@ -35,7 +35,6 @@ public class Cistern extends FieldNode implements Tickable{
         Skeleton.callFunction(this, "takePipe", null);
         pipeAvailable = Skeleton.yesNoQuestion("Were there available pipes?");
         if (pipeAvailable) {
-            // int volume = Skeleton.numberQuestion("Enter the pipe's maximum volume");
             Skeleton.endFunction();
             Pipe newPipe = new Pipe();
             Skeleton.names.put(newPipe, "newPipe");
@@ -53,7 +52,6 @@ public class Cistern extends FieldNode implements Tickable{
         Skeleton.callFunction(this, "takePump", null);
         boolean pumpAvailable = Skeleton.yesNoQuestion("Were there available pumps?");
         if (pumpAvailable) {
-            int volume = Skeleton.numberQuestion("Enter the pump's maximum volume");
             Skeleton.endFunction();
             Pump newPump = new Pump();
             Skeleton.names.put(newPump, "newPump");
