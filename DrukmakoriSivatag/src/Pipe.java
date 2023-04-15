@@ -138,21 +138,13 @@ public class Pipe extends Field {
         FieldNode node = this.ends.get(0);
         Pipe newPipe = new Pipe(maxVolume);
 
-        Skeleton.callFunction(node, "node", "Disconnect");
         node.disconnect(this);
-        Skeleton.endFunction();
 
-        Skeleton.callFunction(this, "pipe", "Disconnect");
         this.disconnect(node);
-        Skeleton.endFunction();
 
-        Skeleton.callFunction(newPipe, "newPipe", "Connect");
         newPipe.connect(node);
-        Skeleton.endFunction();
 
-        Skeleton.callFunction(node, "node", "Connect");
         node.connect(newPipe);
-        Skeleton.endFunction();
 
         return newPipe;
     }

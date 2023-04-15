@@ -1,4 +1,4 @@
-public class Mechanic extends Player{
+public class Mechanic extends Player {
     private Pipe pipe;
     private Pump pump;
 
@@ -17,7 +17,7 @@ public class Mechanic extends Player{
      *
      * @param p - A megjavítandó cső.
      */
-    public void fixPipe(Pipe p){
+    public void fixPipe(Pipe p) {
         p.repair();
     }
 
@@ -39,7 +39,9 @@ public class Mechanic extends Player{
             n.connect(pipe);
             pipe.connect(n);
         }
-    }/**
+    }
+
+    /**
      * Csatlakoztatja a paraméterként kapott csövet, a szintén paraméterként kapott FieldNode csomóponthoz.
      *
      * @param p Csatlakoztatni kívánt cső.
@@ -109,19 +111,27 @@ public class Mechanic extends Player{
 
     /**
      * Beállítja a paraméterként kapott csövet a szerelő csöveként.
+     *
      * @param pipe Az új cső
      */
     public void setPipe(Pipe pipe) {
+        Skeleton.callFunction(pipe, "setPipe", new Object[]{pipe});
         this.pipe = pipe;
+        Skeleton.endFunction();
     }
 
     public void pickupPipe() {
+        Skeleton.callFunction(this, "pickupPipe", null);
         boolean hasPipe = Skeleton.yesNoQuestion("Does the mechanic have a pipe?");
-        if(hasPipe) return;
+        if (hasPipe) {
+            Skeleton.endFunction();
+            return;
+        }
 
         Pipe newPipe = this.position.takePipe();
-        if(newPipe != null) {
+        if (newPipe != null) {
             setPipe(newPipe);
         }
+        Skeleton.endFunction();
     }
 }

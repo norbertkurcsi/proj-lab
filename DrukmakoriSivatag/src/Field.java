@@ -19,7 +19,9 @@ public abstract class Field {
      * @return
      */
     public boolean addPlayer(Player p) {
-        players.add(p);
+        Skeleton.callFunction(this, "addPlayer", new Object[]{p});
+//        players.add(p);
+        Skeleton.endFunction();
         return true;
     }
 
@@ -29,7 +31,9 @@ public abstract class Field {
      * @param p - A törlendő játékos.
      */
     public void removePlayer(Player p) {
-        players.remove(p);
+        Skeleton.callFunction(this, "removePlayer", new Object[]{p});
+//        players.remove(p);
+        Skeleton.endFunction();
     }
 
     /**
@@ -47,11 +51,16 @@ public abstract class Field {
      * @return az elvett cső vagy null
      */
     public Pipe takePipe() {
+        Skeleton.callFunction(this, "takePipe", null);
         boolean canTakePipe = Skeleton.yesNoQuestion("Were there available pipes?");
         if(canTakePipe) {
             int volume = Skeleton.numberQuestion("Enter the pump's maximum volume");
-            return new Pipe(volume);
+            Skeleton.endFunction();
+            Pipe newPipe = new Pipe(volume);
+            Skeleton.names.put(newPipe, "newPipe");
+            return newPipe;
         }
+        Skeleton.endFunction();
         return null;
     }
 
