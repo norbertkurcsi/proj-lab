@@ -24,7 +24,9 @@ public class Cistern extends FieldNode implements Tickable{
     }
 
     /**
-     *{inheritDoc}
+     * Egy cső felvevése a mezőről, ha nem megy akkor null értékkel tér vissza.
+     *
+     * @return az elvett cső vagy null
      */
     @Override
     public Pipe takePipe(){
@@ -41,7 +43,9 @@ public class Cistern extends FieldNode implements Tickable{
     }
 
     /**
-     * {inheritDoc}
+     * Egy pumpa felvevése a mezőről, ha nem megy akkor null értékkel tér vissza.
+     *
+     * @return az elvett pumpa vagy null
      */
     @Override
     public Pump takePump(){
@@ -57,7 +61,6 @@ public class Cistern extends FieldNode implements Tickable{
         return null;
     }
 
-    //TODO MI LEGYEN EZZEL
     /**
      * Függvény, ami lekérdezi a ciszternába folyt víz mennyiségét.
      * @return a ciszternába folyt víz mennyisége.

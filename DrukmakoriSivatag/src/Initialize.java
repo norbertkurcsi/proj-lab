@@ -1,3 +1,6 @@
+/**
+ * Az inicializálásokért felelős osztály.
+ */
 public class Initialize {
     /**
      * A Connect Pipe teszteset kommunikációs diagramnak megfelelő inicializáló függvénye.

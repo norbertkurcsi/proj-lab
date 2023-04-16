@@ -1,6 +1,9 @@
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Egy mezőt reprezentáló absztrakt osztály.
+ */
 public abstract class Field {
     protected List<Player> players;
 
@@ -36,7 +39,6 @@ public abstract class Field {
         Skeleton.endFunction();
     }
 
-    //TODO MI LEGYEN EZZEL
     /**
      * Visszatéríti a pályaelemen álló játékosok számát.
      *

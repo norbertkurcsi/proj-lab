@@ -1,6 +1,9 @@
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Egy csövet reprezentáló osztály.
+ */
 public class Pipe extends Field {
     private List<FieldNode> ends;
 
@@ -74,7 +77,7 @@ public class Pipe extends Field {
      * Hozzáadja a paraméterként kapott játékost, amelyik a mezőre lép, a játékosok listájához
      *
      * @param p - A játékos amelyet hozzáadjuk a listához.
-     * @return
+     * @return A hozzáadás sikeressége.
      */
     @Override
     public boolean addPlayer(Player p) {

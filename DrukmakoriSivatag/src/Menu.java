@@ -9,7 +9,13 @@ public class Menu {
         String getName();
     }
 
+    /**
+     * A főmenühöz tartozó menüopció
+     */
     public static final MenuOption[] MAIN_MENU = {
+            /**
+             * A Move almenühöz tartozó menüopció.
+            */
             new MenuOption() {
                 public void execute() {
                     runMenu(MOVE_SUBMENU);
@@ -18,6 +24,9 @@ public class Menu {
                     return "Move";
                 }
             },
+            /**
+             * A Time tick almenühöz tartozó menüopció.
+            */
             new MenuOption() {
                 public void execute() {
                     runMenu( TIME_TICK_SUBMENU);
@@ -26,6 +35,9 @@ public class Menu {
                     return "Time Tick";
                 }
             },
+            /**
+             * A Pipe actions almenühöz tartozó menüopció.
+            */
             new MenuOption() {
                 public void execute() {
                     runMenu(PIPE_ACTIONS_SUBMENU);
@@ -34,6 +46,9 @@ public class Menu {
                     return "Pipe actions";
                 }
             },
+            /**
+             * A Pump actions almenühöz tartozó menüopció.
+            */
             new MenuOption() {
                 public void execute() {
                     runMenu(PUMP_ACTIONS_SUBMENU);
@@ -44,7 +59,13 @@ public class Menu {
             }
     };
 
+    /**
+     * A Move almenühöz tartozó menüopciókat tartalmazza.
+     */
     private static final MenuOption[] MOVE_SUBMENU = {
+            /**
+             * A Move To Pipe From Pump menüopció.
+            */
             new MenuOption() {
                 public void execute() {
                     System.out.println(getName());
@@ -54,6 +75,9 @@ public class Menu {
                     return "Move to pipe from pump";
                 }
             },
+            /**
+             * A Move To Pump From Pipe menüopció.
+            */
             new MenuOption() {
                 public void execute() {
                     System.out.println(getName());
@@ -63,6 +87,9 @@ public class Menu {
                     return "Move to pump from pipe";
                 }
             },
+            /**
+             * A Move To Cistern From Pipe menüopció.
+            */
             new MenuOption() {
                 public void execute() {
                     System.out.println(getName());
@@ -72,6 +99,9 @@ public class Menu {
                     return "Move to cistern from pipe";
                 }
             },
+            /**
+             * A Move To Spring From Pipe menüopció.
+            */
             new MenuOption() {
                 public void execute() {
                     System.out.println(getName());
@@ -83,7 +113,13 @@ public class Menu {
             }
     };
 
+    /**
+     * A Time tick almenühöz tartozó menüopciókat tartalmazza.
+     */
     private static final MenuOption[] TIME_TICK_SUBMENU = {
+            /**
+             * A Water flows menüopció.
+            */
             new MenuOption() {
                 public void execute() {
                     runMenu( WATER_FLOWS_SUBMENU);
@@ -92,6 +128,9 @@ public class Menu {
                     return "Water flows";
                 }
             },
+            /**
+             * A Pumping into broken pump menüopció.
+            */
             new MenuOption() {
                 public void execute() {
                     System.out.println("Pumping into broken pump");
@@ -101,6 +140,9 @@ public class Menu {
                     return "Pumping into broken pump";
                 }
             },
+            /**
+             * A Network branch filled up menüopció.
+            */
             new MenuOption() {
                 public void execute() {
                     System.out.println(getName());
@@ -112,7 +154,13 @@ public class Menu {
             }
     };
 
+    /**
+     * A Water flows almenühöz tartozó menüopciókat tartalmazza.
+     */
     private static final MenuOption[] WATER_FLOWS_SUBMENU = {
+            /**
+             * A Water flows from spring to pipe menüopció.
+            */
             new MenuOption() {
                 public void execute() {
                     System.out.println(getName());
@@ -122,6 +170,9 @@ public class Menu {
                     return "Water flows from spring to pipe";
                 }
             },
+            /**
+             * A Cistern drains water menüopció.
+            */
             new MenuOption() {
                 public void execute() {
                     System.out.println(getName());
@@ -131,6 +182,9 @@ public class Menu {
                     return "Cistern drains water";
                 }
             },
+            /**
+             * A Pump pumps menüopció.
+            */
             new MenuOption() {
                 public void execute() {
                     System.out.println(getName());
@@ -140,6 +194,9 @@ public class Menu {
                     return "Pump pumps";
                 }
             },
+            /**
+             * A Water leaks from punctured pipe menüopció.
+            */
             new MenuOption() {
                 public void execute() {
                     System.out.println(getName());
@@ -149,6 +206,9 @@ public class Menu {
                     return "Water leaks from punctured pipe";
                 }
             },
+            /**
+             * A Water leaks from pipe with free end menüopció.
+            */
             new MenuOption() {
                 public void execute() {
                     System.out.println(getName());
@@ -160,7 +220,13 @@ public class Menu {
             }
     };
 
+    /**
+     * A Pipe actions almenühöz tartozó menüopciókat tartalmazza.
+     */
     private static final MenuOption[] PIPE_ACTIONS_SUBMENU = {
+            /**
+             * A Connect pipe menüopció.
+            */
             new MenuOption() {
                 public void execute() {
                     System.out.println(getName());
@@ -170,6 +236,9 @@ public class Menu {
                     return "Connect pipe";
                 }
             },
+            /**
+             * A Disconnect pipe menüopció.
+            */
             new MenuOption() {
                 public void execute() {
                     System.out.println(getName());
@@ -179,6 +248,9 @@ public class Menu {
                     return "Disconnect pipe";
                 }
             },
+            /**
+             * A Fix pipe menüopció.
+            */
             new MenuOption() {
                 public void execute() {
                     System.out.println(getName());
@@ -188,6 +260,9 @@ public class Menu {
                     return "Fix pipe";
                 }
             },
+            /**
+             * A Place pipe menüopció.
+            */
             new MenuOption() {
                 public void execute() {
                     System.out.println(getName());
@@ -197,6 +272,9 @@ public class Menu {
                     return "Place pipe";
                 }
             },
+            /**
+             * A Pickup pipe menüopció.
+            */
             new MenuOption() {
                 public void execute() {
                     System.out.println(getName());
@@ -206,6 +284,9 @@ public class Menu {
                     return "Pickup pipe";
                 }
             },
+            /**
+             * A Puncture pipe menüopció.
+            */
             new MenuOption() {
                 public void execute() {
                     System.out.println(getName());
@@ -217,7 +298,13 @@ public class Menu {
             }
     };
 
+    /**
+     * A Pump actions almenühöz tartozó menüopciókat tartalmazza.
+     */
     private static final MenuOption[] PUMP_ACTIONS_SUBMENU = {
+            /**
+             * A Fix pump menüopció.
+            */
             new MenuOption() {
                 public void execute() {
                     System.out.println(getName());
@@ -227,6 +314,9 @@ public class Menu {
                     return "Fix pump";
                 }
             },
+            /**
+             * A Place pump menüopció.
+            */
             new MenuOption() {
                 public void execute() {
                     System.out.println(getName());
@@ -236,6 +326,9 @@ public class Menu {
                     return "Place pump";
                 }
             },
+            /**
+             * A Mechanic sets pump menüopció.
+            */
             new MenuOption() {
                 public void execute() {
                     System.out.println(getName());
@@ -245,6 +338,9 @@ public class Menu {
                     return "Mechanic sets pump";
                 }
             },
+            /**
+             * A Saboteur sets pump menüopció.
+            */
             new MenuOption() {
                 public void execute() {
                     System.out.println(getName());
@@ -254,6 +350,9 @@ public class Menu {
                     return "Saboteur sets pump";
                 }
             },
+            /**
+             * A Take pump menüopció.
+            */
             new MenuOption() {
                 public void execute() {
                     System.out.println(getName());
@@ -276,19 +375,24 @@ public class Menu {
 
         while (true) {
             System.out.println("Choose an option:");
+            // Menüopciók felsorolása
             for (int i = 0; i < currentMenu.length; i++) {
                 System.out.println("["  + (i + 1) + "] - " + currentMenu[i].getName());
             }
             if(isMainMenu) {
+                // Programból kilépés
                 System.out.println("[X] - Exit program");
             } else {
+                // Menüben visszalépés
                 System.out.println("[X] - Step back");
             }
+            // Kiválasztott opció
             String option = scanner.nextLine().trim().toUpperCase();
 
             try {
                 int command = Integer.parseInt(option);
                 if(command > currentMenu.length || command < 1) continue;
+                // Opciónak megfelelő akció
                 currentMenu[command-1].execute();
             } catch (NumberFormatException ex) {
                 if(option.equals("X")){
@@ -297,6 +401,4 @@ public class Menu {
             }
         }
     }
-
-
 }
