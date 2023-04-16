@@ -2,10 +2,19 @@
  * Az inicializálásokért felelős osztály.
  */
 public class Initialize {
+    private static void logInitBegin() {
+        System.out.println("--Initialization: ---------------------------");
+    }
+
+    private static void logSequanceBegin() {
+        System.out.println("--Test case squance: ---------------------------");
+    }
+
     /**
      * A Connect Pipe teszteset kommunikációs diagramnak megfelelő inicializáló függvénye.
      */
     public static void initConnectPipe() {
+        logInitBegin();
         Pipe pipe = new Pipe();
         Skeleton.names.put(pipe, "pipe");
         Mechanic m = new Mechanic();
@@ -13,6 +22,7 @@ public class Initialize {
         Pump pump = new Pump();
         Skeleton.names.put(pump, "pump");
 
+        logSequanceBegin();
         m.connectPipe(pipe, pump);
 
         Skeleton.names.clear();
@@ -22,6 +32,7 @@ public class Initialize {
      * A Disconnect Pipe teszteset kommunikációs diagramnak megfelelő inicializáló függvénye.
      */
     public static void initDisconnectPipe() {
+        logInitBegin();
         Pipe pipe = new Pipe();
         Skeleton.names.put(pipe, "pipe");
         Mechanic m = new Mechanic();
@@ -36,6 +47,7 @@ public class Initialize {
         pump.connect(pipe);
         c.connect(pipe);
 
+        logSequanceBegin();
         m.disconnectPipe(pipe, pump);
 
         Skeleton.names.clear();
@@ -45,6 +57,7 @@ public class Initialize {
      * A Fix Pipe teszteset kommunikációs diagramnak megfelelő inicializáló függvénye.
      */
     public static void initFixPipe() {
+        logInitBegin();
         Mechanic m = new Mechanic();
         Skeleton.names.put(m, "m");
         Pipe p = new Pipe();
@@ -52,6 +65,7 @@ public class Initialize {
 
         m.moveTo(p);
 
+        logSequanceBegin();
         m.fixPipe(p);
 
         Skeleton.names.clear();
@@ -61,6 +75,7 @@ public class Initialize {
      * A Place Pipe teszteset kommunikációs diagramnak megfelelő inicializáló függvénye.
      */
     public static void initPlacePipe() {
+        logInitBegin();
         Mechanic m = new Mechanic();
         Skeleton.names.put(m, "m");
         Pipe pipe = new Pipe();
@@ -71,13 +86,17 @@ public class Initialize {
         m.moveTo(pump);
         m.setPipe(pipe);
 
+        logSequanceBegin();
         m.placePipe(pump);
+
+        Skeleton.names.clear();
     }
 
     /**
      * A Pickup Pipe teszteset kommunikációs diagramnak megfelelő inicializáló függvénye.
      */
     static public void initPickupPipe() {
+        logInitBegin();
         Mechanic mechanic = new Mechanic();
         Skeleton.names.put(mechanic, "mechanic");
         Cistern cistern = new Cistern();
@@ -85,6 +104,8 @@ public class Initialize {
 
         mechanic.moveTo(cistern);
         cistern.tick();
+
+        logSequanceBegin();
         mechanic.pickupPipe();
 
         Skeleton.names.clear();
@@ -94,6 +115,7 @@ public class Initialize {
      * A Puncture Pipe teszteset kommunikációs diagramnak megfelelő inicializáló függvénye.
      */
     public static void initPuncturePipe() {
+        logInitBegin();
         Saboteur s = new Saboteur();
         Skeleton.names.put(s, "s");
         Pipe pipe = new Pipe();
@@ -101,6 +123,7 @@ public class Initialize {
 
         s.moveTo(pipe);
 
+        logSequanceBegin();
         s.breakPipe(pipe);
 
         Skeleton.names.clear();
@@ -110,6 +133,7 @@ public class Initialize {
      * A Fix Pump teszteset kommunikációs diagramnak megfelelő inicializáló függvénye.
      */
     public static void initFixPump() {
+        logInitBegin();
         Mechanic m = new Mechanic();
         Skeleton.names.put(m, "m");
         Pump p = new Pump();
@@ -117,6 +141,7 @@ public class Initialize {
 
         m.moveTo(p);
 
+        logSequanceBegin();
         m.fixPump(p);
 
         Skeleton.names.clear();
@@ -126,6 +151,7 @@ public class Initialize {
      * A Place Pump teszteset kommunikációs diagramnak megfelelő inicializáló függvénye.
      */
     public static void initPlacePump() {
+        logInitBegin();
         Mechanic m = new Mechanic();
         Skeleton.names.put(m, "m");
         Pump pump = new Pump();
@@ -144,6 +170,7 @@ public class Initialize {
         m.setPump(pump);
         m.moveTo(pipe);
 
+        logSequanceBegin();
         m.placePump(pump, pipe);
 
         Skeleton.names.clear();
@@ -153,6 +180,7 @@ public class Initialize {
      * A Mechanic Sets Pump teszteset kommunikációs diagramnak megfelelő inicializáló függvénye.
      */
     public static void initMechanicSetsPump() {
+        logInitBegin();
         Mechanic m = new Mechanic();
         Skeleton.names.put(m, "m");
         Pump pump = new Pump();
@@ -164,6 +192,7 @@ public class Initialize {
 
         m.moveTo(pump);
 
+        logSequanceBegin();
         m.setPumpDirection(pump, from, to);
 
         Skeleton.names.clear();
@@ -173,6 +202,7 @@ public class Initialize {
      * A Saboteur Sets Pump teszteset kommunikációs diagramnak megfelelő inicializáló függvénye.
      */
     public static void initSaboteurSetsPump() {
+        logInitBegin();
         Saboteur s = new Saboteur();
         Skeleton.names.put(s, "s");
         Pump pump = new Pump();
@@ -184,6 +214,7 @@ public class Initialize {
 
         s.moveTo(pump);
 
+        logSequanceBegin();
         s.setPumpDirection(pump, from, to);
 
         Skeleton.names.clear();
@@ -193,6 +224,7 @@ public class Initialize {
      * A Take Pump teszteset kommunikációs diagramnak megfelelő inicializáló függvénye.
      */
     public static void initTakePump() {
+        logInitBegin();
         Mechanic m = new Mechanic();
         Skeleton.names.put(m, "m");
         Cistern c = new Cistern();
@@ -200,6 +232,7 @@ public class Initialize {
 
         m.moveTo(c);
 
+        logSequanceBegin();
         m.pickupPump();
 
         Skeleton.names.clear();
@@ -209,6 +242,7 @@ public class Initialize {
      * A Move To Pipe From Pump teszteset kommunikációs diagramnak megfelelő inicializáló függvénye.
      */
     static public void initMoveToPipeFromPump() {
+        logInitBegin();
         Mechanic m = new Mechanic();
         Skeleton.names.put(m, "m");
         Pump pos = new Pump();
@@ -220,6 +254,8 @@ public class Initialize {
         pos.connect(dest);
 
         m.moveTo(pos);
+
+        logSequanceBegin();
         m.moveTo(dest);
 
         Skeleton.names.clear();
@@ -229,6 +265,7 @@ public class Initialize {
      * A Move To Pump From Pipe teszteset kommunikációs diagramnak megfelelő inicializáló függvénye.
      */
     static public void initMovetoPumpFromPipe() {
+        logInitBegin();
         Mechanic m = new Mechanic();
         Skeleton.names.put(m, "m");
         Pipe pos = new Pipe();
@@ -239,7 +276,10 @@ public class Initialize {
         dest.connect(pos);
         pos.connect(dest);
         m.moveTo(pos);
+
+        logSequanceBegin();
         m.moveTo(dest);
+
         Skeleton.names.clear();
     }
 
@@ -247,6 +287,7 @@ public class Initialize {
      * A Move To Cistern From Pipe teszteset kommunikációs diagramnak megfelelő inicializáló függvénye.
      */
     static public void initMoveToCisternFromPipe() {
+        logInitBegin();
         Mechanic m = new Mechanic();
         Skeleton.names.put(m, "m");
         Pipe pos = new Pipe();
@@ -257,7 +298,10 @@ public class Initialize {
         dest.connect(pos);
         pos.connect(dest);
         m.moveTo(pos);
+
+        logSequanceBegin();
         m.moveTo(dest);
+
         Skeleton.names.clear();
     }
 
@@ -265,6 +309,7 @@ public class Initialize {
      * A Move To Spring From Pipe teszteset kommunikációs diagramnak megfelelő inicializáló függvénye.
      */
     static public void initMoveToSpringFromPipe() {
+        logInitBegin();
         Mechanic m = new Mechanic();
         Skeleton.names.put(m, "m");
         Pipe pos = new Pipe();
@@ -275,7 +320,10 @@ public class Initialize {
         dest.connect(pos);
         pos.connect(dest);
         m.moveTo(pos);
+
+        logSequanceBegin();
         m.moveTo(dest);
+
         Skeleton.names.clear();
     }
 
@@ -283,6 +331,7 @@ public class Initialize {
      * A Network Branch Filled Up teszteset kommunikációs diagramnak megfelelő inicializáló függvénye.
      */
     static public void initNetworkBranchFilledUp() {
+        logInitBegin();
         Spring spring = new Spring();
         Skeleton.names.put(spring, "spring");
         Pipe pipe1 = new Pipe();
@@ -318,6 +367,7 @@ public class Initialize {
         pipe2.setWaterVolume(maxVolume);
         pipe1.setWaterVolume(maxVolume);
 
+        logSequanceBegin();
         spring.tick();
         pump1.tick();
         pump2.tick();
@@ -329,6 +379,7 @@ public class Initialize {
      * A Pumping Into Broken Pump teszteset kommunikációs diagramnak megfelelő inicializáló függvénye.
      */
     static public void initPumpingIntoBrokenPump() {
+        logInitBegin();
         Spring spring = new Spring();
         Skeleton.names.put(spring, "spring");
         Pipe pipe1 = new Pipe();
@@ -354,6 +405,7 @@ public class Initialize {
 
         pump2.breakPump();
 
+        logSequanceBegin();
         spring.tick();
         pump1.tick();
         pump2.tick();
@@ -365,6 +417,7 @@ public class Initialize {
      * A Water Flows From Spring To Pipe teszteset kommunikációs diagramnak megfelelő inicializáló függvénye.
      */
     public static void initWaterFlowsFromSpingToPipe() {
+        logInitBegin();
         Pipe pipe = new Pipe();
         Skeleton.names.put(pipe, "p");
 
@@ -380,7 +433,9 @@ public class Initialize {
         pump.connect(pipe);
         pipe.connect(pump);
 
+        logSequanceBegin();
         spring.tick();
+
         Skeleton.names.clear();
     }
 
@@ -388,6 +443,7 @@ public class Initialize {
      * A Cistern Drains Water teszteset kommunikációs diagramnak megfelelő inicializáló függvénye.
      */
     public static void initCisternDrainsWater() {
+        logInitBegin();
         Pipe pipe = new Pipe();
         Skeleton.names.put(pipe, "pipe");
 
@@ -401,7 +457,9 @@ public class Initialize {
         Skeleton.names.put(amount, "amount");
         pipe.setWaterVolume(amount);
 
+        logSequanceBegin();
         cistern.tick();
+
         Skeleton.names.clear();
     }
 
@@ -409,6 +467,7 @@ public class Initialize {
      * A Pump Pumps teszteset kommunikációs diagramnak megfelelő inicializáló függvénye.
      */
     public static void initPumpPumps() {
+        logInitBegin();
         Pump pump = new Pump();
         Skeleton.names.put(pump, "pump");
 
@@ -438,6 +497,7 @@ public class Initialize {
 
         pump.changeFlow(pipe2, pipe1);
 
+        logSequanceBegin();
         pump.tick();
 
         Skeleton.names.clear();
@@ -447,6 +507,7 @@ public class Initialize {
      * A Water Leaks From Punctured Pipe teszteset kommunikációs diagramnak megfelelő inicializáló függvénye.
      */
     public static void initWaterLeaksFromPuncturedPipe() {
+        logInitBegin();
         Pipe puncturedPipe = new Pipe();
         Skeleton.names.put(puncturedPipe, "puncturedPipe");
 
@@ -464,6 +525,7 @@ public class Initialize {
 
         puncturedPipe.breakPipe();
 
+        logSequanceBegin();
         spring.tick();
 
         Skeleton.names.clear();
@@ -473,6 +535,7 @@ public class Initialize {
      * A Water Leaks From Pipe With Free End teszteset kommunikációs diagramnak megfelelő inicializáló függvénye.
      */
     public static void initWaterLeaksFromPipeWithFreeEnd() {
+        logInitBegin();
         Pipe puncturedPipe = new Pipe();
         Skeleton.names.put(puncturedPipe, "pipe");
 
@@ -482,6 +545,7 @@ public class Initialize {
         puncturedPipe.connect(spring);
         spring.connect(puncturedPipe);
 
+        logSequanceBegin();
         spring.tick();
 
         Skeleton.names.clear();
