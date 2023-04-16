@@ -140,26 +140,6 @@ public class Menu {
             new MenuOption() {
                 public void execute() {
                     System.out.println(getName());
-                    // TODO: Mi legyen vele? Ez a refes téma.
-                    // Initialize.initWaterFlowsIntoPipe();
-                }
-                public String getName() {
-                    return "Water flows into pipe";
-                }
-            },
-            new MenuOption() {
-                public void execute() {
-                    System.out.println(getName());
-                    // TODO: Mi legyen vele? Ez a refes téma.
-                    //Initialize.initWaterIsDrainedFromPipe();
-                }
-                public String getName() {
-                    return "Water is drained from pipe";
-                }
-            },
-            new MenuOption() {
-                public void execute() {
-                    System.out.println(getName());
                     Initialize.initWaterLeaksFromPuncturedPipe();
                 }
                 public String getName() {

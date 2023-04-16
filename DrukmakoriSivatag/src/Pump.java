@@ -21,18 +21,14 @@ public class Pump extends FieldNode implements Tickable {
         Skeleton.endFunction();
     }
 
-    public int addVolume(Integer amount) {
+    public void addVolume(Integer amount) {
         Skeleton.callFunction(this, "addVolume", new Object[] { amount });
-        int volume = Skeleton.numberQuestion("How much will be the current volume?");
         Skeleton.endFunction();
-        return volume;
     }
 
-    public int decreaseVolume(Integer amount) {
+    public void decreaseVolume(Integer amount) {
         Skeleton.callFunction(this, "decreaseVolume", new Object[] { amount });
-        int volume = Skeleton.numberQuestion("How much will be the current volume?");
         Skeleton.endFunction();
-        return volume;
     }
 
     public void changeFlow(Pipe in, Pipe out) {
@@ -49,17 +45,28 @@ public class Pump extends FieldNode implements Tickable {
 
     public void tick() {
         Skeleton.callFunction(this, "tick", null);
-        boolean isBroken = Skeleton.yesNoQuestion("Is the pump broken?");
+        boolean isBroken = Skeleton.yesNoQuestion("Would you like to break the pump?");
         if (isBroken) {
+            breakPump();
             Skeleton.endFunction();
             return;
         }
 
-        int amountDrain = Skeleton.numberQuestion("How much do you want to pump?");
-        int gotWater = pipeIn.drain(amountDrain);
-        addVolume(gotWater);
+        Integer amount = Skeleton.numberQuestion("How much do you want to pump?");
+        Skeleton.names.put(amount, "amount");
+        Integer drainedAmount = 0;
+        if(pipeIn != null) {
+            drainedAmount = pipeIn.drain(amount);
+            Skeleton.names.put(drainedAmount, "drainedAmount");
+            addVolume(drainedAmount);
+        }
+
+        Integer currentVolume = Integer.valueOf(drainedAmount);
+        Skeleton.names.put(currentVolume, "currentVolume");
         if(pipeOut != null) {
-            decreaseVolume(pipeOut.flow(gotWater));
+            Integer flowAmount  = pipeOut.flow(currentVolume);
+            Skeleton.names.put(flowAmount, "flowAmount");
+            decreaseVolume(flowAmount);
         }
 
         Skeleton.endFunction();
