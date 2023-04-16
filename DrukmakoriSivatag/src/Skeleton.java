@@ -22,6 +22,7 @@ public class Skeleton {
         if (params != null) {
             paramsString = String.join(", ", Arrays.asList(params).stream()
                     .map((param) -> {
+                        if(param == null) return "[null]";
                         return String.format("[%s: %s]", names.get(param), param.getClass().getName());
                     })
                     .toList());

@@ -86,7 +86,6 @@ public class Initialize {
         Skeleton.names.clear();
     }
 
-    ///////////////////////////////////////////////////////////////////
 
     public static void initFixPump() {
         Mechanic m = new Mechanic();
@@ -170,8 +169,8 @@ public class Initialize {
     }
 
     static public void initMoveToPipeFromPump() {
-        Mechanic mechanic = new Mechanic();
-        Skeleton.names.put(mechanic, "mechanic");
+        Mechanic m = new Mechanic();
+        Skeleton.names.put(m, "m");
         Pump pos = new Pump();
         Skeleton.names.put(pos, "pos");
         Pipe dest = new Pipe();
@@ -179,13 +178,16 @@ public class Initialize {
 
         dest.connect(pos);
         pos.connect(dest);
-        mechanic.moveTo(pos);
+
+        m.moveTo(pos);
+        m.moveTo(dest);
+
         Skeleton.names.clear();
     }
 
     static public void initMovetoPumpFromPipe() {
-        Mechanic mechanic = new Mechanic();
-        Skeleton.names.put(mechanic, "mechanic");
+        Mechanic m = new Mechanic();
+        Skeleton.names.put(m, "m");
         Pipe pos = new Pipe();
         Skeleton.names.put(pos, "pos");
         Pump dest = new Pump();
@@ -193,13 +195,14 @@ public class Initialize {
 
         dest.connect(pos);
         pos.connect(dest);
-        mechanic.moveTo(pos);
+        m.moveTo(pos);
+        m.moveTo(dest);
         Skeleton.names.clear();
     }
 
     static public void initMoveToCisternFromPipe() {
-        Mechanic mechanic = new Mechanic();
-        Skeleton.names.put(mechanic, "mechanic");
+        Mechanic m = new Mechanic();
+        Skeleton.names.put(m, "m");
         Pipe pos = new Pipe();
         Skeleton.names.put(pos, "pos");
         Cistern dest = new Cistern();
@@ -207,13 +210,14 @@ public class Initialize {
 
         dest.connect(pos);
         pos.connect(dest);
-        mechanic.moveTo(pos);
+        m.moveTo(pos);
+        m.moveTo(dest);
         Skeleton.names.clear();
     }
 
     static public void initMoveToSpringFromPipe() {
-        Mechanic mechanic = new Mechanic();
-        Skeleton.names.put(mechanic, "mechanic");
+        Mechanic m = new Mechanic();
+        Skeleton.names.put(m, "m");
         Pipe pos = new Pipe();
         Skeleton.names.put(pos, "pos");
         Spring dest = new Spring();
@@ -221,7 +225,8 @@ public class Initialize {
 
         dest.connect(pos);
         pos.connect(dest);
-        mechanic.moveTo(pos);
+        m.moveTo(pos);
+        m.moveTo(dest);
         Skeleton.names.clear();
     }
 
@@ -248,7 +253,7 @@ public class Initialize {
         pump2.connect(pipe2);
 
         pump1.changeFlow(pipe1, pipe2);
-        pump2.changeFlow(pipe2, new Pipe());
+        pump2.changeFlow(pipe2, null);
         Integer volume = Skeleton.numberQuestion("Enter the max volume of the pumps");
         Skeleton.names.put(volume, "volume");
         pump2.addVolume(volume);
@@ -256,8 +261,10 @@ public class Initialize {
 
         spring.tick();
         pump1.tick();
-        // pipe1.setWaterVolume
-        // pipe2.setWaterVolume
+        Integer maxVolume = Skeleton.numberQuestion("Enter the max volume of the pipes");
+        Skeleton.names.put(maxVolume, "maxVolume");
+        pipe2.setWaterVolume(maxVolume);
+        pipe1.setWaterVolume(maxVolume);
 
         spring.tick();
         pump1.tick();
@@ -288,7 +295,7 @@ public class Initialize {
         pump2.connect(pipe2);
 
         pump1.changeFlow(pipe1, pipe2);
-        pump2.changeFlow(pipe2, new Pipe());
+        pump2.changeFlow(pipe2, null);
 
         pump2.breakPump();
 
@@ -365,7 +372,6 @@ public class Initialize {
         spring.connect(pipe2);
         spring.tick();
 
-        // TODO: Fel kell tenni a kommunikációs diagrammra
         pump.changeFlow(pipe2, pipe1);
 
         pump.tick();

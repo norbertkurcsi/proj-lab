@@ -21,9 +21,10 @@ public class Cistern extends FieldNode implements Tickable{
      * Függvény, ami a ciszternába folyt vizet növeli a paraméterként átadott értékkel.
      * @param amount az az int mennyiség, amivel növeli a ciszternába folyt vizet.
      */
-    public void addDrainedWater(int amount) {
-        Skeleton.callFunction(this, "addDrainedWater", new Object[] { amount });
-        // drainedWater += amount;
+    public void addDrainedWater(Integer amount) {
+        Integer drainedAmount = Integer.valueOf(amount);
+        Skeleton.names.put(drainedAmount, "drainedAmount");
+        Skeleton.callFunction(this, "addDrainedWater", new Object[] { drainedAmount });
         Skeleton.endFunction();
     }
 
@@ -79,8 +80,10 @@ public class Cistern extends FieldNode implements Tickable{
     @Override
     public void tick() {
         Skeleton.callFunction(this, "tick", null);
+        Integer volume = Skeleton.numberQuestion("How much would you like to drain?");
+        Skeleton.names.put(volume, "volume");
         for (Pipe pipe : pipes) {
-            addDrainedWater(pipe.drain(Integer.MAX_VALUE));
+            addDrainedWater(pipe.drain(volume));
         }
         Skeleton.endFunction();
     }
