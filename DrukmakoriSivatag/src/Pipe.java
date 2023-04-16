@@ -92,7 +92,6 @@ public class Pipe extends Field {
     public boolean connect(FieldNode n) {
         Skeleton.callFunction(this, "connect", new Object[] { n });
 
-        // TODO: Kell ezt megkérdezni?
         boolean success = Skeleton.yesNoQuestion(
                 String.format("Can the pipe be connected to the %s?", n.getClass().getName()));
         if (success) {
@@ -110,9 +109,8 @@ public class Pipe extends Field {
      * @return Visszaadja, hogy sikerült-e eltávolítani a csomópontot.
      */
     public boolean disconnect(FieldNode n) {
-        Skeleton.callFunction(this, "connect", new Object[] { n });
+        Skeleton.callFunction(this, "disconnect", new Object[] { n });
 
-        // TODO: Kell ezt megkérdezni?
         boolean success = Skeleton.yesNoQuestion(
                 String.format("Can the pipe be disconnected from the %s?", n.getClass().getName()));
         if (success) {
@@ -138,12 +136,13 @@ public class Pipe extends Field {
             return null;
         }
 
-        Pipe newPipe = new Pipe();
-        FieldNode fn = ends.get(0);
+        FieldNode fn = ends.get(1);
 
         this.disconnect(fn);
         fn.disconnect(this);
 
+        Pipe newPipe = new Pipe();
+        Skeleton.names.put(newPipe, "newPipe");
         newPipe.connect(fn);
         fn.connect(newPipe);
 

@@ -39,7 +39,6 @@ public class Initialize {
         Skeleton.names.put(p, "p");
 
         m.moveTo(p);
-        p.addPlayer(m);
 
         m.fixPipe(p);
 
@@ -49,13 +48,13 @@ public class Initialize {
     public static void initPlacePipe() {
         Mechanic m = new Mechanic();
         Skeleton.names.put(m, "m");
-        Pipe p = new Pipe();
-        Skeleton.names.put(p, "p");
+        Pipe pipe = new Pipe();
+        Skeleton.names.put(pipe, "pipe");
         Pump pump = new Pump();
         Skeleton.names.put(pump, "pump");
 
-        m.moveTo(p);
-        pump.addPlayer(m);
+        m.moveTo(pump);
+        m.setPipe(pipe);
 
         m.placePipe(pump);
     }
@@ -94,7 +93,6 @@ public class Initialize {
         Skeleton.names.put(p, "p");
 
         m.moveTo(p);
-        p.addPlayer(m);
 
         m.fixPump(p);
 
@@ -104,16 +102,23 @@ public class Initialize {
     public static void initPlacePump() {
         Mechanic m = new Mechanic();
         Skeleton.names.put(m, "m");
-        Pump p = new Pump();
-        Skeleton.names.put(p, "p");
+        Pump pump = new Pump();
+        Skeleton.names.put(pump, "pump");
         Pipe pipe = new Pipe();
         Skeleton.names.put(pipe, "pipe");
+        Pump end0 = new Pump();
+        Skeleton.names.put(end0, "ends[0]");
+        Pump end1 = new Pump();
+        Skeleton.names.put(end1, "ends[1]");
+        pipe.connect(end0);
+        end0.connect(pipe);
+        pipe.connect(end1);
+        end1.connect(pipe);
 
-        m.setPump(p);
+        m.setPump(pump);
         m.moveTo(pipe);
-        pipe.addPlayer(m);
 
-        m.placePump(pipe);
+        m.placePump(pump, pipe);
 
         Skeleton.names.clear();
     }
@@ -129,7 +134,6 @@ public class Initialize {
         Skeleton.names.put(from, "from");
 
         m.moveTo(pump);
-        pump.addPlayer(m);
 
         m.setPumpDirection(pump, from, to);
 
@@ -147,7 +151,6 @@ public class Initialize {
         Skeleton.names.put(from, "from");
 
         s.moveTo(pump);
-        pump.addPlayer(s);
 
         s.setPumpDirection(pump, from, to);
 
@@ -161,7 +164,6 @@ public class Initialize {
         Skeleton.names.put(c, "c");
 
         m.moveTo(c);
-        c.addPlayer(m);
 
         m.pickupPump();
 

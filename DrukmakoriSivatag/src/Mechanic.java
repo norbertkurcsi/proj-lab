@@ -43,8 +43,8 @@ public class Mechanic extends Player {
         Skeleton.callFunction(this, "placePipe", new Object[]{n});
         boolean hasPipe = Skeleton.yesNoQuestion("Does he have a pipe?");
         if (hasPipe) {
-            n.connect(pipe);
             pipe.connect(n);
+            n.connect(pipe);
         }
         Skeleton.endFunction();
     }
@@ -104,8 +104,8 @@ public class Mechanic extends Player {
      *
      * @param pipe Ide helyezi a pumpát. Ez vágódik ketté.
      */
-    public void placePump(Pipe pipe) {
-        Skeleton.callFunction(this, "placePump", new Object[]{pipe});
+    public void placePump(Pump pump, Pipe pipe) {
+        Skeleton.callFunction(this, "placePump", new Object[]{pump, pipe});
         Pipe newPipe = pipe.cut();
         if (newPipe == null) {
             Skeleton.endFunction();
@@ -125,7 +125,9 @@ public class Mechanic extends Player {
      * @param pump Az új pumpa
      */
     public void setPump(Pump pump) {
+        Skeleton.callFunction(this, "setPump", new Object[]{pump});
         this.pump = pump;
+        Skeleton.endFunction();
     }
 
     /**
@@ -134,7 +136,7 @@ public class Mechanic extends Player {
      * @param pipe Az új cső
      */
     public void setPipe(Pipe pipe) {
-        Skeleton.callFunction(pipe, "setPipe", new Object[]{pipe});
+        Skeleton.callFunction(this, "setPipe", new Object[]{pipe});
         this.pipe = pipe;
         Skeleton.endFunction();
     }
