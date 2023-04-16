@@ -2,12 +2,18 @@
  * Az inicializálásokért felelős osztály.
  */
 public class Initialize {
+    /**
+     * Jelzi az inicializáló blokk elejét
+     */
     private static void logInitBegin() {
         System.out.println("--Initialization: ---------------------------");
     }
 
-    private static void logSequanceBegin() {
-        System.out.println("--Test case squance: ---------------------------");
+    /**
+     * Jelzi a szekvencia futásának kezdetét
+     */
+    private static void logSequenceBegin() {
+        System.out.println("--Test case sequence: ---------------------------");
     }
 
     /**
@@ -22,7 +28,7 @@ public class Initialize {
         Pump pump = new Pump();
         Skeleton.names.put(pump, "pump");
 
-        logSequanceBegin();
+        logSequenceBegin();
         m.connectPipe(pipe, pump);
 
         Skeleton.names.clear();
@@ -47,7 +53,7 @@ public class Initialize {
         pump.connect(pipe);
         c.connect(pipe);
 
-        logSequanceBegin();
+        logSequenceBegin();
         m.disconnectPipe(pipe, pump);
 
         Skeleton.names.clear();
@@ -65,7 +71,7 @@ public class Initialize {
 
         m.moveTo(p);
 
-        logSequanceBegin();
+        logSequenceBegin();
         m.fixPipe(p);
 
         Skeleton.names.clear();
@@ -86,7 +92,7 @@ public class Initialize {
         m.moveTo(pump);
         m.setPipe(pipe);
 
-        logSequanceBegin();
+        logSequenceBegin();
         m.placePipe(pump);
 
         Skeleton.names.clear();
@@ -105,7 +111,7 @@ public class Initialize {
         mechanic.moveTo(cistern);
         cistern.tick();
 
-        logSequanceBegin();
+        logSequenceBegin();
         mechanic.pickupPipe();
 
         Skeleton.names.clear();
@@ -123,7 +129,7 @@ public class Initialize {
 
         s.moveTo(pipe);
 
-        logSequanceBegin();
+        logSequenceBegin();
         s.breakPipe(pipe);
 
         Skeleton.names.clear();
@@ -141,7 +147,7 @@ public class Initialize {
 
         m.moveTo(p);
 
-        logSequanceBegin();
+        logSequenceBegin();
         m.fixPump(p);
 
         Skeleton.names.clear();
@@ -170,7 +176,7 @@ public class Initialize {
         m.setPump(pump);
         m.moveTo(pipe);
 
-        logSequanceBegin();
+        logSequenceBegin();
         m.placePump(pump, pipe);
 
         Skeleton.names.clear();
@@ -192,7 +198,7 @@ public class Initialize {
 
         m.moveTo(pump);
 
-        logSequanceBegin();
+        logSequenceBegin();
         m.setPumpDirection(pump, from, to);
 
         Skeleton.names.clear();
@@ -214,7 +220,7 @@ public class Initialize {
 
         s.moveTo(pump);
 
-        logSequanceBegin();
+        logSequenceBegin();
         s.setPumpDirection(pump, from, to);
 
         Skeleton.names.clear();
@@ -232,7 +238,7 @@ public class Initialize {
 
         m.moveTo(c);
 
-        logSequanceBegin();
+        logSequenceBegin();
         m.pickupPump();
 
         Skeleton.names.clear();
@@ -255,7 +261,7 @@ public class Initialize {
 
         m.moveTo(pos);
 
-        logSequanceBegin();
+        logSequenceBegin();
         m.moveTo(dest);
 
         Skeleton.names.clear();
@@ -277,7 +283,7 @@ public class Initialize {
         pos.connect(dest);
         m.moveTo(pos);
 
-        logSequanceBegin();
+        logSequenceBegin();
         m.moveTo(dest);
 
         Skeleton.names.clear();
@@ -299,7 +305,7 @@ public class Initialize {
         pos.connect(dest);
         m.moveTo(pos);
 
-        logSequanceBegin();
+        logSequenceBegin();
         m.moveTo(dest);
 
         Skeleton.names.clear();
@@ -321,7 +327,7 @@ public class Initialize {
         pos.connect(dest);
         m.moveTo(pos);
 
-        logSequanceBegin();
+        logSequenceBegin();
         m.moveTo(dest);
 
         Skeleton.names.clear();
@@ -367,7 +373,7 @@ public class Initialize {
         pipe2.setWaterVolume(maxVolume);
         pipe1.setWaterVolume(maxVolume);
 
-        logSequanceBegin();
+        logSequenceBegin();
         spring.tick();
         pump1.tick();
         pump2.tick();
@@ -405,7 +411,7 @@ public class Initialize {
 
         pump2.breakPump();
 
-        logSequanceBegin();
+        logSequenceBegin();
         spring.tick();
         pump1.tick();
         pump2.tick();
@@ -433,7 +439,7 @@ public class Initialize {
         pump.connect(pipe);
         pipe.connect(pump);
 
-        logSequanceBegin();
+        logSequenceBegin();
         spring.tick();
 
         Skeleton.names.clear();
@@ -457,7 +463,7 @@ public class Initialize {
         Skeleton.names.put(amount, "amount");
         pipe.setWaterVolume(amount);
 
-        logSequanceBegin();
+        logSequenceBegin();
         cistern.tick();
 
         Skeleton.names.clear();
@@ -497,7 +503,7 @@ public class Initialize {
 
         pump.changeFlow(pipe2, pipe1);
 
-        logSequanceBegin();
+        logSequenceBegin();
         pump.tick();
 
         Skeleton.names.clear();
@@ -525,7 +531,7 @@ public class Initialize {
 
         puncturedPipe.breakPipe();
 
-        logSequanceBegin();
+        logSequenceBegin();
         spring.tick();
 
         Skeleton.names.clear();
@@ -545,7 +551,7 @@ public class Initialize {
         puncturedPipe.connect(spring);
         spring.connect(puncturedPipe);
 
-        logSequanceBegin();
+        logSequenceBegin();
         spring.tick();
 
         Skeleton.names.clear();
