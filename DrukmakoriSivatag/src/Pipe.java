@@ -70,6 +70,12 @@ public class Pipe extends Field {
         return consumed;
     }
 
+    /**
+     * Hozzáadja a paraméterként kapott játékost, amelyik a mezőre lép, a játékosok listájához
+     *
+     * @param p - A játékos amelyet hozzáadjuk a listához.
+     * @return
+     */
     @Override
     public boolean addPlayer(Player p) {
         Skeleton.callFunction(this, "addPlayer", new Object[] { p });

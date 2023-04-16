@@ -2,9 +2,6 @@
  * A ciszternákért felelős osztály
  */
 public class Cistern extends FieldNode implements Tickable{
-    private int drainedWater;
-    private boolean pipeAvailable;
-
     /**
      * Konstruktor
      * A ciszternába befolyt vizet (drainedWater) 0-ra inicalizálja.
@@ -12,8 +9,6 @@ public class Cistern extends FieldNode implements Tickable{
      */
     public Cistern(){
         Skeleton.callFunction(this, "create", null);
-        drainedWater = 0;
-        pipeAvailable = false;
         Skeleton.endFunction();
     }
 
@@ -34,7 +29,7 @@ public class Cistern extends FieldNode implements Tickable{
     @Override
     public Pipe takePipe(){
         Skeleton.callFunction(this, "takePipe", null);
-        pipeAvailable = Skeleton.yesNoQuestion("Were there available pipes?");
+        boolean pipeAvailable = Skeleton.yesNoQuestion("Were there available pipes?");
         if (pipeAvailable) {
             Pipe newPipe = new Pipe();
             Skeleton.names.put(newPipe, "newPipe");
@@ -62,6 +57,7 @@ public class Cistern extends FieldNode implements Tickable{
         return null;
     }
 
+    //TODO MI LEGYEN EZZEL
     /**
      * Függvény, ami lekérdezi a ciszternába folyt víz mennyiségét.
      * @return a ciszternába folyt víz mennyisége.
@@ -69,7 +65,7 @@ public class Cistern extends FieldNode implements Tickable{
     public int getDrainedWater(){
         Skeleton.callFunction(this, "getDrainedWater()", null);
         Skeleton.endFunction();
-        return drainedWater;
+        return 0;
     }
 
     /**

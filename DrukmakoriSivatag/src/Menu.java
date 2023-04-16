@@ -1,5 +1,8 @@
 import java.util.Scanner;
 
+/**
+ * A Menüt kezelő osztály.
+ */
 public class Menu {
     interface MenuOption {
         void execute();
@@ -262,6 +265,10 @@ public class Menu {
             }
     };
 
+    /**
+     * Kiírja a menü opcióit, lehetővé teszi a menüben való navigációt.
+     * @param menu A menü opciói
+     */
     public static void runMenu(MenuOption[] menu) {
         Scanner scanner = new Scanner(System.in);
         MenuOption[] currentMenu = menu;

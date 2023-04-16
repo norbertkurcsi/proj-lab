@@ -3,7 +3,6 @@
  * A rendszert, pontosabban a belőle kivezető csöveket látja el vízzel
  */
 public class Spring extends FieldNode implements Tickable{
-    private static int MAX_FLOW = Integer.MAX_VALUE;
 
     /**
      * Konstruktor

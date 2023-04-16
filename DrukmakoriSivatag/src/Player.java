@@ -1,4 +1,10 @@
+/**
+ * A Player absztrakt osztálya.
+ */
 public abstract class Player {
+    /**
+     * A játékos pozícióját jelölő mező.
+    */
     protected Field position;
 
     /**

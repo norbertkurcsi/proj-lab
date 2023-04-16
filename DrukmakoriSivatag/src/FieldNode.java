@@ -1,7 +1,13 @@
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Egy csomópontot reprezentáló absztrakt osztály.
+ */
 public abstract class FieldNode extends Field {
+    /**
+     * A csomóponthoz csatlakoztatott csövek.
+     */
     protected List<Pipe> pipes = new ArrayList<>();
 
     /**

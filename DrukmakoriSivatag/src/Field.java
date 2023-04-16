@@ -5,7 +5,7 @@ public abstract class Field {
     protected List<Player> players;
 
     /**
-     * Konsturktor.
+     * Konstruktor.
      */
     public Field() {
         players = new ArrayList<>();
@@ -20,7 +20,7 @@ public abstract class Field {
      */
     public boolean addPlayer(Player p) {
         Skeleton.callFunction(this, "addPlayer", new Object[]{p});
-//        players.add(p);
+        players.add(p);
         Skeleton.endFunction();
         return true;
     }
@@ -32,10 +32,11 @@ public abstract class Field {
      */
     public void removePlayer(Player p) {
         Skeleton.callFunction(this, "removePlayer", new Object[]{p});
-//        players.remove(p);
+        players.remove(p);
         Skeleton.endFunction();
     }
 
+    //TODO MI LEGYEN EZZEL
     /**
      * Visszatéríti a pályaelemen álló játékosok számát.
      *

@@ -1,9 +1,15 @@
+/**
+ * A Pump osztálya.
+ */
 public class Pump extends FieldNode implements Tickable {
+    /**
+     * A pumpa bemeneti csöve
+     */
     private Pipe pipeIn;
+    /**
+     * A pumpa kimeneti csöve
+     */
     private Pipe pipeOut;
-    private boolean isBroken;
-    private int maxVolume;
-    private int currentVolume;
 
     /**
      * Konstruktor
@@ -21,16 +27,29 @@ public class Pump extends FieldNode implements Tickable {
         Skeleton.endFunction();
     }
 
+    /**
+     * Hozzáad egy adott mennyiségű vizet a pumpa tartájához.
+     * @param amount A hozzáadandó vízmennyiség.
+     */
     public void addVolume(Integer amount) {
         Skeleton.callFunction(this, "addVolume", new Object[] { amount });
         Skeleton.endFunction();
     }
 
+    /**
+     * Csökkenti a pumpában található vízmennyiséget.
+     * @param amount A csökkenteni kívánt mennyiség.
+     */
     public void decreaseVolume(Integer amount) {
         Skeleton.callFunction(this, "decreaseVolume", new Object[] { amount });
         Skeleton.endFunction();
     }
 
+    /**
+     * Átállítja a pumpa ki- és bemenetét.
+     * @param in Az új bemenet.
+     * @param out Az új kimenet.
+     */
     public void changeFlow(Pipe in, Pipe out) {
         pipeIn = in;
         pipeOut = out;
@@ -38,11 +57,19 @@ public class Pump extends FieldNode implements Tickable {
         Skeleton.endFunction();
     }
 
+    /**
+     * Amennyiben a pumpa el volt romolva, megjavul.
+     */
     public void repair() {
         Skeleton.callFunction(this, "repair", null);
         Skeleton.endFunction();
     }
 
+    /**
+     * Egy időegység elteltét jelenti.
+     * A pumpa véletlenszerűen elromolhat. Amennyiben a pumpa nincs elromolja, akkor a bemeneti csőből a kimeneti csövőbe pumpál
+     * adott mennyiségű vizet.
+     */
     public void tick() {
         Skeleton.callFunction(this, "tick", null);
         boolean isBroken = Skeleton.yesNoQuestion("Would you like to break the pump?");
