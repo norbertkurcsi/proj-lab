@@ -1,5 +1,15 @@
+/**
+ * A Mechanic osztálya.
+ */
 public class Mechanic extends Player {
+    /**
+     * A szerelőnél levő cső.
+     */
     private Pipe pipe;
+    //TODO MI LEGYEN EZZEL
+    /**
+     * A szerelőnél levő pumpa.
+     */
     private Pump pump;
 
 

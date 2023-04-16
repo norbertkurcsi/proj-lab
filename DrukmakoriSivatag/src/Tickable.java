@@ -1,3 +1,9 @@
+/**
+ * A Tickable interface.
+ */
 public interface Tickable {
-    public void tick();
+    /**
+     * Az idő múlását reprezentáló függvény.
+     */
+    void tick();
 }

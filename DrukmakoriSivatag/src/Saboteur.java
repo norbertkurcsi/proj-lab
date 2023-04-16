@@ -1,5 +1,11 @@
+/**
+ * A Saboteur osztálya.
+ */
 public class Saboteur extends Player {
 
+    /**
+     * Konstruktor.
+     */
     public Saboteur() {
         Skeleton.callFunction(this, "create", null);
         Skeleton.endFunction();
