@@ -1,3 +1,5 @@
+package skeleton;
+
 /**
  * Az inicializálásokért felelős osztály.
  */
@@ -17,7 +19,8 @@ public class Initialize {
     }
 
     /**
-     * A Connect Pipe teszteset kommunikációs diagramnak megfelelő inicializáló függvénye.
+     * A Connect Pipe teszteset kommunikációs diagramnak megfelelő inicializáló
+     * függvénye.
      */
     public static void initConnectPipe() {
         logInitBegin();
@@ -35,7 +38,8 @@ public class Initialize {
     }
 
     /**
-     * A Disconnect Pipe teszteset kommunikációs diagramnak megfelelő inicializáló függvénye.
+     * A Disconnect Pipe teszteset kommunikációs diagramnak megfelelő inicializáló
+     * függvénye.
      */
     public static void initDisconnectPipe() {
         logInitBegin();
@@ -60,7 +64,8 @@ public class Initialize {
     }
 
     /**
-     * A Fix Pipe teszteset kommunikációs diagramnak megfelelő inicializáló függvénye.
+     * A Fix Pipe teszteset kommunikációs diagramnak megfelelő inicializáló
+     * függvénye.
      */
     public static void initFixPipe() {
         logInitBegin();
@@ -78,7 +83,8 @@ public class Initialize {
     }
 
     /**
-     * A Place Pipe teszteset kommunikációs diagramnak megfelelő inicializáló függvénye.
+     * A Place Pipe teszteset kommunikációs diagramnak megfelelő inicializáló
+     * függvénye.
      */
     public static void initPlacePipe() {
         logInitBegin();
@@ -99,7 +105,8 @@ public class Initialize {
     }
 
     /**
-     * A Pickup Pipe teszteset kommunikációs diagramnak megfelelő inicializáló függvénye.
+     * A Pickup Pipe teszteset kommunikációs diagramnak megfelelő inicializáló
+     * függvénye.
      */
     static public void initPickupPipe() {
         logInitBegin();
@@ -118,7 +125,8 @@ public class Initialize {
     }
 
     /**
-     * A Puncture Pipe teszteset kommunikációs diagramnak megfelelő inicializáló függvénye.
+     * A Puncture Pipe teszteset kommunikációs diagramnak megfelelő inicializáló
+     * függvénye.
      */
     public static void initPuncturePipe() {
         logInitBegin();
@@ -136,7 +144,8 @@ public class Initialize {
     }
 
     /**
-     * A Fix Pump teszteset kommunikációs diagramnak megfelelő inicializáló függvénye.
+     * A Fix Pump teszteset kommunikációs diagramnak megfelelő inicializáló
+     * függvénye.
      */
     public static void initFixPump() {
         logInitBegin();
@@ -154,7 +163,8 @@ public class Initialize {
     }
 
     /**
-     * A Place Pump teszteset kommunikációs diagramnak megfelelő inicializáló függvénye.
+     * A Place Pump teszteset kommunikációs diagramnak megfelelő inicializáló
+     * függvénye.
      */
     public static void initPlacePump() {
         logInitBegin();
@@ -183,7 +193,8 @@ public class Initialize {
     }
 
     /**
-     * A Mechanic Sets Pump teszteset kommunikációs diagramnak megfelelő inicializáló függvénye.
+     * A Mechanic Sets Pump teszteset kommunikációs diagramnak megfelelő
+     * inicializáló függvénye.
      */
     public static void initMechanicSetsPump() {
         logInitBegin();
@@ -205,7 +216,8 @@ public class Initialize {
     }
 
     /**
-     * A Saboteur Sets Pump teszteset kommunikációs diagramnak megfelelő inicializáló függvénye.
+     * A Saboteur Sets Pump teszteset kommunikációs diagramnak megfelelő
+     * inicializáló függvénye.
      */
     public static void initSaboteurSetsPump() {
         logInitBegin();
@@ -227,7 +239,8 @@ public class Initialize {
     }
 
     /**
-     * A Take Pump teszteset kommunikációs diagramnak megfelelő inicializáló függvénye.
+     * A Take Pump teszteset kommunikációs diagramnak megfelelő inicializáló
+     * függvénye.
      */
     public static void initTakePump() {
         logInitBegin();
@@ -245,7 +258,8 @@ public class Initialize {
     }
 
     /**
-     * A Move To Pipe From Pump teszteset kommunikációs diagramnak megfelelő inicializáló függvénye.
+     * A Move To Pipe From Pump teszteset kommunikációs diagramnak megfelelő
+     * inicializáló függvénye.
      */
     static public void initMoveToPipeFromPump() {
         logInitBegin();
@@ -268,7 +282,8 @@ public class Initialize {
     }
 
     /**
-     * A Move To Pump From Pipe teszteset kommunikációs diagramnak megfelelő inicializáló függvénye.
+     * A Move To Pump From Pipe teszteset kommunikációs diagramnak megfelelő
+     * inicializáló függvénye.
      */
     static public void initMovetoPumpFromPipe() {
         logInitBegin();
@@ -290,7 +305,8 @@ public class Initialize {
     }
 
     /**
-     * A Move To Cistern From Pipe teszteset kommunikációs diagramnak megfelelő inicializáló függvénye.
+     * A Move To Cistern From Pipe teszteset kommunikációs diagramnak megfelelő
+     * inicializáló függvénye.
      */
     static public void initMoveToCisternFromPipe() {
         logInitBegin();
@@ -312,7 +328,8 @@ public class Initialize {
     }
 
     /**
-     * A Move To Spring From Pipe teszteset kommunikációs diagramnak megfelelő inicializáló függvénye.
+     * A Move To Spring From Pipe teszteset kommunikációs diagramnak megfelelő
+     * inicializáló függvénye.
      */
     static public void initMoveToSpringFromPipe() {
         logInitBegin();
@@ -334,7 +351,8 @@ public class Initialize {
     }
 
     /**
-     * A Network Branch Filled Up teszteset kommunikációs diagramnak megfelelő inicializáló függvénye.
+     * A Network Branch Filled Up teszteset kommunikációs diagramnak megfelelő
+     * inicializáló függvénye.
      */
     static public void initNetworkBranchFilledUp() {
         logInitBegin();
@@ -382,7 +400,8 @@ public class Initialize {
     }
 
     /**
-     * A Pumping Into Broken Pump teszteset kommunikációs diagramnak megfelelő inicializáló függvénye.
+     * A Pumping Into Broken Pump teszteset kommunikációs diagramnak megfelelő
+     * inicializáló függvénye.
      */
     static public void initPumpingIntoBrokenPump() {
         logInitBegin();
@@ -420,7 +439,8 @@ public class Initialize {
     }
 
     /**
-     * A Water Flows From Spring To Pipe teszteset kommunikációs diagramnak megfelelő inicializáló függvénye.
+     * A Water Flows From Spring To Pipe teszteset kommunikációs diagramnak
+     * megfelelő inicializáló függvénye.
      */
     public static void initWaterFlowsFromSpingToPipe() {
         logInitBegin();
@@ -446,7 +466,8 @@ public class Initialize {
     }
 
     /**
-     * A Cistern Drains Water teszteset kommunikációs diagramnak megfelelő inicializáló függvénye.
+     * A Cistern Drains Water teszteset kommunikációs diagramnak megfelelő
+     * inicializáló függvénye.
      */
     public static void initCisternDrainsWater() {
         logInitBegin();
@@ -470,7 +491,8 @@ public class Initialize {
     }
 
     /**
-     * A Pump Pumps teszteset kommunikációs diagramnak megfelelő inicializáló függvénye.
+     * A Pump Pumps teszteset kommunikációs diagramnak megfelelő inicializáló
+     * függvénye.
      */
     public static void initPumpPumps() {
         logInitBegin();
@@ -510,7 +532,8 @@ public class Initialize {
     }
 
     /**
-     * A Water Leaks From Punctured Pipe teszteset kommunikációs diagramnak megfelelő inicializáló függvénye.
+     * A Water Leaks From Punctured Pipe teszteset kommunikációs diagramnak
+     * megfelelő inicializáló függvénye.
      */
     public static void initWaterLeaksFromPuncturedPipe() {
         logInitBegin();
@@ -538,7 +561,8 @@ public class Initialize {
     }
 
     /**
-     * A Water Leaks From Pipe With Free End teszteset kommunikációs diagramnak megfelelő inicializáló függvénye.
+     * A Water Leaks From Pipe With Free End teszteset kommunikációs diagramnak
+     * megfelelő inicializáló függvénye.
      */
     public static void initWaterLeaksFromPipeWithFreeEnd() {
         logInitBegin();

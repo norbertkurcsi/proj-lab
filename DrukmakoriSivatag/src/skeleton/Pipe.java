@@ -1,3 +1,5 @@
+package skeleton;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -74,7 +76,8 @@ public class Pipe extends Field {
     }
 
     /**
-     * Hozzáadja a paraméterként kapott játékost, amelyik a mezőre lép, a játékosok listájához
+     * Hozzáadja a paraméterként kapott játékost, amelyik a mezőre lép, a játékosok
+     * listájához
      *
      * @param p - A játékos amelyet hozzáadjuk a listához.
      * @return A hozzáadás sikeressége.

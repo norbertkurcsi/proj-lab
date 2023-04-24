@@ -1,3 +1,5 @@
+package skeleton;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,27 +16,28 @@ public abstract class Field {
         players = new ArrayList<>();
     }
 
-
     /**
-     * Hozzáadja a paraméterként kapott játékost, amelyik a mezőre lép, a játékosok listájához
+     * Hozzáadja a paraméterként kapott játékost, amelyik a mezőre lép, a játékosok
+     * listájához
      *
      * @param p - A játékos amelyet hozzáadjuk a listához.
      * @return
      */
     public boolean addPlayer(Player p) {
-        Skeleton.callFunction(this, "addPlayer", new Object[]{p});
+        Skeleton.callFunction(this, "addPlayer", new Object[] { p });
         players.add(p);
         Skeleton.endFunction();
         return true;
     }
 
     /**
-     *  A paraméterként kapott játékos ellép a pályaelemről és ezt kitörli a játékosok listájából.
+     * A paraméterként kapott játékos ellép a pályaelemről és ezt kitörli a
+     * játékosok listájából.
      *
      * @param p - A törlendő játékos.
      */
     public void removePlayer(Player p) {
-        Skeleton.callFunction(this, "removePlayer", new Object[]{p});
+        Skeleton.callFunction(this, "removePlayer", new Object[] { p });
         players.remove(p);
         Skeleton.endFunction();
     }

@@ -1,3 +1,5 @@
+package skeleton;
+
 /**
  * A Pump osztálya.
  */
@@ -29,6 +31,7 @@ public class Pump extends FieldNode implements Tickable {
 
     /**
      * Hozzáad egy adott mennyiségű vizet a pumpa tartájához.
+     * 
      * @param amount A hozzáadandó vízmennyiség.
      */
     public void addVolume(Integer amount) {
@@ -38,6 +41,7 @@ public class Pump extends FieldNode implements Tickable {
 
     /**
      * Csökkenti a pumpában található vízmennyiséget.
+     * 
      * @param amount A csökkenteni kívánt mennyiség.
      */
     public void decreaseVolume(Integer amount) {
@@ -47,7 +51,8 @@ public class Pump extends FieldNode implements Tickable {
 
     /**
      * Átállítja a pumpa ki- és bemenetét.
-     * @param in Az új bemenet.
+     * 
+     * @param in  Az új bemenet.
      * @param out Az új kimenet.
      */
     public void changeFlow(Pipe in, Pipe out) {
@@ -67,7 +72,8 @@ public class Pump extends FieldNode implements Tickable {
 
     /**
      * Egy időegység elteltét jelenti.
-     * A pumpa véletlenszerűen elromolhat. Amennyiben a pumpa nincs elromolja, akkor a bemeneti csőből a kimeneti csövőbe pumpál
+     * A pumpa véletlenszerűen elromolhat. Amennyiben a pumpa nincs elromolja, akkor
+     * a bemeneti csőből a kimeneti csövőbe pumpál
      * adott mennyiségű vizet.
      */
     public void tick() {
@@ -82,7 +88,7 @@ public class Pump extends FieldNode implements Tickable {
         Integer amount = Skeleton.numberQuestion("How much do you want to pump?");
         Skeleton.names.put(amount, "amount");
         Integer drainedAmount = 0;
-        if(pipeIn != null) {
+        if (pipeIn != null) {
             drainedAmount = pipeIn.drain(amount);
             Skeleton.names.put(drainedAmount, "drainedAmount");
             addVolume(drainedAmount);
@@ -90,8 +96,8 @@ public class Pump extends FieldNode implements Tickable {
 
         Integer currentVolume = Integer.valueOf(drainedAmount);
         Skeleton.names.put(currentVolume, "currentVolume");
-        if(pipeOut != null) {
-            Integer flowAmount  = pipeOut.flow(currentVolume);
+        if (pipeOut != null) {
+            Integer flowAmount = pipeOut.flow(currentVolume);
             Skeleton.names.put(flowAmount, "flowAmount");
             decreaseVolume(flowAmount);
         }

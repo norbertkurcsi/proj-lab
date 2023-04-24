@@ -1,3 +1,5 @@
+package skeleton;
+
 /**
  * A Tickable interface.
  */
