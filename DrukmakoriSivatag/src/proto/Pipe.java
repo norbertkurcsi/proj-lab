@@ -143,6 +143,7 @@ public class Pipe extends Field implements Tickable {
         return this;
     }
 
+    // TODO: Dokumentálni kell majd
     @Override
     public boolean removePlayer(Player p) {
         if (0 < stickyUntil)
@@ -207,6 +208,7 @@ public class Pipe extends Field implements Tickable {
         return newPipe;
     }
 
+    // TODO: Dokumentálni kell majd
     @Override
     public void tick() {
         if (0 < timeUntilBreakable)
