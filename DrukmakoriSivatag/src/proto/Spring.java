@@ -21,4 +21,23 @@ public class Spring extends FieldNode implements Tickable {
             pipe.flow(Integer.MAX_VALUE);
         }
     }
+
+    @Override
+    public String toString() {
+        String playerList = "";
+        if (players.isEmpty()) playerList = "null";
+        else {
+            for (Player p : players) {
+                playerList += (Proto.findName(p) + ", ");
+            }
+            playerList = playerList.substring(0, playerList.length() - 2);
+        }
+
+        return "Spring " +
+                Proto.findName(this) +
+                " with ends: " +
+                super.toString() +
+                " standing players: " +
+                playerList;
+    }
 }

@@ -14,4 +14,13 @@ public class Saboteur extends Player {
     public void makeSlippery(Pipe p) {
         p.makeSlippery();
     }
+
+    @Override
+    public String toString() {
+
+        return "Saboteur " +
+                Proto.findName(this) +
+                " on " +
+                Proto.findName(this.position);
+    }
 }

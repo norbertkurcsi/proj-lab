@@ -23,7 +23,7 @@ public class Cistern extends FieldNode implements Tickable {
     /**
      * Függvény, ami a ciszternába folyt vizet növeli a paraméterként átadott
      * értékkel.
-     * 
+     *
      * @param amount az az int mennyiség, amivel növeli a ciszternába folyt vizet.
      */
     void addDrainedWater(int amount) {
@@ -57,7 +57,7 @@ public class Cistern extends FieldNode implements Tickable {
 
     /**
      * Függvény, ami lekérdezi a ciszternába folyt víz mennyiségét.
-     * 
+     *
      * @return a ciszternába folyt víz mennyisége.
      */
     public int getDrainedWater() {
@@ -79,5 +79,28 @@ public class Cistern extends FieldNode implements Tickable {
             int drained = pipe.drain(Integer.MAX_VALUE);
             addDrainedWater(drained);
         }
+    }
+
+    @Override
+    public String toString() {
+        String playerList = "";
+        if (players.isEmpty()) playerList = "null";
+        else {
+            for (Player p : players) {
+                playerList += (Proto.findName(p) + ", ");
+            }
+            playerList = playerList.substring(0, playerList.length() - 2);
+        }
+
+        return "Cistern " +
+                Proto.findName(this) +
+                " with ends: " +
+                super.toString() +
+                " pipe available: " +
+                (pipeAvailable ? "true" : "false") +
+                " drained water: " +
+                getDrainedWater() +
+                " standing players: " +
+                playerList;
     }
 }

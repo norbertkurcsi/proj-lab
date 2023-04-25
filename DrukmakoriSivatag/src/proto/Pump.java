@@ -32,6 +32,26 @@ public class Pump extends FieldNode implements Tickable {
         pipeOut = null;
     }
 
+    // TODO
+    public void setWaterVolume(int amount) {
+        if (maxVolume < amount)
+            throw new IllegalArgumentException("Can't put more water into pump than the maximum allowed volume");
+        if (amount < 0)
+            throw new IllegalArgumentException("Water volume in pump can't be less than 0");
+
+        currentVolume = amount;
+    }
+
+    //TODO
+    public void setMaxVolume(int amount) {
+        if (amount < currentVolume)
+            throw new IllegalArgumentException("Max volume cannot be less than the current volume");
+        if (amount < 0)
+            throw new IllegalArgumentException("Max volume of pump can't be less than 0");
+
+        maxVolume = amount;
+    }
+
     /**
      * Hozzáad egy adott mennyiségű vizet a pumpa tartájához.
      * 
@@ -103,6 +123,35 @@ public class Pump extends FieldNode implements Tickable {
             int pushedOut = pipeOut.flow(currentVolume);
             decreaseVolume(pushedOut);
         }
+    }
+
+    @Override
+    public String toString() {
+        String playerList = "";
+        if (players.isEmpty()) playerList = "null";
+        else {
+            for (Player p : players) {
+                playerList += (Proto.findName(p) + ", ");
+            }
+            playerList = playerList.substring(0, playerList.length() - 2);
+        }
+
+        return "Pump " +
+                Proto.findName(this) +
+                " with ends: " +
+                super.toString() +
+                " input: " +
+                Proto.findName(this.pipeIn) +
+                " output: " +
+                Proto.findName(this.pipeOut) +
+                " broken: " +
+                (isBroken ? "true" : "false") +
+                " max volume: " +
+                this.maxVolume +
+                " current volume: " +
+                this.currentVolume +
+                " standing players: " +
+                playerList;
     }
 
 }

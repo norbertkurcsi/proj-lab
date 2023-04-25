@@ -149,4 +149,17 @@ public class Mechanic extends Player {
     public void setPipe(Pipe pipe) {
         this.pipe = pipe;
     }
+
+    @Override
+    public String toString() {
+
+        return "Mechanic " +
+                Proto.findName(this) +
+                " on " +
+                Proto.findName(this.position) +
+                " pipe: " +
+                Proto.findName(this.pipe) +
+                " pump: " +
+                Proto.findName(this.pump);
+    }
 }

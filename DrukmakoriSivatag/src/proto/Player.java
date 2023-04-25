@@ -15,11 +15,12 @@ public abstract class Player {
      * @param f A játékos célpozíciója.
      */
     public void moveTo(Field f) {
-        boolean canMove = position.removePlayer(this);
-        if (!canMove) {
-            return;
+        if (position != null) {
+            boolean canMove = position.removePlayer(this);
+            if (!canMove) {
+                return;
+            }
         }
-
         Field newPosition = f.addPlayer(this);
         if (newPosition == null) {
             position.addPlayer(this); // Nem tudtunk átlépni úgyhogy helyben maradunk
@@ -51,12 +52,12 @@ public abstract class Player {
     }
 
     // TODO: Dokumentálni kell majd
-    public void BreakPipe(Pipe p) {
+    public void breakPipe(Pipe p) {
         p.breakPipe();
     }
 
     // TODO: Dokumentálni kell majd
-    public void MakeSticky(Pipe p) {
+    public void makeSticky(Pipe p) {
         p.makeSticky();
     }
 }

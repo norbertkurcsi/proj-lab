@@ -47,13 +47,23 @@ public class Pipe extends Field implements Tickable {
     /**
      * Beállítja hogy mennyi víz van a csőben.
      */
-    void setWaterVolume(int amount) {
+    public void setWaterVolume(int amount) {
         if (maxVolume < amount)
             throw new IllegalArgumentException("Can't put more water into pipe than the maximum allowed volume");
         if (amount < 0)
             throw new IllegalArgumentException("Water volume in pipe can't be less than 0");
 
         currentVolume = amount;
+    }
+
+    //TODO
+    public void setMaxVolume(int amount) {
+        if (amount < currentVolume)
+            throw new IllegalArgumentException("Max volume cannot be less than the current volume");
+        if (amount < 0)
+            throw new IllegalArgumentException("Max volume of pipe can't be less than 0");
+
+        maxVolume = amount;
     }
 
     // TODO: Dokumentálni kell majd
@@ -90,7 +100,7 @@ public class Pipe extends Field implements Tickable {
 
     /**
      * Vizet tölt a csőbe.
-     * 
+     *
      * @param amount A víz mennyisége amit a csőbe szeretnénk tölteni.
      * @return A annak a víznek a mennyisége amit sikeresen betöltöttünk a csőbe.
      */
@@ -109,7 +119,7 @@ public class Pipe extends Field implements Tickable {
 
     /**
      * Kiszívja a vizet a csőből.
-     * 
+     *
      * @param amount A víz mennyisége amit ki akarunk szívni.
      * @return A víz mennyisége amit sikeresen leszívtunk.
      */
@@ -155,7 +165,7 @@ public class Pipe extends Field implements Tickable {
 
     /**
      * Beállítja a megadott csomópontot a cső egyik végének.
-     * 
+     *
      * @param n A megadott csomópont amihez csatlakozni szeretnénk.
      * @return Visszaadja, hogy sikerült-e csatlakozni a csomóponthoz.
      */
@@ -173,7 +183,7 @@ public class Pipe extends Field implements Tickable {
 
     /**
      * Eltávolítja a megadott csomópontot a cső végei közül.
-     * 
+     *
      * @param n A csomópont amit el akarunk távolítani.
      * @return Visszaadja, hogy sikerült-e eltávolítani a csomópontot.
      */
@@ -187,9 +197,9 @@ public class Pipe extends Field implements Tickable {
 
     /**
      * Félbevágja a csövet, ezzel egy új csövet készítve.
-     * 
+     *
      * @return Visszaadja az ujonnan elkészült csövet, ha sikerült a félbevágás
-     *         különben pedig null-t ad vissza.
+     * különben pedig null-t ad vissza.
      */
     public Pipe cut() {
         if (currentVolume != 0 || ends.size() != 2) {
@@ -219,5 +229,40 @@ public class Pipe extends Field implements Tickable {
 
         if (0 < stickyUntil)
             stickyUntil--;
+    }
+
+    @Override
+    public String toString() {
+        String playerList = "";
+        if (players.isEmpty()) playerList = "null";
+        else {
+            for (Player p : players) {
+                playerList += (Proto.findName(p) + ", ");
+            }
+            playerList = playerList.substring(0, playerList.length() - 2);
+        }
+
+        return "Pipe " +
+                Proto.findName(this) +
+                " with ends: " +
+                (ends.size() < 1 ? "null" : Proto.findName(ends.get(0))) +
+                ", " +
+                (ends.size() < 2 ? "null" : Proto.findName(ends.get(1))) +
+                " max volume: " +
+                this.maxVolume +
+                " current volume: " +
+                this.currentVolume +
+                " wasted water: " +
+                this.wastedWater +
+                " broken: " +
+                (isBroken ? "true" : "false") +
+                " breakable: " +
+                this.timeUntilBreakable +
+                " slippery: " +
+                this.slipperyUntil +
+                " sticky: " +
+                this.stickyUntil +
+                " standing player: " +
+                (players.size() < 1 ? "null" : Proto.findName(players.get(0)));
     }
 }

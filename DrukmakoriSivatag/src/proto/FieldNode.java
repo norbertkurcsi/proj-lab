@@ -29,4 +29,14 @@ public abstract class FieldNode extends Field {
     public void disconnect(Pipe p) {
         pipes.remove(p);
     }
+
+    @Override
+    public String toString() {
+        if (pipes.isEmpty()) return "null";
+        String s = "";
+        for (Pipe p : pipes) {
+            s += (Proto.findName(p) + ", ");
+        }
+        return s.substring(0, s.length() - 2);
+    }
 }
