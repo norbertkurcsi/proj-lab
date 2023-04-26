@@ -35,8 +35,8 @@ public class Pump extends FieldNode implements Tickable {
     }
 
     /**
-     * //TODO
-     * @param amount
+     * Beállítja a paraméterként kapott értékkel a pumpa tartályában lévő aktuális vízmennyiséget.
+     * @param amount - a pumpa tartályában lévő vízmennyiség
      */
     public void setWaterVolume(int amount) {
         if (maxVolume < amount)
@@ -48,7 +48,9 @@ public class Pump extends FieldNode implements Tickable {
     }
 
     /**
-     * //TODO
+     * Beállítja a paraméterként kapott értékkel a pumpa tartályának a maximális kapacitását.
+     *
+     * @param amount - a pumpa maximális kapacitása
      */
     public void setMaxVolume(int amount) {
         if (amount < currentVolume)

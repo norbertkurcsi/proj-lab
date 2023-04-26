@@ -54,16 +54,20 @@ public abstract class Player {
     }
 
     /**
-     * //TODO
-     * @param p
+     * A játékos egy paraméterként kapott csövet kilyukaszt.
+     * Ezután a cső állapota lyukas lesz, és a kilyukasztott csőből a víz a homokba folyik.
+     *
+     * @param p - a cső amelyiket kilyukasztjuk
      */
     public void breakPipe(Pipe p) {
         p.breakPipe();
     }
 
     /**
-     * //TODO
-     * @param p
+     * A játékos ragadóssá teszi a paraméterként kapott csövet. Ha a cső ragadós
+     * valamelyik játékos rálép, akkor rövid ideig nem tud a pályelemről továbblépni.
+     *
+     * @param p - a cső amelyiket ragadossá tesszöl
      */
     public void makeSticky(Pipe p) {
         p.makeSticky();

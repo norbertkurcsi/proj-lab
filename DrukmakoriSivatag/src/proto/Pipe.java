@@ -11,17 +11,14 @@ public class Pipe extends Field implements Tickable {
     static final int MAX_VOLUME = 500;
     static final int SLIPPERY_TIME = 3;
     static final int STICKY_TIME = 3;
-
     static final int MAX_BREAKABLE_TIME = 10;
+
     private Random random = new Random();
 
     private boolean isBroken;
-
     private int maxVolume;
     private int currentVolume;
-
     private int wastedWater;
-
     private int timeUntilBreakable;
     private int slipperyUntil;
     private int stickyUntil;
@@ -75,14 +72,16 @@ public class Pipe extends Field implements Tickable {
     }
 
     /**
-     * //TODO
+     * A cső egy adott ideig csúszossá válik. Ha egy játékos rálép,
+     * akkor átcsúszik arra a pályaelemre, amelyikre a cső másik vége csatlakoztatva van.
      */
     void makeSlippery() {
         slipperyUntil = SLIPPERY_TIME;
     }
 
     /**
-     * //TODO
+     * A cső egy adott ideig ragadóssá válik. Ha valamelyik játékos
+     * rálép, akkor rövid ideig nem tud a pályelemről továbblépni.
      */
     void makeSticky() {
         stickyUntil = STICKY_TIME;
@@ -160,8 +159,11 @@ public class Pipe extends Field implements Tickable {
     }
 
     /**
-     * //TODO
-     * @param p - A törlendő játékos.
+     * A paraméterként kapott játékos ellép a pályaelemről és ezt kitörli a
+     * játékosok listájából. Ha a cső amiről el akar lépni a játékos ragadós,
+     * azt nem teheti meg, addig amíg a cső ragadós ideje le nem jár.
+     *
+     * @param p - a törlendő játékos.
      * @return
      */
     @Override
@@ -229,7 +231,9 @@ public class Pipe extends Field implements Tickable {
     }
 
     /**
-     * //TODO
+     * Egy időegység elteltét jelenti. Az idő amíg újból lehet lyukasztani,
+     * amíg ragadós vagy amíg csúszós a cső, csökken.
+     *
      */
     @Override
     public void tick() {
