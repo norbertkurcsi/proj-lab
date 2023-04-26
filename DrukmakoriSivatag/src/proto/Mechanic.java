@@ -109,10 +109,12 @@ public class Mechanic extends Player {
      */
     public void placePump(Pump pump, Pipe pipe) {
         Pipe newPipe = pipe.cut();
+
         if (newPipe == null) {
             return;
         }
 
+        Proto.names.put("newPipe", newPipe);
         pipe.connect(pump);
         pump.connect(pipe);
 
