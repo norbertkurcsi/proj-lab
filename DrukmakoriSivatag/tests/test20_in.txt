@@ -1,0 +1,7 @@
+add pipe p1
+add saboteur s1
+move s1 p1
+puncturepipe p1
+fixpipe p1
+puncturepipe p1 s1
+state

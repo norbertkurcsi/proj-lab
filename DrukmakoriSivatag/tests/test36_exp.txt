@@ -1,0 +1,3 @@
+Mechanic m1 on pump1 pipe: null pump: null
+Pump pump1 with ends: null input: null output: null broken: false max volume: 500 current volume: 0 standing players: m1
+Cistern c1 with ends: null pipe available: true drained water: 0 standing players: null
