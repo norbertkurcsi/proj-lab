@@ -173,7 +173,7 @@ public class Pipe extends Field implements Tickable {
         if (ends.size() == 2)
             throw new IllegalArgumentException("A pipe can't have more than two ends");
 
-        if (currentVolume != 0 || getNumberOfPlayers() != 0) {
+        if (currentVolume != 0) {
             return false;
         }
 
@@ -188,7 +188,7 @@ public class Pipe extends Field implements Tickable {
      * @return Visszaadja, hogy sikerült-e eltávolítani a csomópontot.
      */
     public boolean disconnect(FieldNode n) {
-        if (currentVolume != 0 || getNumberOfPlayers() != 0) {
+        if (currentVolume != 0) {
             return false;
         }
 

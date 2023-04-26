@@ -42,7 +42,10 @@ public class Proto {
             // -filename
             try {
                 Scanner input = new Scanner(new FileReader(args[1]));
+                boolean temp = saveToFile;
+                saveToFile = false;
                 read(input);
+                saveToFile = temp;
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
