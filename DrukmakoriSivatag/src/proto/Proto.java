@@ -293,6 +293,21 @@ public class Proto {
                 ((Pump) o).setMaxVolume(v);
             }
         });
+
+        //TODO DOKSIBAN NINCS BENNE
+        commands.put("disconnect", args -> {
+            // -pipename -fieldnodename -mechanicname*
+            Pipe p = (Pipe) names.get(args[1]);
+            FieldNode n = (FieldNode) names.get(args[2]);
+            if(args.length == 4) {
+                Mechanic m = (Mechanic) names.get(args[3]);
+                m.disconnectPipe(p, n);
+            }
+            else {
+                p.disconnect(n);
+                n.disconnect(p);
+            }
+        });
     }
 
     public static void read(Scanner scanner) {
@@ -302,7 +317,7 @@ public class Proto {
             commands.get(next[0]).execute(next);
 
             // Elmentjuk fajlba, ha szukseges
-            if(saveToFile && next.length > 1 && !next[1].equals("start")) {
+            if(saveToFile && (next.length < 2 || !next[1].equals("start"))) {
                 try {
                     fileName.write(line + "\n");
                 } catch (IOException e) {

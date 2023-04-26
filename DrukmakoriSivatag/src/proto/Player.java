@@ -23,7 +23,9 @@ public abstract class Player {
         }
         Field newPosition = f.addPlayer(this);
         if (newPosition == null) {
-            position.addPlayer(this); // Nem tudtunk átlépni úgyhogy helyben maradunk
+            if (position != null) {
+                position.addPlayer(this); // Nem tudtunk átlépni úgyhogy helyben maradunk
+            }
             return;
         }
 
