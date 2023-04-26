@@ -1,4 +1,0 @@
-add pump p1
-add saboteur s1
-move s1 p1
-state

@@ -1,6 +1,0 @@
-add pipe p1
-makesticky p1
-state
-tick p1
-tick p1
-state
