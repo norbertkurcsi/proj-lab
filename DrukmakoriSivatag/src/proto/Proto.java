@@ -301,7 +301,6 @@ public class Proto {
             }
         });
 
-        //TODO DOKSIBAN NINCS BENNE
         commands.put("disconnect", args -> {
             // -pipename -fieldnodename -mechanicname*
             Pipe p = (Pipe) names.get(args[1]);

@@ -8,6 +8,11 @@ import java.util.Random;
  * Egy csövet reprezentáló osztály.
  */
 public class Pipe extends Field implements Tickable {
+    static final int MAX_VOLUME = 500;
+    static final int SLIPPERY_TIME = 3;
+    static final int STICKY_TIME = 3;
+
+    static final int MAX_BREAKABLE_TIME = 10;
     private Random random = new Random();
 
     private boolean isBroken;
@@ -31,8 +36,7 @@ public class Pipe extends Field implements Tickable {
 
         isBroken = false;
 
-        // TODO: Megkapja paraméternek ezt vagy mindegyikhez legyen ugyanaz?
-        maxVolume = 500;
+        maxVolume = MAX_VOLUME;
         currentVolume = 0;
 
         wastedWater = 0;
@@ -56,7 +60,11 @@ public class Pipe extends Field implements Tickable {
         currentVolume = amount;
     }
 
-    //TODO
+    /**
+     * Beállítja a cső maximális kapacitását.
+     *
+     * @param amount - a kapacitás értéke
+     */
     public void setMaxVolume(int amount) {
         if (amount < currentVolume)
             throw new IllegalArgumentException("Max volume cannot be less than the current volume");
@@ -66,16 +74,18 @@ public class Pipe extends Field implements Tickable {
         maxVolume = amount;
     }
 
-    // TODO: Dokumentálni kell majd
-    // TODO: Mekkora értékre állítsa?
+    /**
+     * //TODO
+     */
     void makeSlippery() {
-        slipperyUntil = 3;
+        slipperyUntil = SLIPPERY_TIME;
     }
 
-    // TODO: Dokumentálni kell majd
-    // TODO: Mekkora értékre állítsa?
+    /**
+     * //TODO
+     */
     void makeSticky() {
-        stickyUntil = 3;
+        stickyUntil = STICKY_TIME;
     }
 
     /**
@@ -94,8 +104,7 @@ public class Pipe extends Field implements Tickable {
     public void repair() {
         isBroken = false;
 
-        // TODO: Milyen értékek közé ekerjuk majd szorítani?
-        timeUntilBreakable = random.nextInt(1, 3);
+        timeUntilBreakable = random.nextInt(0, MAX_BREAKABLE_TIME);
     }
 
     /**
@@ -105,8 +114,6 @@ public class Pipe extends Field implements Tickable {
      * @return A annak a víznek a mennyisége amit sikeresen betöltöttünk a csőbe.
      */
     public int flow(int amount) {
-        // TODO: Egy olyan csőbe aminek nincs lekötve mindkét vége ha vizet töltenek
-        // akkor kifolyik?
         if (isBroken || ends.size() != 2) {
             wastedWater += amount;
             return amount;
@@ -137,7 +144,6 @@ public class Pipe extends Field implements Tickable {
      */
     @Override
     public Field addPlayer(Player p) {
-        // TODO: Ha van rajta ember akkor is el tud csúszni?
         int standing = getNumberOfPlayers();
         if (0 < standing) {
             return null;
@@ -153,7 +159,11 @@ public class Pipe extends Field implements Tickable {
         return this;
     }
 
-    // TODO: Dokumentálni kell majd
+    /**
+     * //TODO
+     * @param p - A törlendő játékos.
+     * @return
+     */
     @Override
     public boolean removePlayer(Player p) {
         if (0 < stickyUntil)
@@ -218,7 +228,9 @@ public class Pipe extends Field implements Tickable {
         return newPipe;
     }
 
-    // TODO: Dokumentálni kell majd
+    /**
+     * //TODO
+     */
     @Override
     public void tick() {
         if (0 < timeUntilBreakable)

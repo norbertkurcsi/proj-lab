@@ -1,11 +1,14 @@
 package proto;
 
+import java.util.Random;
+
 /**
  * A Pump osztálya.
  */
 public class Pump extends FieldNode implements Tickable {
+    static Random random = new Random();
+    static final int MAX_VOLUME = 500;
     boolean isBroken;
-
     int maxVolume;
     int currentVolume;
 
@@ -24,15 +27,17 @@ public class Pump extends FieldNode implements Tickable {
     public Pump() {
         isBroken = false;
 
-        // TODO: Hogy fogjuk megadni hogy mennyi víz fér a pumpába?
-        maxVolume = 500;
+        maxVolume = MAX_VOLUME;
         currentVolume = 0;
 
         pipeIn = null;
         pipeOut = null;
     }
 
-    // TODO
+    /**
+     * //TODO
+     * @param amount
+     */
     public void setWaterVolume(int amount) {
         if (maxVolume < amount)
             throw new IllegalArgumentException("Can't put more water into pump than the maximum allowed volume");
@@ -42,7 +47,9 @@ public class Pump extends FieldNode implements Tickable {
         currentVolume = amount;
     }
 
-    //TODO
+    /**
+     * //TODO
+     */
     public void setMaxVolume(int amount) {
         if (amount < currentVolume)
             throw new IllegalArgumentException("Max volume cannot be less than the current volume");
@@ -95,9 +102,10 @@ public class Pump extends FieldNode implements Tickable {
      * @param out Az új kimenet.
      */
     public void changeFlow(Pipe in, Pipe out) {
-        // TODO: Ellenőrizzük hogy rá van csatlakozva-e a pumpára?
-        pipeIn = in;
-        pipeOut = out;
+        if(pipes.contains(in) && pipes.contains(out)) {
+            pipeIn = in;
+            pipeOut = out;
+        }
     }
 
     /**
@@ -112,7 +120,11 @@ public class Pump extends FieldNode implements Tickable {
             return;
         }
 
-        // TODO: Sorsoljunk hogy törjük vagy ne törjük el a pumpát
+        if(Proto.isRandom) {
+            if(random.nextInt(0, 2) == 0) {
+                breakPump();
+            }
+        }
 
         if (pipeIn != null) {
             int drained = pipeIn.drain(maxVolume - currentVolume);

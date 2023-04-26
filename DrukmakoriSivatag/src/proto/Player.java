@@ -53,12 +53,18 @@ public abstract class Player {
         position = f;
     }
 
-    // TODO: Dokumentálni kell majd
+    /**
+     * //TODO
+     * @param p
+     */
     public void breakPipe(Pipe p) {
         p.breakPipe();
     }
 
-    // TODO: Dokumentálni kell majd
+    /**
+     * //TODO
+     * @param p
+     */
     public void makeSticky(Pipe p) {
         p.makeSticky();
     }

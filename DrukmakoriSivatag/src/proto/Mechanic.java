@@ -124,7 +124,14 @@ public class Mechanic extends Player {
         setPump(null);
     }
 
-    // TODO: Dokumentálni kell majd
+    /**
+     * A szerelő letesz egy csövet, amely az eszköztárában volt.
+     * Egyik végét arra a pumpára köti amelyiken áll, a másik vége szabadon lóg.
+     * Ezután az eszköztára kiürül, és ha a ciszternáknál jár az
+     * elkövetkezendő körökben, akkor újabb csövet vehet fel.
+     *
+     * @param n - a csomópont amire ráköti a csövet
+     */
     public void placePipe(FieldNode n) {
         if (pipe == null)
             return;

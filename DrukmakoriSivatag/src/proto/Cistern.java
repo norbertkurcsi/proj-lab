@@ -7,8 +7,6 @@ public class Cistern extends FieldNode implements Tickable {
     private int drainedWater;
     private boolean pipeAvailable;
 
-    // TODO: Nem tudom hogy ezt a pipe available-t jól csináltam-e
-
     /**
      * Konstruktor
      * A ciszternába befolyt vizet (drainedWater) 0-ra inicalizálja.
@@ -50,7 +48,6 @@ public class Cistern extends FieldNode implements Tickable {
      */
     @Override
     public Pump takePump() {
-        // TODO: Pumpát mindig felvehet?
         Pump newPump = new Pump();
         return newPump;
     }
@@ -72,7 +69,6 @@ public class Cistern extends FieldNode implements Tickable {
      */
     @Override
     public void tick() {
-        // TODO: Minden tick után már van nála cső?
         pipeAvailable = true;
 
         for (Pipe pipe : pipes) {
