@@ -189,14 +189,17 @@ public class Proto {
         commands.put("placepump", args -> {
             // -mechanicname -pumpname
             Mechanic m = (Mechanic) names.get(args[1]);
-            Pump p = (Pump) names.get(args[2]);
+            Pump p = m.getPump();
+            names.put(args[2], p);
             m.placePump(p, (Pipe) m.position);
         });
 
         commands.put("placepipe", args -> {
-            // -mechanicname -nodename
+            // -mechanicname -nodename -pipename
             Mechanic m = (Mechanic) names.get(args[1]);
             FieldNode f = (FieldNode) names.get(args[2]);
+            Pipe p = m.getPipe();
+            names.put(args[3], p);
             m.placePipe(f);
         });
 
@@ -244,6 +247,7 @@ public class Proto {
             else {
                 names.forEach((s, o) -> System.out.println(o));
             }
+            System.out.println();
         });
 
         commands.put("makeslippery", args -> {

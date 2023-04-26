@@ -142,12 +142,30 @@ public class Mechanic extends Player {
     }
 
     /**
+     * Visszatéríti a szerelő pumpáját
+     *
+     * @return A szerelőnél levő pumpa, vagy null, ha üres az eszköztár
+     */
+    public Pump getPump() {
+        return pump;
+    }
+
+    /**
      * Beállítja a paraméterként kapott csövet a szerelő csöveként.
      *
      * @param pipe Az új cső
      */
     public void setPipe(Pipe pipe) {
         this.pipe = pipe;
+    }
+
+    /**
+     * Visszatéríti a szerelőnél levő csövet.
+     *
+     * @return A szerelőnél levő cső, vagy null, ha nincs nála cső
+     */
+    public Pipe getPipe() {
+        return this.pipe;
     }
 
     @Override
@@ -157,9 +175,9 @@ public class Mechanic extends Player {
                 Proto.findName(this) +
                 " on " +
                 Proto.findName(this.position) +
-                " pipe: " +
-                Proto.findName(this.pipe) +
-                " pump: " +
-                Proto.findName(this.pump);
+                " has pipe: " +
+                (this.pipe == null ? "false" : "true") +
+                " has pump: " +
+                (this.pump == null ? "false" : "true");
     }
 }
