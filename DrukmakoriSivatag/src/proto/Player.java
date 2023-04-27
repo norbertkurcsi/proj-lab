@@ -29,7 +29,7 @@ public abstract class Player {
             return;
         }
 
-        setPosition(f); // Sikeresen átléptünk
+        setPosition(newPosition); // Sikeresen átléptünk
     }
 
     /**

@@ -103,7 +103,12 @@ public class Pipe extends Field implements Tickable {
     public void repair() {
         isBroken = false;
 
-        timeUntilBreakable = random.nextInt(0, MAX_BREAKABLE_TIME);
+        if(Proto.isRandom) {
+            timeUntilBreakable = random.nextInt(0, MAX_BREAKABLE_TIME);
+        }
+        else {
+            timeUntilBreakable = 1;
+        }
     }
 
     /**
@@ -114,7 +119,7 @@ public class Pipe extends Field implements Tickable {
      */
     public int flow(int amount) {
         if (isBroken || ends.size() != 2) {
-            wastedWater += amount;
+            wastedWater += Math.min(maxVolume, amount);
             return amount;
         }
 
@@ -131,6 +136,7 @@ public class Pipe extends Field implements Tickable {
      */
     public int drain(int amount) {
         int drained = Math.min(currentVolume, amount);
+        currentVolume -= drained;
         return drained;
     }
 
@@ -149,7 +155,12 @@ public class Pipe extends Field implements Tickable {
         }
 
         if (0 < slipperyUntil) {
-            Field slipTo = ends.get(random.nextInt(ends.size()));
+            Field slipTo;
+            if (Proto.isRandom) {
+                slipTo = ends.get(random.nextInt(ends.size()));
+            } else {
+                slipTo = ends.get(0);
+            }
             slipTo.addPlayer(p);
             return slipTo;
         }
@@ -233,7 +244,6 @@ public class Pipe extends Field implements Tickable {
     /**
      * Egy időegység elteltét jelenti. Az idő amíg újból lehet lyukasztani,
      * amíg ragadós vagy amíg csúszós a cső, csökken.
-     *
      */
     @Override
     public void tick() {

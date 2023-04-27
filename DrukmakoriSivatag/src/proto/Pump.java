@@ -94,7 +94,7 @@ public class Pump extends FieldNode implements Tickable {
      * Amennyiben a pumpa el volt romolva, megjavul.
      */
     public void repair() {
-        isBroken = true;
+        isBroken = false;
     }
 
     /**
