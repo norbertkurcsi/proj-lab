@@ -1,0 +1,2 @@
+Mechanic m1 on cistern has pipe: true has pump: false
+Cistern cistern with ends: null pipe available: true drained water: 0 standing players: m1

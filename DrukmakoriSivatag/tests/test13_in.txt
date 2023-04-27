@@ -1,0 +1,6 @@
+add cistern cistern
+add mechanic m1
+move m1 cistern
+tick cistern
+pickuppipe m1
+state
