@@ -30,7 +30,7 @@ public class Cistern extends FieldNode implements Tickable {
 
     /**
      * Egy cső felvevése a mezőről, ha nem megy akkor null értékkel tér vissza.
-     *
+     * TODO: itt nem kéne pipeAbalabile t falsera állítani, hogy ha elveszi a csövet?
      * @return az elvett cső vagy null
      */
     @Override
