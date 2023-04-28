@@ -1,3 +1,4 @@
+random off
 add pump pump1
 add pipe p1
 add pipe p2

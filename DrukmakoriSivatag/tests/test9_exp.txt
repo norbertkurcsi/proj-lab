@@ -7,3 +7,4 @@ Pipe p1 with ends: s1, null max volume: 500 current volume: 0 wasted water: 0 br
 Mechanic m1 on s1 has pipe: false has pump: false
 Mechanic m2 on s1 has pipe: false has pump: false
 Spring s1 with ends: p1 standing players: m2, m1
+

@@ -105,8 +105,7 @@ public class Pipe extends Field implements Tickable {
 
         if(Proto.isRandom) {
             timeUntilBreakable = random.nextInt(0, MAX_BREAKABLE_TIME);
-        }
-        else {
+        } else {
             timeUntilBreakable = 1;
         }
     }
