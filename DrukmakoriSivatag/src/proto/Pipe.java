@@ -152,7 +152,7 @@ public class Pipe extends Field implements Tickable {
         if (0 < standing) {
             return null;
         }
-
+        
         if (0 < slipperyUntil) {
             Field slipTo;
             if (Proto.isRandom) {
