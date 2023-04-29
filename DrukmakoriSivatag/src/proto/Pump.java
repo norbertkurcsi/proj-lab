@@ -63,10 +63,10 @@ public class Pump extends FieldNode implements Tickable {
 
     /**
      * Hozzáad egy adott mennyiségű vizet a pumpa tartájához.
-     * 
+     * TODO: szandekosan van package lathatosag
      * @param amount A hozzáadandó vízmennyiség.
      */
-    void addVolume(int amount) {
+    public void addVolume(int amount) {
         if (maxVolume - currentVolume < amount)
             throw new IllegalArgumentException("Can't add more water to pump than the volume of its storage");
         currentVolume += amount;
@@ -74,10 +74,10 @@ public class Pump extends FieldNode implements Tickable {
 
     /**
      * Csökkenti a pumpában található vízmennyiséget.
-     * 
+     * TODO: szandekosan van package lathatosag
      * @param amount A csökkenteni kívánt mennyiség.
      */
-    void decreaseVolume(Integer amount) {
+    public void decreaseVolume(Integer amount) {
         if (currentVolume < amount)
             throw new IllegalArgumentException("There can't be less water than 0 in the pump");
         currentVolume -= amount;

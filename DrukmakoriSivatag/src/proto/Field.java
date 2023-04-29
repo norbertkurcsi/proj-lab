@@ -21,7 +21,7 @@ public abstract class Field {
      * listájához
      *
      * @param p - A játékos amelyet hozzáadjuk a listához.
-     * @return
+     * @return referencia saját magára
      */
     public Field addPlayer(Player p) {
         players.add(p);
@@ -33,6 +33,7 @@ public abstract class Field {
      * játékosok listájából.
      *
      * @param p - A törlendő játékos.
+     * @return true-t térít vissza
      */
     public boolean removePlayer(Player p) {
         players.remove(p);

@@ -47,6 +47,8 @@ public class Pipe extends Field implements Tickable {
 
     /**
      * Beállítja hogy mennyi víz van a csőben.
+     *
+     * @param amount - a beállítani kívánt víz mennyisége
      */
     public void setWaterVolume(int amount) {
         if (maxVolume < amount)
@@ -174,7 +176,7 @@ public class Pipe extends Field implements Tickable {
      * azt nem teheti meg, addig amíg a cső ragadós ideje le nem jár.
      *
      * @param p - a törlendő játékos.
-     * @return
+     * @return sikeres-e a játékos eltávolítása a csőről
      */
     @Override
     public boolean removePlayer(Player p) {

@@ -30,7 +30,7 @@ public class Cistern extends FieldNode implements Tickable {
 
     /**
      * Egy cső felvevése a mezőről, ha nem megy akkor null értékkel tér vissza.
-     * TODO: itt nem kéne pipeAbalabile t falsera állítani, hogy ha elveszi a csövet?
+     *
      * @return az elvett cső vagy null
      */
     @Override
@@ -38,18 +38,18 @@ public class Cistern extends FieldNode implements Tickable {
         if (!pipeAvailable) {
             return null;
         }
+        pipeAvailable = false;
         return new Pipe();
     }
 
     /**
-     * Egy pumpa felvevése a mezőről, ha nem megy akkor null értékkel tér vissza.
+     * Egy pumpa felvevése a ceszternáról.
      *
-     * @return az elvett pumpa vagy null
+     * @return az elvett pumpa
      */
     @Override
     public Pump takePump() {
-        Pump newPump = new Pump();
-        return newPump;
+        return new Pump();
     }
 
     /**

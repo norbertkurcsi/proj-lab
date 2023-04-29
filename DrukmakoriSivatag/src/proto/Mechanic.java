@@ -90,6 +90,10 @@ public class Mechanic extends Player {
      * Ez a cső a szerelő eszköztárába kerül.
      */
     public void pickupPipe() {
+        if(pipe != null) {
+            return;
+        }
+
         Pipe newPipe = position.takePipe();
         if (newPipe == null)
             return;
@@ -105,6 +109,7 @@ public class Mechanic extends Player {
      * Ezután az eszköztára kiürül és felvehet egy más pumpát az elkövetkezendő
      * körökben.
      *
+     * @param pump a pumpa referenciája amit lehelyez
      * @param pipe Ide helyezi a pumpát. Ez vágódik ketté.
      */
     public void placePump(Pump pump, Pipe pipe) {
