@@ -1,0 +1,9 @@
+IF 0 < timeUntilBreakable
+    timeUntilBreakable := timeUntilBreakable - 1
+END IF
+IF 0 < slipperyUntil
+    slipperyUntil := slipperyUntil - 1
+END IF
+IF 0 < stickyUntil
+    stickyUntil := stickyUntil - 1
+END IF

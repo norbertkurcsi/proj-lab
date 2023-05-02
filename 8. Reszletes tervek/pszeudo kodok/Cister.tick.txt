@@ -1,0 +1,5 @@
+SET pipeAvailable := true
+For each pipe in the pipes:
+    SET drained := pipe.drain(MAX_VALUE)
+    Call addDrainedWater(drained)
+End loop.

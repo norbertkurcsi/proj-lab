@@ -1,0 +1,3 @@
+For each pipe in the pipes:
+    Call pipe.flow(MAX_VALUE)
+Endl loop.

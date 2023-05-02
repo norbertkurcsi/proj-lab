@@ -1,0 +1,20 @@
+IF isBroken
+    return
+END IF
+
+IF isRandom
+    break := generate ranom number between 0 and 1
+    IF break = 1
+        CALL breakPump()
+    END IF
+END IF
+
+IF pipeIn != null
+    drained := pipeIn.drain(maxVolume - currentVolume)
+    CALL addVolume(drained)
+END IF
+
+IF pipeOut != null
+    pushedOut := pipeOut.flow(currentVolume)
+    CALL decreaseVolume(pushedOut)
+END IF
