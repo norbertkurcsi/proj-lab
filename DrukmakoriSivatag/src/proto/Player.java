@@ -72,4 +72,9 @@ public abstract class Player {
     public void makeSticky(Pipe p) {
         p.makeSticky();
     }
+
+    //TODO
+    public Field getPosition() {
+        return position;
+    }
 }

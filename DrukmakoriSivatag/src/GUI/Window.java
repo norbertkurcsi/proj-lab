@@ -1,27 +1,49 @@
 package GUI;
 
+import proto.Pipe;
+
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.Map;
 
-public class Game extends JFrame {
+public class Window extends JFrame {
     static final int WIDTH = 1280;
     static final int HEIGHT = 720;
 
+    static final int BUTTONSIZE = 40;
+
     JScrollPane scrollableMap;
-    JPanel menu;
-    public Game() {
+    MenuPanel menu;
+    public Window() {
         super();
         this.setLayout(new BorderLayout());
-        scrollableMap = new JScrollPane(new Map());
+        scrollableMap = new JScrollPane(new FieldPanel());
+        scrollableMap.setLayout(null);
         scrollableMap.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
         scrollableMap.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         add(scrollableMap, BorderLayout.CENTER);
 
-        menu = new Menu();
+        menu = new MenuPanel();
         add(menu, BorderLayout.SOUTH);
+
+        initializeMap();
 
         initialize();
     }
+
+    public void initializeMap() {
+        for(Map.Entry<Viewable, Object> e : Controller.views.entrySet()) {
+            scrollableMap.add((Component) e.getKey());
+        }
+    }
+
+    public void updateAllViews() {
+        for(Map.Entry<Viewable, Object> e : Controller.views.entrySet()) {
+            e.getKey().update();
+        }
+    }
+
 
     static public Graphics2D setImage(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
@@ -38,10 +60,6 @@ public class Game extends JFrame {
         setResizable(false);
         setMinimumSize(new Dimension(WIDTH, HEIGHT));
         setPreferredSize(getSize());
-    }
-
-    public static void main(String args[]) {
-        new Game();
     }
 }
 

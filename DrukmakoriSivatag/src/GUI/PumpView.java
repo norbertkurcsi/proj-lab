@@ -1,29 +1,55 @@
 package GUI;
 
-import shared.Observer;
+import proto.Pump;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
 
-public class PumpView extends JButton implements Observer {
+public class PumpView extends JButton implements Viewable {
 
+    Pump pump;
+    FieldPosition position;
 
-
-    public PumpView(FieldPosition position) {
-
+    public PumpView(FieldPosition position, Pump pump) {
+        super();
+        this.pump = pump;
+        this.position = position;
+        addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                notifyController();
+            }
+        });
+        setPreferredSize(new Dimension(Window.BUTTONSIZE, Window.BUTTONSIZE));
+        setMinimumSize(getPreferredSize());
+        setBounds(position.getX(), position.getY() , Window.BUTTONSIZE, Window.BUTTONSIZE);
+        setBackground(Color.GREEN);
     }
 
-    public void enable(){
-        this.setEnabled(true);
+    private void notifyController() {
+        Controller.selectMapElement(this);
     }
 
-    public void disable() {
-        this.setEnabled(false);
+    @Override
+    public Object getModelObject() {
+        return pump;
     }
 
     @Override
     public void update() {
-        invalidate();
+        if(pump.isBroken()) {
+            setBackground(Color.RED);
+        }
+        else setBackground(Color.GREEN);
+        validate();
+        repaint();
+    }
+
+    public FieldPosition getPosition() {
+        return position;
     }
 
     @Override

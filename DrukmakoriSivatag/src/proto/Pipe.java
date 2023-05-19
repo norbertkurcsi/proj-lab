@@ -292,4 +292,9 @@ public class Pipe extends Field implements Tickable {
                 " standing player: " +
                 (players.size() < 1 ? "null" : Proto.findName(players.get(0)));
     }
+
+    //TODO
+    public boolean isBroken() {
+        return isBroken;
+    }
 }

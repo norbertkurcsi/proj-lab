@@ -139,6 +139,11 @@ public class Pump extends FieldNode implements Tickable {
         }
     }
 
+    //TODO
+    public boolean isBroken() {
+        return isBroken;
+    }
+
     @Override
     public String toString() {
         String playerList = "";
