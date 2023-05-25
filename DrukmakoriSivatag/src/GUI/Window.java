@@ -1,11 +1,7 @@
 package GUI;
 
-import proto.Pipe;
-
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Map;
 
 public class Window extends JFrame {
     static final int WIDTH = 1280;
@@ -15,6 +11,7 @@ public class Window extends JFrame {
 
     JScrollPane scrollableMap;
     MenuPanel menu;
+
     public Window() {
         super();
         this.setLayout(new BorderLayout());
@@ -27,23 +24,20 @@ public class Window extends JFrame {
         menu = new MenuPanel();
         add(menu, BorderLayout.SOUTH);
 
-        initializeMap();
-
         initialize();
     }
 
-    public void initializeMap() {
-        for(Map.Entry<Viewable, Object> e : Controller.views.entrySet()) {
-            scrollableMap.add((Component) e.getKey());
-        }
-    }
+    // public void initializeMap() {
+    // for (Map.Entry<Viewable, Object> e : Controller.views.entrySet()) {
+    // scrollableMap.add((Component) e.getKey());
+    // }
+    // }
 
-    public void updateAllViews() {
-        for(Map.Entry<Viewable, Object> e : Controller.views.entrySet()) {
-            e.getKey().update();
-        }
-    }
-
+    // public void updateAllViews() {
+    // for(Map.Entry<Viewable, Object> e : Controller.views.entrySet()) {
+    // e.getKey().update();
+    // }
+    // }
 
     static public Graphics2D setImage(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
@@ -62,4 +56,3 @@ public class Window extends JFrame {
         setPreferredSize(getSize());
     }
 }
-
