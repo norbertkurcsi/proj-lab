@@ -33,11 +33,8 @@ public class Window extends JFrame {
     // }
     // }
 
-    // public void updateAllViews() {
-    // for(Map.Entry<Viewable, Object> e : Controller.views.entrySet()) {
-    // e.getKey().update();
-    // }
-    // }
+     public void updateAllViews() {
+     }
 
     public void updateAllViews() {
     }

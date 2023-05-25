@@ -12,15 +12,15 @@ import java.util.List;
 
 public class PipeView extends JButton implements Viewable{
 
-    private FieldPosition end1Position;
-    private FieldPosition end2Position;
-    private FieldPosition centerPosition;
+    private Point end1Position;
+    private Point end2Position;
+    private Point centerPosition;
     private Pipe pipe;
 
-    public PipeView(FieldPosition end1, FieldPosition end2, Pipe pipe) {
-        end1Position = end1;
-        end2Position = end2;
-        centerPosition = new FieldPosition((end1Position.getX() + end2Position.getX()) / 2, (end1Position.getY() + end2Position.getY()) / 2);
+    public PipeView(Pipe pipe) {
+        end1Position = Controller.instance.fields.get(pipe.getEnds()[0]).getPosition();
+        end2Position = Controller.instance.fields.get(pipe.getEnds()[1]).getPosition();
+        centerPosition = new Point((end1Position.getX() + end2Position.getX()) / 2, (end1Position.getY() + end2Position.getY()) / 2);
         this.pipe = pipe;
 
         addActionListener(new ActionListener() {
@@ -33,7 +33,7 @@ public class PipeView extends JButton implements Viewable{
         setPreferredSize(new Dimension(Window.BUTTONSIZE, Window.BUTTONSIZE));
         setMinimumSize(getPreferredSize());
         setMaximumSize(getPreferredSize());
-        setBounds(centerPosition.getX(), centerPosition.getY() , Window.BUTTONSIZE, Window.BUTTONSIZE);
+        setBounds((int)centerPosition.getX(), (int)centerPosition.getY() , Window.BUTTONSIZE, Window.BUTTONSIZE);
 //        setBounds(end1Position.getX(), end1Position.getY() , end2Position.getX(), end2Position.getY());
         setBackground(Color.magenta);
     }

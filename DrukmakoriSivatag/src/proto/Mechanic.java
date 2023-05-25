@@ -112,13 +112,14 @@ public class Mechanic extends Player {
      * @param pump a pumpa referenciája amit lehelyez
      * @param pipe Ide helyezi a pumpát. Ez vágódik ketté.
      */
-    public void placePump(Pump pump, Pipe pipe) {
+    public Pipe placePump(Pump pump, Pipe pipe) {
         Pipe newPipe = pipe.cut();
 
         if (newPipe == null) {
-            return;
+            return null;
         }
 
+        // TODO
         Proto.names.put("newPipe", newPipe);
         pipe.connect(pump);
         pump.connect(pipe);
@@ -127,6 +128,7 @@ public class Mechanic extends Player {
         pump.connect(newPipe);
 
         setPump(null);
+        return newPipe;
     }
 
     /**

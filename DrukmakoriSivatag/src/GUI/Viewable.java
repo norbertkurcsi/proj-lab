@@ -1,6 +1,7 @@
 package GUI;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.List;
 
 public interface Viewable {
@@ -8,5 +9,5 @@ public interface Viewable {
 
     public Object getModelObject();
 
-    public FieldPosition getPosition();
+    public Point getPosition();
 }
