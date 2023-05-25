@@ -15,7 +15,7 @@ public class Window extends JFrame {
     public Window() {
         super();
         this.setLayout(new BorderLayout());
-        scrollableMap = new JScrollPane(new FieldPanel());
+        scrollableMap = new JScrollPane(new JPanel());
         scrollableMap.setLayout(null);
         scrollableMap.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
         scrollableMap.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -38,6 +38,9 @@ public class Window extends JFrame {
     // e.getKey().update();
     // }
     // }
+
+    public void updateAllViews() {
+    }
 
     static public Graphics2D setImage(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;

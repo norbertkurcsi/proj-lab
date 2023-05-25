@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Egy csomópontot reprezentáló absztrakt osztály.
  */
-public abstract class FieldNode extends Field {
+public abstract class FieldNode extends Field implements Tickable {
     /**
      * A csomóponthoz csatlakoztatott csövek.
      */
@@ -30,9 +30,25 @@ public abstract class FieldNode extends Field {
         pipes.remove(p);
     }
 
+    public FieldNode[] getConnectedNodes() {
+        FieldNode[] nodes = new FieldNode[pipes.size()];
+        for (int i = 0; i < pipes.size(); i++) {
+            for (FieldNode end : pipes.get(i).getEnds()) {
+                if (end != this) {
+                    nodes[i] = end;
+                    break;
+                }
+            }
+        }
+        return nodes;
+    }
+
+    public abstract void tick();
+
     @Override
     public String toString() {
-        if (pipes.isEmpty()) return "null";
+        if (pipes.isEmpty())
+            return "null";
         String s = "";
         for (Pipe p : pipes) {
             s += (Proto.findName(p) + ", ");

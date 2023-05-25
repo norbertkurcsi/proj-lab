@@ -4,7 +4,11 @@ import proto.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
+import java.util.Set;
 
 public class Controller {
     public static Controller instance = new Controller();
@@ -24,6 +28,100 @@ public class Controller {
         boolean removed = selectedFields.remove(selected);
         if (!removed) {
             selectedFields.add(selected);
+        }
+    }
+
+    public void breakPipe() {
+        Pipe pipe = (Pipe) selectedPlayer.getPosition();
+        selectedPlayer.breakPipe(pipe);
+        tick();
+        window.updateAllViews();
+    }
+
+    public void connectPipe() {
+        Mechanic mechanic = (Mechanic) selectedPlayer;
+        mechanic.connectPipe((Pipe) selectedFields.get(0), (FieldNode) selectedFields.get(1));
+        tick();
+        window.updateAllViews();
+    }
+
+    public void disconnectPipe() {
+        Mechanic mechanic = (Mechanic) selectedPlayer;
+        mechanic.disconnectPipe((Pipe) selectedFields.get(0), (FieldNode) selectedFields.get(1));
+        tick();
+        window.updateAllViews();
+    }
+
+    public void fixPipe() {
+        Mechanic mechanic = (Mechanic) selectedPlayer;
+        mechanic.fixPipe((Pipe) mechanic.getPosition());
+        tick();
+        window.updateAllViews();
+    }
+
+    public void makeSlippery() {
+        Saboteur saboteur = (Saboteur) selectedPlayer;
+        saboteur.makeSlippery((Pipe) saboteur.getPosition());
+        tick();
+        window.updateAllViews();
+    }
+
+    public void makeSticky() {
+        Pipe pipe = (Pipe) selectedPlayer.getPosition();
+        selectedPlayer.makeSticky(pipe);
+        tick();
+        window.updateAllViews();
+    }
+
+    public void movePlayer() {
+        selectedPlayer.moveTo(selectedFields.get(0));
+        tick();
+        window.updateAllViews();
+    }
+
+    public void pickupPipe() {
+        Mechanic mechanic = (Mechanic) selectedPlayer;
+        mechanic.pickupPipe();
+        tick();
+        window.updateAllViews();
+    }
+
+    public void placePipe() {
+        Mechanic mechanic = (Mechanic) selectedPlayer;
+        mechanic.placePipe((FieldNode) selectedFields.get(0));
+        tick();
+        window.updateAllViews();
+    }
+
+    private void tick() {
+        // Contains the fields that we need to tick
+        Queue<FieldNode> toSee = new LinkedList<>();
+
+        // Gets the springs and adds them to be the first fields that get ticked
+        for (Field field : fields.keySet()) {
+            if (field instanceof Cistern)
+                toSee.add((FieldNode) field);
+        }
+
+        // Contains all of the fields that have 
+        // been ticked so we don't tick a field twice
+        Set<FieldNode> ticked = new HashSet<>();
+        while (0 < toSee.size()) {
+            FieldNode node = toSee.poll();
+            node.tick();
+            ticked.add(node);
+
+            for (FieldNode neighbour : node.getConnectedNodes()) {
+                if (!ticked.contains(neighbour)) {
+                    toSee.add(neighbour);
+                }
+            }
+        }
+
+        // Tick all pipes
+        for (Field field : fields.keySet()) {
+            if (field instanceof Pipe)
+                ((Pipe) field).tick();
         }
     }
 

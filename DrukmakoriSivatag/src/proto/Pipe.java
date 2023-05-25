@@ -45,6 +45,10 @@ public class Pipe extends Field implements Tickable {
         ends = new ArrayList<>(2);
     }
 
+    public FieldNode[] getEnds() {
+        return (FieldNode[]) ends.toArray();
+    }
+
     /**
      * Beállítja hogy mennyi víz van a csőben.
      *
@@ -75,7 +79,8 @@ public class Pipe extends Field implements Tickable {
 
     /**
      * A cső egy adott ideig csúszossá válik. Ha egy játékos rálép,
-     * akkor átcsúszik arra a pályaelemre, amelyikre a cső másik vége csatlakoztatva van.
+     * akkor átcsúszik arra a pályaelemre, amelyikre a cső másik vége csatlakoztatva
+     * van.
      */
     void makeSlippery() {
         slipperyUntil = SLIPPERY_TIME;
@@ -105,7 +110,7 @@ public class Pipe extends Field implements Tickable {
     public void repair() {
         isBroken = false;
 
-        if(Proto.isRandom) {
+        if (Proto.isRandom) {
             timeUntilBreakable = random.nextInt(0, MAX_BREAKABLE_TIME);
         } else {
             timeUntilBreakable = 1;
@@ -154,7 +159,7 @@ public class Pipe extends Field implements Tickable {
         if (0 < standing) {
             return null;
         }
-        
+
         if (0 < slipperyUntil) {
             Field slipTo;
             if (Proto.isRandom) {
@@ -223,7 +228,7 @@ public class Pipe extends Field implements Tickable {
      * Félbevágja a csövet, ezzel egy új csövet készítve.
      *
      * @return Visszaadja az ujonnan elkészült csövet, ha sikerült a félbevágás
-     * különben pedig null-t ad vissza.
+     *         különben pedig null-t ad vissza.
      */
     public Pipe cut() {
         if (currentVolume != 0 || ends.size() != 2) {
@@ -261,7 +266,8 @@ public class Pipe extends Field implements Tickable {
     @Override
     public String toString() {
         String playerList = "";
-        if (players.isEmpty()) playerList = "null";
+        if (players.isEmpty())
+            playerList = "null";
         else {
             for (Player p : players) {
                 playerList += (Proto.findName(p) + ", ");
@@ -293,7 +299,7 @@ public class Pipe extends Field implements Tickable {
                 (players.size() < 1 ? "null" : Proto.findName(players.get(0)));
     }
 
-    //TODO
+    // TODO
     public boolean isBroken() {
         return isBroken;
     }

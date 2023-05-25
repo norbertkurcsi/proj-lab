@@ -7,5 +7,5 @@ public interface Tickable {
     /**
      * Az idő múlását reprezentáló függvény.
      */
-    void tick();
+    public void tick();
 }
