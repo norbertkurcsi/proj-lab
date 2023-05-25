@@ -12,8 +12,8 @@ public class PumpView extends JButton implements Viewable {
 
     private Pump pump;
     private Point position;
-    private Image normal;
-    private Image broken;
+    private static Image normal = new ImageIcon(Controller.assetsPath + "pump.png").getImage();;
+    private static Image broken = new ImageIcon(Controller.assetsPath + "pump_broken.png").getImage();;
 
     public PumpView(Point position, Pump pump) {
         super();
@@ -24,10 +24,6 @@ public class PumpView extends JButton implements Viewable {
         setPreferredSize(new Dimension(Window.BUTTONSIZE, Window.BUTTONSIZE));
         setMinimumSize(getPreferredSize());
         setBounds((int)position.getX(), (int)position.getY() , Window.BUTTONSIZE, Window.BUTTONSIZE);
-        setBackground(Color.GREEN);
-
-        normal = new ImageIcon(Controller.assetsPath + toString() + ".png").getImage();
-        broken = new ImageIcon(Controller.assetsPath + toString() + "_broken.png").getImage();
     }
 
     @Override
@@ -43,11 +39,6 @@ public class PumpView extends JButton implements Viewable {
 
     public Point getPosition() {
         return position;
-    }
-
-    @Override
-    public String toString() {
-        return "pump";
     }
 
     @Override

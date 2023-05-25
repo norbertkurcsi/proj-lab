@@ -33,9 +33,6 @@ public class Window extends JFrame {
     // }
     // }
 
-     public void updateAllViews() {
-     }
-
     public void updateAllViews() {
     }
 
