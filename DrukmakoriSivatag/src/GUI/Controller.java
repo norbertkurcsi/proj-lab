@@ -37,63 +37,54 @@ public class Controller {
     public void breakPipe() {
         Pipe pipe = (Pipe) selectedPlayer.getPosition();
         selectedPlayer.breakPipe(pipe);
-        tick();
-        window.updateAllViews();
+        endAction();
     }
 
     public void connectPipe() {
         Mechanic mechanic = (Mechanic) selectedPlayer;
         mechanic.connectPipe((Pipe) selectedFields.get(0), (FieldNode) selectedFields.get(1));
-        tick();
-        window.updateAllViews();
+        endAction();
     }
 
     public void disconnectPipe() {
         Mechanic mechanic = (Mechanic) selectedPlayer;
         mechanic.disconnectPipe((Pipe) selectedFields.get(0), (FieldNode) selectedFields.get(1));
-        tick();
-        window.updateAllViews();
+        endAction();
     }
 
     public void fixPipe() {
         Mechanic mechanic = (Mechanic) selectedPlayer;
         mechanic.fixPipe((Pipe) mechanic.getPosition());
-        tick();
-        window.updateAllViews();
+        endAction();
     }
 
     public void makeSlippery() {
         Saboteur saboteur = (Saboteur) selectedPlayer;
         saboteur.makeSlippery((Pipe) saboteur.getPosition());
-        tick();
-        window.updateAllViews();
+        endAction();
     }
 
     public void makeSticky() {
         Pipe pipe = (Pipe) selectedPlayer.getPosition();
         selectedPlayer.makeSticky(pipe);
-        tick();
-        window.updateAllViews();
+        endAction();
     }
 
     public void movePlayer() {
         selectedPlayer.moveTo(selectedFields.get(0));
-        tick();
-        window.updateAllViews();
+        endAction();
     }
 
     public void pickupPipe() {
         Mechanic mechanic = (Mechanic) selectedPlayer;
         mechanic.pickupPipe();
-        tick();
-        window.updateAllViews();
+        endAction();
     }
 
     public void placePipe() {
         Mechanic mechanic = (Mechanic) selectedPlayer;
         mechanic.placePipe((FieldNode) selectedFields.get(0));
-        tick();
-        window.updateAllViews();
+        endAction();
     }
 
     private void tick() {
@@ -164,6 +155,7 @@ public class Controller {
     public void endAction() {
         tick();
         selectedPlayer = null;
+        selectedFields.clear();
         window.updateAllViews();
     };
 
