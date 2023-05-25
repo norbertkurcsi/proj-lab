@@ -9,15 +9,18 @@ import java.util.List;
 public class Controller {
     public static Controller instance = new Controller();
 
+    public static String assetsPath = "drukmakor_assets/";
+
     private Window window = new Window();
-    private HashMap<Player, Viewable> players = new HashMap<>();
-    private HashMap<Field, Viewable> fields = new HashMap<>();
+    public HashMap<Player, Viewable> players = new HashMap<>();
+    public HashMap<Field, Viewable> fields = new HashMap<>();
 
     private Player selectedPlayer = null;
     private List<Field> selectedFields = new ArrayList<>();
 
     public void selectPlayer(Player selected) {
         selectedPlayer = selected;
+        selectedFields.clear();
     }
 
     public void selectField(Field selected) {
@@ -26,6 +29,45 @@ public class Controller {
             selectedFields.add(selected);
         }
     }
+
+    public void fixPump() {
+        if(selectedPlayer == null) return;
+        Pump pump = (Pump) selectedPlayer.getPosition();
+        ((Mechanic)selectedPlayer).fixPump(pump);
+        endAction();
+    }
+
+    public void pickupPump() {
+        if(selectedPlayer == null) return;
+        ((Mechanic)selectedPlayer).pickupPump();
+        endAction();
+    }
+
+    public void placePump() {
+        if(selectedPlayer != null && selectedFields != null && selectedFields.size() == 1) {
+            Pipe pipe = (Pipe)selectedPlayer.getPosition();
+            Pump pump = ((Mechanic)selectedPlayer).getPump();
+            Pipe newPipe = ((Mechanic)selectedPlayer).placePump(pump, pipe);
+            // TODO parameterek
+            PipeView newPipeView = new PipeView(newPipe);
+            fields.put(newPipe, newPipeView);
+        }
+        endAction();
+    }
+
+    public void changeFlow() {
+        if(selectedPlayer != null && selectedFields != null && selectedFields.size() == 2) {
+            Pump pump = (Pump) selectedPlayer.getPosition();
+            selectedPlayer.setPumpDirection(pump, (Pipe) selectedFields.get(0), (Pipe) selectedFields.get(1));
+        }
+        endAction();
+    }
+
+    public void endAction() {
+        tick();
+        selectedPlayer = null;
+        window.updateAllViews();
+    };
 
     // Kezdo palya felepitese
     public void initModel() {

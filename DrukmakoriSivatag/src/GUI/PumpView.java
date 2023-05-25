@@ -10,27 +10,24 @@ import java.util.List;
 
 public class PumpView extends JButton implements Viewable {
 
-    Pump pump;
-    FieldPosition position;
+    private Pump pump;
+    private Point position;
+    private Image normal;
+    private Image broken;
 
-    public PumpView(FieldPosition position, Pump pump) {
+    public PumpView(Point position, Pump pump) {
         super();
         this.pump = pump;
         this.position = position;
-        addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                notifyController();
-            }
-        });
+
+        addActionListener((ActionEvent e) -> {Controller.instance.selectField(this.pump);});
         setPreferredSize(new Dimension(Window.BUTTONSIZE, Window.BUTTONSIZE));
         setMinimumSize(getPreferredSize());
-        setBounds(position.getX(), position.getY() , Window.BUTTONSIZE, Window.BUTTONSIZE);
+        setBounds((int)position.getX(), (int)position.getY() , Window.BUTTONSIZE, Window.BUTTONSIZE);
         setBackground(Color.GREEN);
-    }
 
-    private void notifyController() {
-        Controller.selectMapElement(this);
+        normal = new ImageIcon(Controller.assetsPath + toString() + ".png").getImage();
+        broken = new ImageIcon(Controller.assetsPath + toString() + "_broken.png").getImage();
     }
 
     @Override
@@ -40,20 +37,25 @@ public class PumpView extends JButton implements Viewable {
 
     @Override
     public void update() {
-        if(pump.isBroken()) {
-            setBackground(Color.RED);
-        }
-        else setBackground(Color.GREEN);
         validate();
         repaint();
     }
 
-    public FieldPosition getPosition() {
+    public Point getPosition() {
         return position;
+    }
+
+    @Override
+    public String toString() {
+        return "pump";
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+        if(pump.isBroken()) {
+            Window.setImage(g).drawImage(broken, 0, 0, Window.BUTTONSIZE, Window.BUTTONSIZE, null);
+        }
+        else Window.setImage(g).drawImage(normal, 0, 0, Window.BUTTONSIZE, Window.BUTTONSIZE, null);
     }
 }
