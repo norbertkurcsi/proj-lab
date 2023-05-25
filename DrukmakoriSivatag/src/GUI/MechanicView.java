@@ -8,9 +8,13 @@ import java.awt.event.ActionEvent;
 
 public class MechanicView extends JButton implements Viewable {
     private Mechanic mechanic;
+    private Point position;
 
-    public MechanicView(Mechanic mechanic) {
+    private Image image = new ImageIcon(Controller.assetsPath + "mechanic.png").getImage();
+
+    public MechanicView(Point position, Mechanic mechanic) {
         this.mechanic = mechanic;
+        this.position = position;
 
         addActionListener((ActionEvent e) -> {
             Controller.instance.selectPlayer(this.mechanic);
@@ -19,10 +23,7 @@ public class MechanicView extends JButton implements Viewable {
         setPreferredSize(new Dimension(Window.BUTTONSIZE / 2, Window.BUTTONSIZE / 2));
         setMinimumSize(getPreferredSize());
 
-        Point position = getPosition();
         setBounds((int) position.getX(), (int) position.getY() - 10, Window.BUTTONSIZE / 2, Window.BUTTONSIZE / 2);
-
-        setBackground(Color.BLUE);
     }
 
     @Override
@@ -48,5 +49,6 @@ public class MechanicView extends JButton implements Viewable {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+        Window.setImage(g).drawImage(image, 0 , 0, Window.BUTTONSIZE / 2, Window.BUTTONSIZE / 2, null);
     }
 }

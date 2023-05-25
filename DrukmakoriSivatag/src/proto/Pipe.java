@@ -45,8 +45,8 @@ public class Pipe extends Field implements Tickable {
         ends = new ArrayList<>(2);
     }
 
-    public FieldNode[] getEnds() {
-        return (FieldNode[]) ends.toArray();
+    public List<FieldNode> getEnds() {
+        return ends;
     }
 
     /**
@@ -302,5 +302,16 @@ public class Pipe extends Field implements Tickable {
     // TODO
     public boolean isBroken() {
         return isBroken;
+    }
+
+    // TODO
+    public boolean isSticky() {return stickyUntil > 0;}
+
+    // TODO
+    public boolean isSlippery() {return slipperyUntil > 0;}
+
+    // TODO
+    public boolean isEmpty() {
+        return currentVolume == 0;
     }
 }

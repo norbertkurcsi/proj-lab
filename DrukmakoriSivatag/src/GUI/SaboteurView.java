@@ -14,7 +14,7 @@ public class SaboteurView extends JButton implements Viewable {
     private Point position;
     private Saboteur saboteur;
 
-    private Image image = new ImageIcon(Controller.assetsPath + "saboteur.png").getImage();;
+    private Image image = new ImageIcon(Controller.assetsPath + "saboteur.png").getImage();
 
     public SaboteurView(Point position, Saboteur saboteur) {
         this.saboteur = saboteur;

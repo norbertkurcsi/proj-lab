@@ -10,7 +10,7 @@ import java.awt.event.ActionEvent;
 public class SpringView extends JButton implements Viewable {
     private Spring spring;
     private Point position;
-    private static Image normal = new ImageIcon(Controller.assetsPath + "spring.png").getImage();;
+    private static Image normal = new ImageIcon(Controller.assetsPath + "spring.png").getImage();
 
     public SpringView(Point position, Spring spring) {
         super();

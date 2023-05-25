@@ -1,7 +1,10 @@
 package GUI;
 
 import proto.*;
+import proto.Spring;
 
+import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -19,12 +22,13 @@ public class Controller {
     public HashMap<Player, Viewable> players = new HashMap<>();
     public HashMap<Field, Viewable> fields = new HashMap<>();
 
-    private Player selectedPlayer = null;
-    private List<Field> selectedFields = new ArrayList<>();
+    public Player selectedPlayer = null;
+    public List<Field> selectedFields = new ArrayList<>();
 
     public void selectPlayer(Player selected) {
         selectedPlayer = selected;
         selectedFields.clear();
+        window.updateActions();
     }
 
     public void selectField(Field selected) {
@@ -32,6 +36,7 @@ public class Controller {
         if (!removed) {
             selectedFields.add(selected);
         }
+        window.updateActions();
     }
 
     public void breakPipe() {
@@ -47,9 +52,9 @@ public class Controller {
     }
 
     public void fixPump() {
-        if(selectedPlayer == null) return;
+        if (selectedPlayer == null) return;
         Pump pump = (Pump) selectedPlayer.getPosition();
-        ((Mechanic)selectedPlayer).fixPump(pump);
+        ((Mechanic) selectedPlayer).fixPump(pump);
         endAction();
     }
 
@@ -59,7 +64,7 @@ public class Controller {
     }
 
     public void changeFlow() {
-        if(selectedPlayer != null && selectedFields != null && selectedFields.size() == 2) {
+        if (selectedPlayer != null && selectedFields != null && selectedFields.size() == 2) {
             Pump pump = (Pump) selectedPlayer.getPosition();
             selectedPlayer.setPumpDirection(pump, (Pipe) selectedFields.get(0), (Pipe) selectedFields.get(1));
         }
@@ -89,9 +94,10 @@ public class Controller {
         mechanic.disconnectPipe((Pipe) selectedFields.get(0), (FieldNode) selectedFields.get(1));
         endAction();
     }
+
     public void pickupPump() {
-        if(selectedPlayer == null) return;
-        ((Mechanic)selectedPlayer).pickupPump();
+        if (selectedPlayer == null) return;
+        ((Mechanic) selectedPlayer).pickupPump();
         endAction();
     }
 
@@ -102,11 +108,10 @@ public class Controller {
     }
 
     public void placePump() {
-        if(selectedPlayer != null && selectedFields != null && selectedFields.size() == 1) {
-            Pipe pipe = (Pipe)selectedPlayer.getPosition();
-            Pump pump = ((Mechanic)selectedPlayer).getPump();
-            Pipe newPipe = ((Mechanic)selectedPlayer).placePump(pump, pipe);
-            // TODO parameterek
+        if (selectedPlayer != null && selectedFields != null && selectedFields.size() == 1) {
+            Pipe pipe = (Pipe) selectedPlayer.getPosition();
+            Pump pump = ((Mechanic) selectedPlayer).getPump();
+            Pipe newPipe = ((Mechanic) selectedPlayer).placePump(pump, pipe);
             PipeView newPipeView = new PipeView(newPipe);
             fields.put(newPipe, newPipeView);
         }
@@ -156,40 +161,69 @@ public class Controller {
         selectedPlayer = null;
         selectedFields.clear();
         window.updateAllViews();
-    };
+        window.updateActions();
+    }
 
     // Kezdo palya felepitese
     public void initModel() {
         // m - model, v - view
-        // Pump mPump1 = new Pump();
-        // Pump mPump2 = new Pump();
-        // Pipe mPipe1 = new Pipe();
-        // mPipe1.connect(mPump1);
-        // mPipe1.connect(mPump2);
-        // mPump1.connect(mPipe1);
-        // mPump2.connect(mPipe1);
+        Spring mSpring = new Spring();
+        Cistern mCistern = new Cistern();
 
-        // PumpView vPump1 = new PumpView(new FieldPosition(100, 100), mPump1);
-        // PumpView vPump2 = new PumpView(new FieldPosition(450, 400), mPump2);
-        // PipeView vPipe1 = new PipeView(vPump1.getPosition(), vPump2.getPosition(),
-        // mPipe1);
+        Pipe mPipe1 = new Pipe();
+        Pipe mPipe2 = new Pipe();
+        Pipe mPipe3 = new Pipe();
+        Pump mPump1 = new Pump();
+        Pump mPump2 = new Pump();
 
-        // Mechanic mMech1 = new Mechanic();
-        // mMech1.moveTo(mPump1);
-        // MechanicView vMech1 = new MechanicView(vPump1.getPosition(), mMech1);
+        mPipe1.connect(mPump1);
+        mPipe1.connect(mPump2);
+        mPump1.connect(mPipe1);
+        mPump2.connect(mPipe1);
 
-        // Saboteur mSab1 = new Saboteur();
-        // mSab1.moveTo(mPump2);
-        // SaboteurView vSab1 = new SaboteurView(vPump2.getPosition(), mSab1);
+        mPipe2.connect(mSpring);
+        mSpring.connect(mPipe2);
+        mPipe2.connect(mPump1);
+        mPump1.connect(mPipe2);
 
-        // views.put(vSab1, mSab1);
-        // views.put(vMech1, mMech1);
-        // views.put(vPipe1, mPipe1);
-        // views.put(vPump1, mPump1);
-        // views.put(vPump2, mPump2);
+        mPipe3.connect(mCistern);
+        mPipe3.connect(mPump2);
+        mCistern.connect(mPipe3);
+        mPump2.connect(mPipe3);
+
+        PumpView vPump1 = new PumpView(new Point(100, 100), mPump1);
+        PumpView vPump2 = new PumpView(new Point(450, 400), mPump2);
+        fields.put(mPump1, vPump1);
+        fields.put(mPump2, vPump2);
+
+        SpringView vSpring = new SpringView(new Point(30, 300), mSpring);
+        CisternView vCistern = new CisternView(new Point(400, 500), mCistern);
+        fields.put(mSpring, vSpring);
+        fields.put(mCistern, vCistern);
+
+        PipeView vPipe1 = new PipeView(mPipe1);
+        fields.put(mPipe1, vPipe1);
+        PipeView vPipe2 = new PipeView(mPipe2);
+        fields.put(mPipe2, vPipe1);
+        PipeView vPipe3 = new PipeView(mPipe3);
+        fields.put(mPipe3, vPipe3);
+
+        Mechanic mMech1 = new Mechanic();
+        mMech1.moveTo(mPump1);
+        MechanicView vMech1 = new MechanicView(vPump1.getPosition(), mMech1);
+
+        Saboteur mSab1 = new Saboteur();
+        mSab1.moveTo(mPump2);
+        SaboteurView vSab1 = new SaboteurView(vPump2.getPosition(), mSab1);
+
+        players.put(mSab1, vSab1);
+        players.put(mMech1, vMech1);
+
+        window.addViewsToMap(new JButton[]{vPump1, vPump2, vPipe1, vPipe2, vPipe3, vMech1, vSab1, vCistern, vSpring});
     }
 
     public static void main(String args[]) {
         Controller.instance.initModel();
+        Controller.instance.window.initialize();
     }
 }

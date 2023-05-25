@@ -7,9 +7,9 @@ public class Window extends JFrame {
     static final int WIDTH = 1280;
     static final int HEIGHT = 720;
 
-    static final int BUTTONSIZE = 40;
+    static final int BUTTONSIZE = 50;
 
-    JScrollPane scrollableMap;
+    public JScrollPane scrollableMap;
     MenuPanel menu;
 
     public Window() {
@@ -23,15 +23,13 @@ public class Window extends JFrame {
 
         menu = new MenuPanel();
         add(menu, BorderLayout.SOUTH);
-
-        initialize();
     }
 
-    // public void initializeMap() {
-    // for (Map.Entry<Viewable, Object> e : Controller.views.entrySet()) {
-    // scrollableMap.add((Component) e.getKey());
-    // }
-    // }
+    public void addViewsToMap(JButton[] views) {
+        for(JButton v : views) {
+            scrollableMap.add(v);
+        }
+    }
 
     public void updateAllViews() {
         for (Viewable view : Controller.instance.fields.values()) 
@@ -49,7 +47,11 @@ public class Window extends JFrame {
         return g2d;
     }
 
-    private void initialize() {
+    public void updateActions() {
+        menu.updateActions();
+    }
+
+    public void initialize() {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setTitle("Drukmakori sivatag");
         setVisible(true);

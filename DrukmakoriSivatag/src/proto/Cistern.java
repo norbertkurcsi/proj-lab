@@ -61,6 +61,9 @@ public class Cistern extends FieldNode implements Tickable {
         return drainedWater;
     }
 
+    //TODO
+    public boolean isPipeAvailable() {return pipeAvailable;}
+
     /**
      * Egy időegység elteltét jelenti.
      * Az időegységnek megfelelő mennyiségű víz elfolyik a ciszternához kapcsolt
