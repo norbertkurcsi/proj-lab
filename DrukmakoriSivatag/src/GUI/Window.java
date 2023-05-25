@@ -34,6 +34,11 @@ public class Window extends JFrame {
     // }
 
     public void updateAllViews() {
+        for (Viewable view : Controller.instance.fields.values()) 
+            view.update();
+
+        for (Viewable view : Controller.instance.players.values()) 
+            view.update();
     }
 
     static public Graphics2D setImage(Graphics g) {

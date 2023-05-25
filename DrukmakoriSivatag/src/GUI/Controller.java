@@ -40,6 +40,44 @@ public class Controller {
         endAction();
     }
 
+    public void fixPipe() {
+        Mechanic mechanic = (Mechanic) selectedPlayer;
+        mechanic.fixPipe((Pipe) mechanic.getPosition());
+        endAction();
+    }
+
+    public void fixPump() {
+        if(selectedPlayer == null) return;
+        Pump pump = (Pump) selectedPlayer.getPosition();
+        ((Mechanic)selectedPlayer).fixPump(pump);
+        endAction();
+    }
+
+    public void movePlayer() {
+        selectedPlayer.moveTo(selectedFields.get(0));
+        endAction();
+    }
+
+    public void changeFlow() {
+        if(selectedPlayer != null && selectedFields != null && selectedFields.size() == 2) {
+            Pump pump = (Pump) selectedPlayer.getPosition();
+            selectedPlayer.setPumpDirection(pump, (Pipe) selectedFields.get(0), (Pipe) selectedFields.get(1));
+        }
+        endAction();
+    }
+
+    public void makeSticky() {
+        Pipe pipe = (Pipe) selectedPlayer.getPosition();
+        selectedPlayer.makeSticky(pipe);
+        endAction();
+    }
+
+    public void makeSlippery() {
+        Saboteur saboteur = (Saboteur) selectedPlayer;
+        saboteur.makeSlippery((Pipe) saboteur.getPosition());
+        endAction();
+    }
+
     public void connectPipe() {
         Mechanic mechanic = (Mechanic) selectedPlayer;
         mechanic.connectPipe((Pipe) selectedFields.get(0), (FieldNode) selectedFields.get(1));
@@ -51,33 +89,27 @@ public class Controller {
         mechanic.disconnectPipe((Pipe) selectedFields.get(0), (FieldNode) selectedFields.get(1));
         endAction();
     }
-
-    public void fixPipe() {
-        Mechanic mechanic = (Mechanic) selectedPlayer;
-        mechanic.fixPipe((Pipe) mechanic.getPosition());
-        endAction();
-    }
-
-    public void makeSlippery() {
-        Saboteur saboteur = (Saboteur) selectedPlayer;
-        saboteur.makeSlippery((Pipe) saboteur.getPosition());
-        endAction();
-    }
-
-    public void makeSticky() {
-        Pipe pipe = (Pipe) selectedPlayer.getPosition();
-        selectedPlayer.makeSticky(pipe);
-        endAction();
-    }
-
-    public void movePlayer() {
-        selectedPlayer.moveTo(selectedFields.get(0));
+    public void pickupPump() {
+        if(selectedPlayer == null) return;
+        ((Mechanic)selectedPlayer).pickupPump();
         endAction();
     }
 
     public void pickupPipe() {
         Mechanic mechanic = (Mechanic) selectedPlayer;
         mechanic.pickupPipe();
+        endAction();
+    }
+
+    public void placePump() {
+        if(selectedPlayer != null && selectedFields != null && selectedFields.size() == 1) {
+            Pipe pipe = (Pipe)selectedPlayer.getPosition();
+            Pump pump = ((Mechanic)selectedPlayer).getPump();
+            Pipe newPipe = ((Mechanic)selectedPlayer).placePump(pump, pipe);
+            // TODO parameterek
+            PipeView newPipeView = new PipeView(newPipe);
+            fields.put(newPipe, newPipeView);
+        }
         endAction();
     }
 
@@ -119,40 +151,7 @@ public class Controller {
         }
     }
 
-    public void fixPump() {
-        if(selectedPlayer == null) return;
-        Pump pump = (Pump) selectedPlayer.getPosition();
-        ((Mechanic)selectedPlayer).fixPump(pump);
-        endAction();
-    }
-
-    public void pickupPump() {
-        if(selectedPlayer == null) return;
-        ((Mechanic)selectedPlayer).pickupPump();
-        endAction();
-    }
-
-    public void placePump() {
-        if(selectedPlayer != null && selectedFields != null && selectedFields.size() == 1) {
-            Pipe pipe = (Pipe)selectedPlayer.getPosition();
-            Pump pump = ((Mechanic)selectedPlayer).getPump();
-            Pipe newPipe = ((Mechanic)selectedPlayer).placePump(pump, pipe);
-            // TODO parameterek
-            PipeView newPipeView = new PipeView(newPipe);
-            fields.put(newPipe, newPipeView);
-        }
-        endAction();
-    }
-
-    public void changeFlow() {
-        if(selectedPlayer != null && selectedFields != null && selectedFields.size() == 2) {
-            Pump pump = (Pump) selectedPlayer.getPosition();
-            selectedPlayer.setPumpDirection(pump, (Pipe) selectedFields.get(0), (Pipe) selectedFields.get(1));
-        }
-        endAction();
-    }
-
-    public void endAction() {
+    private void endAction() {
         tick();
         selectedPlayer = null;
         selectedFields.clear();
