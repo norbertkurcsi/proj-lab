@@ -1,11 +1,13 @@
 package proto;
 
+import java.util.Random;
+
 /**
  * A ciszternákért felelős osztály
  */
 public class Cistern extends FieldNode {
     private int drainedWater;
-    private boolean pipeAvailable;
+    private int pipeAvailable;
 
     /**
      * Konstruktor
@@ -15,7 +17,7 @@ public class Cistern extends FieldNode {
      */
     public Cistern() {
         drainedWater = 0;
-        pipeAvailable = false;
+        pipeAvailable = 10;
     }
 
     /**
@@ -35,10 +37,10 @@ public class Cistern extends FieldNode {
      */
     @Override
     public Pipe takePipe() {
-        if (!pipeAvailable) {
+        if (pipeAvailable != 0) {
             return null;
         }
-        pipeAvailable = false;
+        pipeAvailable = 5;
         return new Pipe();
     }
 
@@ -62,7 +64,9 @@ public class Cistern extends FieldNode {
     }
 
     //TODO
-    public boolean isPipeAvailable() {return pipeAvailable;}
+    public boolean isPipeAvailable() {
+        return pipeAvailable == 0;
+    }
 
     @Override
     public boolean hasNeighbour(Field field) {
@@ -78,7 +82,7 @@ public class Cistern extends FieldNode {
     @Override
     public void tick() {
         // TODO csak par tickenkent termeljen pipeot
-        //pipeAvailable = true;
+        if (pipeAvailable > 0) pipeAvailable--;
 
         for (Pipe pipe : pipes) {
             int drained = pipe.drain(Integer.MAX_VALUE);
@@ -102,7 +106,7 @@ public class Cistern extends FieldNode {
                 " with ends: " +
                 super.toString() +
                 " pipe available: " +
-                (pipeAvailable ? "true" : "false") +
+                (pipeAvailable == 0 ? "true" : "false") +
                 " drained water: " +
                 getDrainedWater() +
                 " standing players: " +

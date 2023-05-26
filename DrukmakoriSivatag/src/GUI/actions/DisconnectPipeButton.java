@@ -24,16 +24,14 @@ public class DisconnectPipeButton extends ActionButton {
             return false;
 
         List<Field> selectedFields = Controller.instance.selectedFields;
-        if (selectedFields.size() != 2)
+        if (selectedFields.size() != 1)
             return false;
 
-        Field toDisconnect = selectedFields.get(0); // Pipe to disconnect
-        Field from = selectedFields.get(1); // The FieldNode to disconnect the pipe from
-        if (!player.getPosition().hasNeighbour(toDisconnect) ||
-                !from.hasNeighbour(toDisconnect))
+        Field from = selectedFields.get(0);
+        if (!(from instanceof FieldNode)) {
             return false;
+        }
 
-        return toDisconnect instanceof Pipe
-                && from instanceof FieldNode;
+        return (player.getPosition() instanceof Pipe) && from.hasNeighbour(player.getPosition()) && ((Pipe)player.getPosition()).isEmpty();
     }
 }

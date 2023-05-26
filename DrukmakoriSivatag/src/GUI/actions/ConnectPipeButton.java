@@ -24,15 +24,15 @@ public class ConnectPipeButton extends ActionButton {
             return false;
 
         List<Field> selectedFields = Controller.instance.selectedFields;
-        if (selectedFields.size() != 2)
+        if (selectedFields.size() != 1)
             return false;
 
-        Field pipe = selectedFields.get(0); // Pipe to connect
-        Field node = selectedFields.get(1); // The FieldNode to connect the pipe to
-        if (pipe.hasNeighbour(node) || !player.getPosition().hasNeighbour(pipe))
+        if(!(player.getPosition() instanceof Pipe) || !(selectedFields.get(0) instanceof FieldNode))
             return false;
 
-        return pipe instanceof Pipe
-                && node instanceof FieldNode;
+        Pipe pipe = (Pipe)player.getPosition();
+        Field node = selectedFields.get(0); // The FieldNode to connect the pipe to
+
+        return !pipe.hasNeighbour(node);
     }
 }

@@ -46,7 +46,7 @@ public class PipeView extends JPanel implements Viewable {
         }
         else if(ends.size() == 1) {
             end1Position = Controller.instance.fields.get(ends.get(0)).getPosition();
-            end2Position = new Point(end1Position.x, end1Position.y + 50);
+            end2Position = new Point(end1Position.x + 100, end1Position.y + 100);
         }
         else {
             end1Position = Controller.instance.fields.get(ends.get(0)).getPosition();
@@ -123,19 +123,25 @@ public class PipeView extends JPanel implements Viewable {
     private void updateEnds() {
         List<FieldNode> ends = pipe.getEnds();
         if(ends.size() == 0) {
-            end1Position = new Point(centerPosition.x - 50, centerPosition.y - 50);
-            end2Position = new Point(centerPosition.x + 50, centerPosition.y + 50);
+//            end1Position = new Point(centerPosition.x - 50, centerPosition.y - 50);
+//            end2Position = new Point(centerPosition.x + 50, centerPosition.y + 50);
+            end1Position = centerPosition;
+            end2Position = centerPosition;
         }
         else if(ends.size() == 1) {
             end1Position = Controller.instance.fields.get(ends.get(0)).getPosition();
-            end2Position = new Point();
-            end2Position.x = (centerPosition.x < end1Position.x) ? centerPosition.x - 50 : centerPosition.x + 50;
-            end2Position.y = (centerPosition.y < end1Position.y) ? centerPosition.y - 50 : centerPosition.y + 50;
+            //ez akkor kell, ha akarjuk, h a lecsatlakoztatott cso is latsszon
+//            end2Position.x = (centerPosition.x < end1Position.x) ? centerPosition.x - 50 : centerPosition.x + 50;
+//            end2Position.y = (centerPosition.y < end1Position.y) ? centerPosition.y - 50 : centerPosition.y + 50;
+            end2Position = centerPosition;
+
         }
         else {
             end1Position = Controller.instance.fields.get(ends.get(0)).getPosition();
             end2Position = Controller.instance.fields.get(ends.get(1)).getPosition();
+            centerPosition = new Point((end1Position.x + end2Position.x) / 2, (end1Position.y + end2Position.y) / 2);
         }
+        button.setBounds(centerPosition.x, centerPosition.y, Window.BUTTONSIZE, Window.BUTTONSIZE);
     }
 
     @Override
