@@ -1,7 +1,9 @@
 package GUI;
 
 import javax.swing.*;
+
 import java.awt.*;
+import java.util.HashMap;
 
 public class Window extends JFrame {
     static final int WIDTH = 1280;
@@ -9,43 +11,59 @@ public class Window extends JFrame {
 
     static final int BUTTONSIZE = 50;
 
-    JPanel map;
-    MenuPanel menu;
-
     private static Image background = new ImageIcon(Controller.assetsPath + "background.png").getImage();
+    private static HashMap<Class<?>, Integer> zOrder = new HashMap<>();
+    static {
+        zOrder.put(MechanicView.class, 2);
+        zOrder.put(SaboteurView.class, 2);
+        zOrder.put(PumpView.class, 1);
+        zOrder.put(CisternView.class, 1);
+        zOrder.put(SpringView.class, 1);
+        zOrder.put(PipeView.class, 0);
+    }
+
+    private MenuPanel menu = new MenuPanel();
+    private JLayeredPane map = new JLayeredPane() {
+        @Override
+        public void paintComponent(Graphics g) {
+            getGraphics2D(g).drawImage(background, 0, 0, Window.WIDTH, Window.HEIGHT, null);
+        }
+    };
 
     public Window() {
         super();
-        this.setLayout(new BorderLayout());
-        map = new JPanel() {
-            @Override
-            public void paintComponent(Graphics g) {
-                setImage(g).drawImage(background, 0, 0, Window.WIDTH, Window.HEIGHT, null);
-            }
-        };
+
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setTitle("Drukmakori sivatag");
+        this.setVisible(true);
+        this.setMinimumSize(new Dimension(WIDTH, HEIGHT));
+        this.setPreferredSize(getSize());
+
         map.setLayout(null);
-        map.setBounds(0,0, Window.WIDTH, Window.HEIGHT);
-        add(map);
-        menu = new MenuPanel();
-        add(menu, BorderLayout.SOUTH);
+        map.setBounds(0, 0, Window.WIDTH, Window.HEIGHT);
+
+        this.setLayout(new BorderLayout());
+        this.add(map);
+        this.add(menu, BorderLayout.SOUTH);
     }
 
-    public void addViewsToMap(Component[] views) {
-        for(Component v : views) {
-            map.add(v);
-        }
+    public void addViewable(Viewable view) {
+        Component component = (Component) view;
+        map.add(component, zOrder.get(view.getClass()));
+        map.validate();
+        map.repaint();
     }
 
     public void updateAllViews() {
-        if(map != null) map.repaint();
-        for (Viewable view : Controller.instance.fields.values()) 
+        map.repaint();
+        for (Viewable view : Controller.instance.fields.values())
             view.update();
 
-        for (Viewable view : Controller.instance.players.values()) 
+        for (Viewable view : Controller.instance.players.values())
             view.update();
     }
 
-    static public Graphics2D setImage(Graphics g) {
+    static public Graphics2D getGraphics2D(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         g2d.setRenderingHint(RenderingHints.KEY_ALPHA_INTERPOLATION, RenderingHints.VALUE_ALPHA_INTERPOLATION_QUALITY);
         g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
@@ -55,14 +73,5 @@ public class Window extends JFrame {
 
     public void updateActions() {
         menu.updateActions();
-    }
-
-    public void initialize() {
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setTitle("Drukmakori sivatag");
-        setVisible(true);
-        // setResizable(false);
-        setMinimumSize(new Dimension(WIDTH, HEIGHT));
-        setPreferredSize(getSize());
     }
 }

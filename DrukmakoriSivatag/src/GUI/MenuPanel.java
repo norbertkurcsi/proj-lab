@@ -53,6 +53,6 @@ public class MenuPanel extends JPanel {
 
     @Override
     public void paintComponent(Graphics g) {
-        Window.setImage(g).drawImage(background, -10, -10, getWidth() + 50, getHeight() + 20, null);
+        Window.getGraphics2D(g).drawImage(background, -10, -10, getWidth() + 50, getHeight() + 20, null);
     }
 }

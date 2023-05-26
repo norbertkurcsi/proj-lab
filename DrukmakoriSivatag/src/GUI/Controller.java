@@ -143,10 +143,8 @@ public class Controller {
         // been ticked so we don't tick a field twice
         Set<FieldNode> ticked = new HashSet<>();
         while (0 < toSee.size()) {
-            // TODO mi van ha node null
             FieldNode node = toSee.poll();
-            if (node != null)
-                node.tick();
+            node.tick();
             ticked.add(node);
             for (FieldNode neighbour : node.getConnectedNodes()) {
                 if (!ticked.contains(neighbour)) {
@@ -160,6 +158,16 @@ public class Controller {
             if (field instanceof Pipe)
                 ((Pipe) field).tick();
         }
+    }
+
+    public void addField(Field field, Viewable view) {
+        fields.put(field, view);
+        window.addViewable(view);
+    }
+
+    public void addPlayer(Player player, Viewable view) {
+        players.put(player, view);
+        window.addViewable(view);
     }
 
     private void endAction() {
@@ -199,38 +207,34 @@ public class Controller {
 
         PumpView vPump1 = new PumpView(new Point(100, 300), mPump1);
         PumpView vPump2 = new PumpView(new Point(550, 350), mPump2);
-        fields.put(mPump1, vPump1);
-        fields.put(mPump2, vPump2);
+        addField(mPump1, vPump1);
+        addField(mPump2, vPump2);
 
         SpringView vSpring = new SpringView(new Point(300, 30), mSpring);
         CisternView vCistern = new CisternView(new Point(400, 450), mCistern);
-        fields.put(mSpring, vSpring);
-        fields.put(mCistern, vCistern);
+        addField(mSpring, vSpring);
+        addField(mCistern, vCistern);
 
         PipeView vPipe1 = new PipeView(mPipe1);
-        fields.put(mPipe1, vPipe1);
+        addField(mPipe1, vPipe1);
         PipeView vPipe2 = new PipeView(mPipe2);
-        fields.put(mPipe2, vPipe2);
+        addField(mPipe2, vPipe2);
         PipeView vPipe3 = new PipeView(mPipe3);
-        fields.put(mPipe3, vPipe3);
+        addField(mPipe3, vPipe3);
 
         Mechanic mMech1 = new Mechanic();
         mMech1.moveTo(mPump1);
-        MechanicView vMech1 = new MechanicView(vPump1.getPosition(), mMech1);
+        MechanicView vMech1 = new MechanicView(mMech1);
 
         Saboteur mSab1 = new Saboteur();
         mSab1.moveTo(mPump2);
         SaboteurView vSab1 = new SaboteurView(vPump2.getPosition(), mSab1);
 
-        players.put(mSab1, vSab1);
-        players.put(mMech1, vMech1);
-
-        window.addViewsToMap(
-                new Component[]{vPump1, vPump2, vPipe1, vPipe2, vPipe3, vMech1, vSab1, vCistern, vSpring});
+        addPlayer(mSab1, vSab1);
+        addPlayer(mMech1, vMech1);
     }
 
     public static void main(String args[]) {
         Controller.instance.initModel();
-        Controller.instance.window.initialize();
     }
 }
