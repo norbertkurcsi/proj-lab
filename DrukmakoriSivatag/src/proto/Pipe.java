@@ -264,6 +264,11 @@ public class Pipe extends Field implements Tickable {
     }
 
     @Override
+    public boolean hasNeighbour(Field field) {
+        return ends.contains(field);
+    }
+
+    @Override
     public String toString() {
         String playerList = "";
         if (players.isEmpty())

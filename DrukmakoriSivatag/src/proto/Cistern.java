@@ -3,7 +3,7 @@ package proto;
 /**
  * A ciszternákért felelős osztály
  */
-public class Cistern extends FieldNode implements Tickable {
+public class Cistern extends FieldNode {
     private int drainedWater;
     private boolean pipeAvailable;
 
@@ -63,6 +63,11 @@ public class Cistern extends FieldNode implements Tickable {
 
     //TODO
     public boolean isPipeAvailable() {return pipeAvailable;}
+
+    @Override
+    public boolean hasNeighbour(Field field) {
+        return pipes.contains(field);
+    }
 
     /**
      * Egy időegység elteltét jelenti.

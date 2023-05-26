@@ -16,6 +16,8 @@ public abstract class Field {
         players = new ArrayList<>();
     }
 
+    public abstract boolean hasNeighbour(Field field);
+
     /**
      * Hozzáadja a paraméterként kapott játékost, amelyik a mezőre lép, a játékosok
      * listájához

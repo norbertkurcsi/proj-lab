@@ -23,6 +23,11 @@ public class Spring extends FieldNode implements Tickable {
     }
 
     @Override
+    public boolean hasNeighbour(Field field) {
+        return pipes.contains(field);
+    }
+
+    @Override
     public String toString() {
         String playerList = "";
         if (players.isEmpty()) playerList = "null";

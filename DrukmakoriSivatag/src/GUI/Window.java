@@ -61,7 +61,7 @@ public class Window extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setTitle("Drukmakori sivatag");
         setVisible(true);
-        setResizable(false);
+        // setResizable(false);
         setMinimumSize(new Dimension(WIDTH, HEIGHT));
         setPreferredSize(getSize());
     }

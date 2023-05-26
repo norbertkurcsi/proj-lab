@@ -58,7 +58,8 @@ public class Controller {
     }
 
     public void fixPump() {
-        if (selectedPlayer == null) return;
+        if (selectedPlayer == null)
+            return;
         Pump pump = (Pump) selectedPlayer.getPosition();
         ((Mechanic) selectedPlayer).fixPump(pump);
         endAction();
@@ -70,10 +71,8 @@ public class Controller {
     }
 
     public void changeFlow() {
-        if (selectedPlayer != null && selectedFields != null && selectedFields.size() == 2) {
-            Pump pump = (Pump) selectedPlayer.getPosition();
-            selectedPlayer.setPumpDirection(pump, (Pipe) selectedFields.get(0), (Pipe) selectedFields.get(1));
-        }
+        Pump pump = (Pump) selectedPlayer.getPosition();
+        selectedPlayer.setPumpDirection(pump, (Pipe) selectedFields.get(0), (Pipe) selectedFields.get(1));
         endAction();
     }
 
@@ -102,8 +101,8 @@ public class Controller {
     }
 
     public void pickupPump() {
-        if (selectedPlayer == null) return;
-        ((Mechanic) selectedPlayer).pickupPump();
+        Mechanic mechanic = (Mechanic) selectedPlayer;
+        mechanic.pickupPump();
         endAction();
     }
 
@@ -114,17 +113,17 @@ public class Controller {
     }
 
     public void placePump() {
-        if (selectedPlayer != null && selectedFields != null && selectedFields.size() == 1) {
-            Pipe pipe = (Pipe) selectedPlayer.getPosition();
-            Pump pump = ((Mechanic) selectedPlayer).getPump();
-            Pipe newPipe = ((Mechanic) selectedPlayer).placePump(pump, pipe);
-            PipeView newPipeView = new PipeView(newPipe);
-            fields.put(newPipe, newPipeView);
-        }
+        Mechanic mechanic = (Mechanic) selectedPlayer;
+        Pipe pipe = (Pipe) mechanic.getPosition();
+        Pump pump = mechanic.getPump();
+        Pipe newPipe = mechanic.placePump(pump, pipe);
+        PipeView newPipeView = new PipeView(newPipe);
+        fields.put(newPipe, newPipeView);
         endAction();
     }
 
     public void placePipe() {
+        // TODO: Meg kell beszélnünk hogy hogy teheti le a csövet
         Mechanic mechanic = (Mechanic) selectedPlayer;
         mechanic.placePipe((FieldNode) selectedFields.get(0));
         endAction();
@@ -140,7 +139,7 @@ public class Controller {
                 toSee.add((FieldNode) field);
         }
 
-        // Contains all of the fields that have 
+        // Contains all of the fields that have
         // been ticked so we don't tick a field twice
         Set<FieldNode> ticked = new HashSet<>();
         while (0 < toSee.size()) {
@@ -225,7 +224,8 @@ public class Controller {
         players.put(mSab1, vSab1);
         players.put(mMech1, vMech1);
 
-        window.addViewsToMap(new Component[]{vPump1, vPump2, vPipe1, vPipe2, vPipe3, vMech1, vSab1, vCistern, vSpring});
+        window.addViewsToMap(
+                new Component[] { vPump1, vPump2, vPipe1, vPipe2, vPipe3, vMech1, vSab1, vCistern, vSpring });
     }
 
     public static void main(String args[]) {
