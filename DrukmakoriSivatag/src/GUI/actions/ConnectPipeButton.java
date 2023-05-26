@@ -28,7 +28,7 @@ public class ConnectPipeButton extends ActionButton {
 
         Field pipe = selectedFields.get(0); // Pipe to connect
         Field node = selectedFields.get(1); // The FieldNode to connect the pipe to
-        if (pipe.hasNeighbour(node))
+        if (pipe.hasNeighbour(node) || !player.getPosition().hasNeighbour(pipe))
             return false;
 
         return pipe instanceof Pipe
