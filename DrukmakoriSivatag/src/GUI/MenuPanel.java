@@ -19,7 +19,23 @@ public class MenuPanel extends JPanel {
 
         this.setMinimumSize(new Dimension(Window.WIDTH, Window.HEIGHT / 5));
         this.setPreferredSize(getMinimumSize());
-        this.setLayout(new BorderLayout());
+        this.setLayout(new GridLayout(2, 3));
+        this.setAlignmentX(Component.CENTER_ALIGNMENT);
+        this.setAlignmentY(Component.CENTER_ALIGNMENT);
+
+        actionPanel.setPreferredSize(new Dimension(Window.WIDTH / 3, Window.HEIGHT / 5 ));
+        actionPanel.setMinimumSize(getPreferredSize());
+        inventoryPanel.setPreferredSize(new Dimension(Window.WIDTH / 3, Window.HEIGHT / 5 ));
+        inventoryPanel.setMinimumSize(getPreferredSize());
+        scorePanel.setPreferredSize(new Dimension(Window.WIDTH / 3, Window.HEIGHT / 5 ));
+        scorePanel.setMinimumSize(getPreferredSize());
+
+        JLabel actionLabel = new JLabel("Actions");
+        actionLabel.setFont(new Font("SignPainter", Font.PLAIN, 35));
+        JLabel inventoryLabel = new JLabel("Inventory");
+        inventoryLabel.setFont(new Font("SignPainter", Font.PLAIN, 35));
+        JLabel scoreLabel = new JLabel("Score");
+        scoreLabel.setFont(new Font("SignPainter", Font.PLAIN, 35));
 
         actionPanel.add(new MoveButton());
         actionPanel.add(new FixPipeButton());
@@ -34,11 +50,18 @@ public class MenuPanel extends JPanel {
         actionPanel.add(new PickupPipeButton());
         actionPanel.add(new PlacePipeButton());
         actionPanel.add(new PlacePumpButton());
-        actionPanel.setOpaque(false);
 
+        this.setOpaque(false);
+        actionPanel.setOpaque(false);
+        inventoryPanel.setOpaque(false);
+        scorePanel.setOpaque(false);
+        this.add(actionLabel);
+        this.add(inventoryLabel);
+        this.add(scoreLabel);
         this.add(actionPanel);
-        // this.add(inventoryPanel, BorderLayout.CENTER);
-        // this.add(scorePanel, BorderLayout.LINE_END);
+        this.add(inventoryPanel);
+        this.add(scorePanel);
+
     }
 
     public void updateActions() {
@@ -47,7 +70,10 @@ public class MenuPanel extends JPanel {
                 continue;
 
             ActionButton btn = (ActionButton) component;
-            btn.setEnabled(btn.canPerform());
+            boolean canPerf = btn.canPerform();
+            btn.setEnabled(canPerf);
+            btn.setVisible(canPerf);
+
         }
     }
 

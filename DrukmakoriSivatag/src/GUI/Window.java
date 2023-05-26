@@ -5,7 +5,7 @@ import java.awt.*;
 
 public class Window extends JFrame {
     static final int WIDTH = 1280;
-    static final int HEIGHT = 720;
+    static final int HEIGHT = 800;
 
     static final int BUTTONSIZE = 50;
 

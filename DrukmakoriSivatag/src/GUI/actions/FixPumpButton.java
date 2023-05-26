@@ -14,6 +14,7 @@ public class FixPumpButton extends ActionButton {
 
         this.setText("FIX PUMP");
         this.setEnabled(false);
+        this.setVisible(false);
         this.addActionListener((ActionEvent e) -> {
             Controller.instance.fixPump();
         });
