@@ -36,11 +36,6 @@ public class PumpView extends JButton implements Viewable {
     }
 
     @Override
-    public Object getModelObject() {
-        return pump;
-    }
-
-    @Override
     public void update() {
         if (pump.isBroken()) {
             actual = broken;
@@ -61,7 +56,7 @@ public class PumpView extends JButton implements Viewable {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         if (this.getModel().isRollover())
-            Window.setImage(g).drawImage(actualRollover, 0, 0, Window.BUTTONSIZE, Window.BUTTONSIZE, null);
-        else Window.setImage(g).drawImage(actual, 0, 0, Window.BUTTONSIZE, Window.BUTTONSIZE, null);
+            Window.getGraphics2D(g).drawImage(actualRollover, 0, 0, Window.BUTTONSIZE, Window.BUTTONSIZE, null);
+        else Window.getGraphics2D(g).drawImage(actual, 0, 0, Window.BUTTONSIZE, Window.BUTTONSIZE, null);
     }
 }

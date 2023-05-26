@@ -3,7 +3,6 @@ package GUI;
 import proto.Cistern;
 
 import javax.swing.*;
-import javax.swing.text.View;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
@@ -34,11 +33,6 @@ public class CisternView extends JButton implements Viewable {
     }
 
     @Override
-    public Object getModelObject() {
-        return cistern;
-    }
-
-    @Override
     public void update() {
         if (cistern.isPipeAvailable()) {
             actual = pipeAvailable;
@@ -59,8 +53,8 @@ public class CisternView extends JButton implements Viewable {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         if (this.getModel().isRollover())
-            Window.setImage(g).drawImage(actualRollover, 0, 0, Window.BUTTONSIZE, Window.BUTTONSIZE, null);
+            Window.getGraphics2D(g).drawImage(actualRollover, 0, 0, Window.BUTTONSIZE, Window.BUTTONSIZE, null);
         else
-            Window.setImage(g).drawImage(actual, 0, 0, Window.BUTTONSIZE, Window.BUTTONSIZE, null);
+            Window.getGraphics2D(g).drawImage(actual, 0, 0, Window.BUTTONSIZE, Window.BUTTONSIZE, null);
     }
 }

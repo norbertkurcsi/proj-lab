@@ -29,11 +29,6 @@ public class SpringView extends JButton implements Viewable {
     }
 
     @Override
-    public Object getModelObject() {
-        return spring;
-    }
-
-    @Override
     public void update() {
         validate();
         repaint();
@@ -47,7 +42,8 @@ public class SpringView extends JButton implements Viewable {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         if (this.getModel().isRollover())
-            Window.setImage(g).drawImage(normal_rollover, 0, 0, Window.BUTTONSIZE, Window.BUTTONSIZE, null);
-        else Window.setImage(g).drawImage(normal, 0, 0, Window.BUTTONSIZE, Window.BUTTONSIZE, null);
+            Window.getGraphics2D(g).drawImage(normal_rollover, 0, 0, Window.BUTTONSIZE, Window.BUTTONSIZE, null);
+        else
+            Window.getGraphics2D(g).drawImage(normal, 0, 0, Window.BUTTONSIZE, Window.BUTTONSIZE, null);
     }
 }
