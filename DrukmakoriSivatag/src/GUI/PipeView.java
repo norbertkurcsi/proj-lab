@@ -56,7 +56,7 @@ public class PipeView extends JPanel implements Viewable {
 
         setLayout(null);
         setBounds(0, 0, Window.WIDTH, Window.HEIGHT);
-        setBackground(Color.magenta);
+        setOpaque(false);
         button = new JButton() {
             @Override
             protected void paintComponent(Graphics g) {

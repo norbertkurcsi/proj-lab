@@ -27,7 +27,7 @@ public class Window extends JFrame {
         map.setBounds(0,0, Window.WIDTH, Window.HEIGHT);
         add(map);
         menu = new MenuPanel();
-        //add(menu, BorderLayout.SOUTH);
+        add(menu, BorderLayout.SOUTH);
     }
 
     public void addViewsToMap(Component[] views) {

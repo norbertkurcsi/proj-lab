@@ -11,8 +11,11 @@ import java.util.Map;
 
 public class MenuPanel extends JPanel {
 
+    private static Image background = new ImageIcon(Controller.assetsPath + "panel.png").getImage();
+
     private JPanel inventoryPanel;
     private JPanel actionPanel;
+    private JPanel scorePanel;
 
     private JSplitPane splitPanel;
 
@@ -21,15 +24,25 @@ public class MenuPanel extends JPanel {
         setMinimumSize(new Dimension(Window.WIDTH, Window.HEIGHT / 5));
         setPreferredSize(getMinimumSize());
         inventoryPanel = new JPanel();
+        inventoryPanel.setLayout(new BoxLayout(inventoryPanel, BoxLayout.Y_AXIS));
         actionPanel = new JPanel();
-        actionPanel.setBackground(Color.GREEN);
+        scorePanel = new JPanel();
+        scorePanel.setOpaque(false);
+        actionPanel.setOpaque(false);
+        inventoryPanel.setOpaque(false);
+//        actionPanel.setBackground(Color.GREEN);
 //        actionPanel.setBounds(0,0, getWidth()/2, getHeight());
-        inventoryPanel.setBackground(Color.CYAN);
+//        inventoryPanel.setBackground(Color.CYAN);
 //        inventoryPanel.setBounds(getWidth() / 2, 0, getWidth(), getHeight());
-        splitPanel = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, actionPanel, inventoryPanel);
-        splitPanel.setBounds(0, 0, getWidth(), getHeight());
+//        splitPanel = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, actionPanel, inventoryPanel);
+//        splitPanel.setBounds(0, 0, getWidth(), getHeight());
+//        splitPanel.setOpaque(false);
+//        add(splitPanel, BorderLayout.CENTER);
         setLayout(new BorderLayout());
-        add(splitPanel, BorderLayout.CENTER);
+        add(actionPanel, BorderLayout.EAST);
+        add(inventoryPanel, BorderLayout.CENTER);
+        add(scorePanel, BorderLayout.WEST);
+        setOpaque(true);
         initializeActions();
     }
 
@@ -197,6 +210,19 @@ public class MenuPanel extends JPanel {
             Controller.instance.pickupPipe();
         });
         actionPanel.add(pickupPipe);
+
+        JButton placePipe = new JButton("PLACEPIPE");
+        actions.put("PLACEPIPE", placePipe);
+        pickupPipe.addActionListener((ActionEvent e) -> {
+            Controller.instance.placePipe();
+        });
+        actionPanel.add(placePipe);
+
         disableAllActions();
+    }
+
+    @Override
+    public void paintComponent(Graphics g) {
+        Window.setImage(g).drawImage(background, -10,-10, getWidth()+50, getHeight() + 20, null);
     }
 }

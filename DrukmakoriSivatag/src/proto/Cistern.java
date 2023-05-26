@@ -72,7 +72,8 @@ public class Cistern extends FieldNode implements Tickable {
      */
     @Override
     public void tick() {
-        pipeAvailable = true;
+        // TODO csak par tickenkent termeljen pipeot
+        //pipeAvailable = true;
 
         for (Pipe pipe : pipes) {
             int drained = pipe.drain(Integer.MAX_VALUE);
