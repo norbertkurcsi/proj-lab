@@ -145,8 +145,7 @@ public class Controller {
         while (0 < toSee.size()) {
             // TODO mi van ha node null
             FieldNode node = toSee.poll();
-            if (node != null)
-                node.tick();
+            node.tick();
             ticked.add(node);
             for (FieldNode neighbour : node.getConnectedNodes()) {
                 if (!ticked.contains(neighbour)) {

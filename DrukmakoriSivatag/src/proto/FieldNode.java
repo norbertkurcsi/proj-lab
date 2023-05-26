@@ -30,12 +30,13 @@ public abstract class FieldNode extends Field implements Tickable {
         pipes.remove(p);
     }
 
-    public FieldNode[] getConnectedNodes() {
-        FieldNode[] nodes = new FieldNode[pipes.size()];
+    public List<FieldNode> getConnectedNodes() {
+        List<FieldNode> nodes = new ArrayList<>();
         for (int i = 0; i < pipes.size(); i++) {
+
             for (FieldNode end : pipes.get(i).getEnds()) {
                 if (end != this) {
-                    nodes[i] = end;
+                    nodes.add(end);
                     break;
                 }
             }
