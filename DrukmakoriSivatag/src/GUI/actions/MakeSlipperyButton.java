@@ -13,6 +13,7 @@ public class MakeSlipperyButton extends ActionButton {
 
         this.setText("MAKE SLIPPERY");
         this.setEnabled(false);
+        this.setVisible(false);
         this.addActionListener((ActionEvent e) -> {
             Controller.instance.makeSlippery();
         });

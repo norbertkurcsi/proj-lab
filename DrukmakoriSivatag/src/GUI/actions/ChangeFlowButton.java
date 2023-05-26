@@ -15,6 +15,7 @@ public class ChangeFlowButton extends ActionButton {
 
         this.setText("CHANGE FLOW");
         this.setEnabled(false);
+        this.setVisible(false);
         this.addActionListener((ActionEvent e) -> {
             Controller.instance.changeFlow();
         });

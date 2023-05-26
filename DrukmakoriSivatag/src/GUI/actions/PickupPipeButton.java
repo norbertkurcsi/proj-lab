@@ -13,6 +13,7 @@ public class PickupPipeButton extends ActionButton {
 
         this.setText("PICKUP PIPE");
         this.setEnabled(false);
+        this.setVisible(false);
         this.addActionListener((ActionEvent e) -> {
             Controller.instance.pickupPipe();
         });

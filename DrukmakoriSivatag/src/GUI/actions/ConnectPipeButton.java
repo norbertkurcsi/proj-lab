@@ -12,6 +12,7 @@ public class ConnectPipeButton extends ActionButton {
 
         this.setText("CONNECT PIPE");
         this.setEnabled(false);
+        this.setVisible(false);
         this.addActionListener((ActionEvent e) -> {
             Controller.instance.connectPipe();
         });
