@@ -11,10 +11,10 @@ public class PlacePumpButton extends ActionButton {
     public PlacePumpButton() {
         super();
 
-        this.setText("PLACE PIPE");
+        this.setText("PLACE PUMP");
         this.setEnabled(false);
         this.addActionListener((ActionEvent e) -> {
-            Controller.instance.placePipe();
+            Controller.instance.placePump();
         });
     }
 
