@@ -32,7 +32,9 @@ public class ChangeFlowButton extends ActionButton {
         if (selectedFields.size() != 2)
             return false;
 
-        return selectedFields.get(0) instanceof Pipe
-                && selectedFields.get(1) instanceof Pipe;
+        if(!(selectedFields.get(0) instanceof Pipe) || !(selectedFields.get(1) instanceof Pipe))
+            return false;
+
+        return (player.getPosition()).hasNeighbour(selectedFields.get(0)) && (player.getPosition()).hasNeighbour(selectedFields.get(1));
     }
 }

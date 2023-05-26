@@ -3,6 +3,9 @@ package GUI.actions;
 import java.awt.event.ActionEvent;
 
 import GUI.Controller;
+import proto.Mechanic;
+import proto.Pipe;
+import proto.Player;
 
 public class PlacePumpButton extends ActionButton {
     public PlacePumpButton() {
@@ -16,12 +19,11 @@ public class PlacePumpButton extends ActionButton {
     }
 
     public boolean canPerform() {
-        return false;
-        // Player player = Controller.instance.selectedPlayer;
-        // if (player == null && player instanceof Mechanic)
-        // return false;
+        Player player = Controller.instance.selectedPlayer;
+        if (!(player instanceof Mechanic))
+            return false;
 
-        // return Controller.instance.selectedFields.size() == 0
-        // && player.getPosition() instanceof Pipe;
+        return Controller.instance.selectedFields.size() == 0
+                && player.getPosition() instanceof Pipe && ((Mechanic) player).getPump() != null;
     }
 }

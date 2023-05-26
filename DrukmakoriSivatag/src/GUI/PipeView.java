@@ -39,17 +39,18 @@ public class PipeView extends JPanel implements Viewable {
     private Color pipeColor = Color.BLACK;
 
     public PipeView(Pipe pipe) {
-        Field end1 = pipe.getEnds().get(0);
-        Field end2 = pipe.getEnds().get(1);
-        if (end1 != null) end1Position = Controller.instance.fields.get(end1).getPosition();
-        if (end2 != null) end2Position = Controller.instance.fields.get(end2).getPosition();
-        // Ha egyik vége szabad
-        if (end1 == null && end2 != null) end1Position = new Point(end2Position.x, end2Position.y - 50);
-        if (end1 != null && end2 == null) end2Position = new Point(end1Position.x, end1Position.y - 50);
-        // Ha mindkét vége szabad
-        if (end1 == null && end2 == null) {
-            end1Position = new Point(20, 50);
-            end2Position = new Point(20, 100);
+        List<FieldNode> ends = pipe.getEnds();
+        if(ends.size() == 0) {
+            end1Position = new Point(50, 50);
+            end2Position = new Point(100, 100);
+        }
+        else if(ends.size() == 1) {
+            end1Position = Controller.instance.fields.get(ends.get(0)).getPosition();
+            end2Position = new Point(end1Position.x, end1Position.y + 50);
+        }
+        else {
+            end1Position = Controller.instance.fields.get(ends.get(0)).getPosition();
+            end2Position = Controller.instance.fields.get(ends.get(1)).getPosition();
         }
         centerPosition = new Point((end1Position.x + end2Position.x) / 2, (end1Position.y + end2Position.y) / 2);
         this.pipe = pipe;
@@ -112,10 +113,29 @@ public class PipeView extends JPanel implements Viewable {
         }
         if (pipe.isEmpty()) pipeColor = Color.BLACK;
         else pipeColor = Color.CYAN;
+        updateEnds();
         validate();
         button.validate();
         repaint();
         button.repaint();
+    }
+
+    private void updateEnds() {
+        List<FieldNode> ends = pipe.getEnds();
+        if(ends.size() == 0) {
+            end1Position = new Point(centerPosition.x - 50, centerPosition.y - 50);
+            end2Position = new Point(centerPosition.x + 50, centerPosition.y + 50);
+        }
+        else if(ends.size() == 1) {
+            end1Position = Controller.instance.fields.get(ends.get(0)).getPosition();
+            end2Position = new Point();
+            end2Position.x = (centerPosition.x < end1Position.x) ? centerPosition.x - 50 : centerPosition.x + 50;
+            end2Position.y = (centerPosition.y < end1Position.y) ? centerPosition.y - 50 : centerPosition.y + 50;
+        }
+        else {
+            end1Position = Controller.instance.fields.get(ends.get(0)).getPosition();
+            end2Position = Controller.instance.fields.get(ends.get(1)).getPosition();
+        }
     }
 
     @Override

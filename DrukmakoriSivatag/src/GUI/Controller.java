@@ -135,7 +135,7 @@ public class Controller {
 
         // Gets the springs and adds them to be the first fields that get ticked
         for (Field field : fields.keySet()) {
-            if (field instanceof Cistern)
+            if (field instanceof Spring)
                 toSee.add((FieldNode) field);
         }
 
@@ -143,10 +143,11 @@ public class Controller {
         // been ticked so we don't tick a field twice
         Set<FieldNode> ticked = new HashSet<>();
         while (0 < toSee.size()) {
+            // TODO mi van ha node null
             FieldNode node = toSee.poll();
-            node.tick();
+            if (node != null)
+                node.tick();
             ticked.add(node);
-
             for (FieldNode neighbour : node.getConnectedNodes()) {
                 if (!ticked.contains(neighbour)) {
                     toSee.add(neighbour);
@@ -225,7 +226,7 @@ public class Controller {
         players.put(mMech1, vMech1);
 
         window.addViewsToMap(
-                new Component[] { vPump1, vPump2, vPipe1, vPipe2, vPipe3, vMech1, vSab1, vCistern, vSpring });
+                new Component[]{vPump1, vPump2, vPipe1, vPipe2, vPipe3, vMech1, vSab1, vCistern, vSpring});
     }
 
     public static void main(String args[]) {

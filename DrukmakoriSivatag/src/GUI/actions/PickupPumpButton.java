@@ -23,10 +23,10 @@ public class PickupPumpButton extends ActionButton {
             return false;
 
         Player player = Controller.instance.selectedPlayer;
-        if (player == null || !(player instanceof Mechanic))
+        if (!(player instanceof Mechanic))
             return false;
 
         return Controller.instance.selectedFields.size() == 0
-                && player.getPosition() instanceof Cistern;
+                && player.getPosition() instanceof Cistern && ((Mechanic) player).getPump() == null;
     }
 }

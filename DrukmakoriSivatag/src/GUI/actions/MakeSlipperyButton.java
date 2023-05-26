@@ -23,10 +23,10 @@ public class MakeSlipperyButton extends ActionButton {
             return false;
 
         Player player = Controller.instance.selectedPlayer;
-        if (player == null || !(player instanceof Saboteur))
+        if (!(player instanceof Saboteur))
             return false;
 
         return Controller.instance.selectedFields.size() == 0
-                && player.getPosition() instanceof Pipe;
+                && player.getPosition() instanceof Pipe && !((Pipe)player.getPosition()).isSlippery();
     }
 }

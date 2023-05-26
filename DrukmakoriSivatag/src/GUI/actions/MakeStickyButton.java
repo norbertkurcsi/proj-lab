@@ -26,6 +26,6 @@ public class MakeStickyButton extends ActionButton {
             return false;
 
         return Controller.instance.selectedFields.size() == 0
-                && player.getPosition() instanceof Pipe;
+                && player.getPosition() instanceof Pipe && !((Pipe)player.getPosition()).isSticky();
     }
 }

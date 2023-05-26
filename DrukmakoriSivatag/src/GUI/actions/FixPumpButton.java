@@ -24,7 +24,7 @@ public class FixPumpButton extends ActionButton {
             return false;
 
         Player player = Controller.instance.selectedPlayer;
-        if (player == null || !(player instanceof Mechanic))
+        if (!(player instanceof Mechanic))
             return false;
 
         if (Controller.instance.selectedFields.size() != 0)
