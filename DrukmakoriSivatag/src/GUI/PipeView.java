@@ -56,6 +56,7 @@ public class PipeView extends JPanel implements Viewable {
 
         setLayout(null);
         setBounds(0, 0, Window.WIDTH, Window.HEIGHT);
+        setBackground(Color.magenta);
         button = new JButton() {
             @Override
             protected void paintComponent(Graphics g) {
@@ -129,6 +130,7 @@ public class PipeView extends JPanel implements Viewable {
 
     @Override
     public void paintComponent(Graphics g) {
+        super.paintComponent(g);
         // Pipes
         Graphics2D g2d = (Graphics2D) g;
         g2d.setStroke(new BasicStroke(3.0f));

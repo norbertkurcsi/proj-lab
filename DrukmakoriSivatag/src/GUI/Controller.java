@@ -14,10 +14,8 @@ import java.util.Queue;
 import java.util.Set;
 
 public class Controller {
-    public static Controller instance = new Controller();
-
     public static String assetsPath = "drukmakor_assets/";
-
+    public static Controller instance = new Controller();
     private Window window = new Window();
     public HashMap<Player, Viewable> players = new HashMap<>();
     public HashMap<Field, Viewable> fields = new HashMap<>();
@@ -231,8 +229,7 @@ public class Controller {
     }
 
     public static void main(String args[]) {
-        //Controller.instance.initModel();
+        Controller.instance.initModel();
         Controller.instance.window.initialize();
-        Controller.instance.window.updateActions();
     }
 }
