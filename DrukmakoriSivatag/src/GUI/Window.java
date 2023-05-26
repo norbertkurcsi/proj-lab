@@ -9,29 +9,49 @@ public class Window extends JFrame {
 
     static final int BUTTONSIZE = 50;
 
-    public JScrollPane scrollableMap;
+    public JPanel scrollableMap;
     MenuPanel menu;
+
+    private static Image background = new ImageIcon(Controller.assetsPath + "background.png").getImage();
 
     public Window() {
         super();
         this.setLayout(new BorderLayout());
-        scrollableMap = new JScrollPane(new JPanel());
+//        scrollableMap = new JScrollPane(new JPanel() {
+//            @Override
+//            public void paintComponent(Graphics g) {
+//                setBackground(Color.GREEN);
+//                super.paintComponent(g);
+////                setImage(g).drawImage(background, 0, 0, Window.WIDTH, Window.HEIGHT, null);
+//            }
+//        });
+        scrollableMap = new JPanel() {
+            @Override
+            public void paintComponent(Graphics g) {
+                //setBackground(Color.WHITE);
+                super.paintComponent(g);
+                setImage(g).drawImage(background, 100, 100, Window.WIDTH, Window.HEIGHT, null);
+            }
+        };
         scrollableMap.setLayout(null);
-        scrollableMap.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
-        scrollableMap.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollableMap.setOpaque(true);
+        scrollableMap.setBounds(0,0, Window.WIDTH, Window.HEIGHT);
+//        scrollableMap.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
+//        scrollableMap.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         add(scrollableMap, BorderLayout.CENTER);
 
         menu = new MenuPanel();
         add(menu, BorderLayout.SOUTH);
     }
 
-    public void addViewsToMap(JButton[] views) {
-        for(JButton v : views) {
+    public void addViewsToMap(Component[] views) {
+        for(Component v : views) {
             scrollableMap.add(v);
         }
     }
 
     public void updateAllViews() {
+        scrollableMap.repaint();
         for (Viewable view : Controller.instance.fields.values()) 
             view.update();
 

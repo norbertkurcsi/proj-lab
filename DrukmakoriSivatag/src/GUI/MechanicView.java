@@ -11,6 +11,7 @@ public class MechanicView extends JButton implements Viewable {
     private Point position;
 
     private Image image = new ImageIcon(Controller.assetsPath + "mechanic.png").getImage();
+    private Image image_rollover = new ImageIcon(Controller.assetsPath + "mechanic_rollover.png").getImage();
 
     public MechanicView(Point position, Mechanic mechanic) {
         this.mechanic = mechanic;
@@ -24,6 +25,9 @@ public class MechanicView extends JButton implements Viewable {
         setMinimumSize(getPreferredSize());
 
         setBounds((int) position.getX(), (int) position.getY() - 10, Window.BUTTONSIZE / 2, Window.BUTTONSIZE / 2);
+        setContentAreaFilled(false);
+        setBorderPainted(false);
+        setRolloverEnabled(true);
     }
 
     @Override
@@ -41,7 +45,6 @@ public class MechanicView extends JButton implements Viewable {
     public void update() {
         Point position = getPosition();
         setBounds((int) position.getX(), (int) position.getY() - 10, Window.BUTTONSIZE / 2, Window.BUTTONSIZE / 2);
-
         validate();
         repaint();
     }
@@ -49,6 +52,9 @@ public class MechanicView extends JButton implements Viewable {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        Window.setImage(g).drawImage(image, 0 , 0, Window.BUTTONSIZE / 2, Window.BUTTONSIZE / 2, null);
+        if (this.getModel().isRollover())
+            Window.setImage(g).drawImage(image_rollover, 0, 0, Window.BUTTONSIZE / 2, Window.BUTTONSIZE / 2, null);
+        else
+            Window.setImage(g).drawImage(image, 0, 0, Window.BUTTONSIZE / 2, Window.BUTTONSIZE / 2, null);
     }
 }

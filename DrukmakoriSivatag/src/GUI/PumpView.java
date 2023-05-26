@@ -13,19 +13,26 @@ public class PumpView extends JButton implements Viewable {
     private Pump pump;
     private Point position;
     private static Image normal = new ImageIcon(Controller.assetsPath + "pump.png").getImage();
+    private static Image normal_rollover = new ImageIcon(Controller.assetsPath + "pump_rollover.png").getImage();
     private static Image broken = new ImageIcon(Controller.assetsPath + "pump_broken.png").getImage();
+    private static Image broken_rollover = new ImageIcon(Controller.assetsPath + "pump_broken_rollover.png").getImage();
 
     private Image actual = normal;
+    private Image actualRollover = normal_rollover;
 
     public PumpView(Point position, Pump pump) {
         super();
         this.pump = pump;
         this.position = position;
 
-        addActionListener((ActionEvent e) -> {Controller.instance.selectField(this.pump);});
+        addActionListener((ActionEvent e) -> {
+            Controller.instance.selectField(this.pump);
+        });
         setPreferredSize(new Dimension(Window.BUTTONSIZE, Window.BUTTONSIZE));
         setMinimumSize(getPreferredSize());
-        setBounds((int)position.getX(), (int)position.getY() , Window.BUTTONSIZE, Window.BUTTONSIZE);
+        setBounds((int) position.getX(), (int) position.getY(), Window.BUTTONSIZE, Window.BUTTONSIZE);
+        setContentAreaFilled(false);
+        setBorderPainted(false);
     }
 
     @Override
@@ -35,10 +42,13 @@ public class PumpView extends JButton implements Viewable {
 
     @Override
     public void update() {
-        if(pump.isBroken()) {
+        if (pump.isBroken()) {
             actual = broken;
+            actualRollover = broken_rollover;
+        } else {
+            actual = normal;
+            actualRollover = normal_rollover;
         }
-        else actual = normal;
         validate();
         repaint();
     }
@@ -50,6 +60,8 @@ public class PumpView extends JButton implements Viewable {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        Window.setImage(g).drawImage(actual, 0, 0, Window.BUTTONSIZE, Window.BUTTONSIZE, null);
+        if (this.getModel().isRollover())
+            Window.setImage(g).drawImage(actualRollover, 0, 0, Window.BUTTONSIZE, Window.BUTTONSIZE, null);
+        else Window.setImage(g).drawImage(actual, 0, 0, Window.BUTTONSIZE, Window.BUTTONSIZE, null);
     }
 }

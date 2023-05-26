@@ -31,6 +31,14 @@ public class Controller {
         window.updateActions();
     }
 
+    public boolean isFieldSelected(Field field) {
+        return fields.containsKey(field);
+    }
+
+    public boolean isPlayerSelected(Player player) {
+        return player.equals(selectedPlayer);
+    }
+
     public void selectField(Field selected) {
         boolean removed = selectedFields.remove(selected);
         if (!removed) {
@@ -191,20 +199,20 @@ public class Controller {
         mCistern.connect(mPipe3);
         mPump2.connect(mPipe3);
 
-        PumpView vPump1 = new PumpView(new Point(100, 100), mPump1);
-        PumpView vPump2 = new PumpView(new Point(450, 400), mPump2);
+        PumpView vPump1 = new PumpView(new Point(100, 300), mPump1);
+        PumpView vPump2 = new PumpView(new Point(550, 350), mPump2);
         fields.put(mPump1, vPump1);
         fields.put(mPump2, vPump2);
 
-        SpringView vSpring = new SpringView(new Point(30, 300), mSpring);
-        CisternView vCistern = new CisternView(new Point(400, 500), mCistern);
+        SpringView vSpring = new SpringView(new Point(300, 30), mSpring);
+        CisternView vCistern = new CisternView(new Point(400, 450), mCistern);
         fields.put(mSpring, vSpring);
         fields.put(mCistern, vCistern);
 
         PipeView vPipe1 = new PipeView(mPipe1);
         fields.put(mPipe1, vPipe1);
         PipeView vPipe2 = new PipeView(mPipe2);
-        fields.put(mPipe2, vPipe1);
+        fields.put(mPipe2, vPipe2);
         PipeView vPipe3 = new PipeView(mPipe3);
         fields.put(mPipe3, vPipe3);
 
@@ -219,11 +227,12 @@ public class Controller {
         players.put(mSab1, vSab1);
         players.put(mMech1, vMech1);
 
-        window.addViewsToMap(new JButton[]{vPump1, vPump2, vPipe1, vPipe2, vPipe3, vMech1, vSab1, vCistern, vSpring});
+        window.addViewsToMap(new Component[]{vPump1, vPump2, vPipe1, vPipe2, vPipe3, vMech1, vSab1, vCistern, vSpring});
     }
 
     public static void main(String args[]) {
-        Controller.instance.initModel();
+        //Controller.instance.initModel();
         Controller.instance.window.initialize();
+        Controller.instance.window.updateActions();
     }
 }

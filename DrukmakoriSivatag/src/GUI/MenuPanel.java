@@ -37,9 +37,7 @@ public class MenuPanel extends JPanel {
 
     public void updateActions() {
         // Deaktiváljuk az összes akciót
-        for (Map.Entry<String, JButton> action : actions.entrySet()) {
-            action.getValue().setEnabled(false);
-        }
+        disableAllActions();
         if (Controller.instance.selectedPlayer == null) {
             return;
         }
@@ -113,6 +111,12 @@ public class MenuPanel extends JPanel {
         // Ha a kiválasztott játékos saboteur, Pipeon áll és az nem csúszós, azzá teheti
         if (player instanceof Saboteur && position instanceof Pipe && !((Pipe) position).isSlippery()) {
             actions.get("MAKESLIPPERY");
+        }
+    }
+
+    private void disableAllActions() {
+        for (Map.Entry<String, JButton> action : actions.entrySet()) {
+            action.getValue().setEnabled(false);
         }
     }
 
@@ -193,5 +197,6 @@ public class MenuPanel extends JPanel {
             Controller.instance.pickupPipe();
         });
         actionPanel.add(pickupPipe);
+        disableAllActions();
     }
 }
