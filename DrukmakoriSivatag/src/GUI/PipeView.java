@@ -64,8 +64,8 @@ public class PipeView extends JPanel implements Viewable {
                 super.paintComponent(g);
                 // Platform
                 if (this.getModel().isRollover()) {
-                    Window.setImage(g).drawImage(actualRollover, 0, 0, Window.BUTTONSIZE, Window.BUTTONSIZE, null);
-                } else Window.setImage(g).drawImage(actual, 0, 0, Window.BUTTONSIZE, Window.BUTTONSIZE, null);
+                    Window.getGraphics2D(g).drawImage(actualRollover, 0, 0, Window.BUTTONSIZE, Window.BUTTONSIZE, null);
+                } else Window.getGraphics2D(g).drawImage(actual, 0, 0, Window.BUTTONSIZE, Window.BUTTONSIZE, null);
             }
         };
 
@@ -136,11 +136,6 @@ public class PipeView extends JPanel implements Viewable {
             end1Position = Controller.instance.fields.get(ends.get(0)).getPosition();
             end2Position = Controller.instance.fields.get(ends.get(1)).getPosition();
         }
-    }
-
-    @Override
-    public Object getModelObject() {
-        return pipe;
     }
 
     @Override
