@@ -12,6 +12,8 @@ public class MechanicView extends JButton implements Viewable {
     private static Image image = new ImageIcon(Controller.assetsPath + "mechanic2.png").getImage();
 
     public MechanicView(Mechanic mechanic) {
+        super();
+
         this.mechanic = mechanic;
 
         this.addActionListener((ActionEvent e) -> {
@@ -49,7 +51,7 @@ public class MechanicView extends JButton implements Viewable {
 
         boolean isSelected = Controller.instance.selectedPlayer == mechanic;
         if (isSelected) {
-            g.setColor(new Color(0, 255, 0, 255));
+            g.setColor(Color.GREEN);
             g.fillOval(0, 0, w, h);
         }
 

@@ -12,6 +12,8 @@ public class SaboteurView extends JButton implements Viewable {
     private static Image image = new ImageIcon(Controller.assetsPath + "saboteur2.png").getImage();
 
     public SaboteurView(Saboteur saboteur) {
+        super();
+
         this.saboteur = saboteur;
 
         this.addActionListener((ActionEvent e) -> {

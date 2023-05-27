@@ -15,7 +15,9 @@ import java.util.Set;
 public class Controller {
     public static String assetsPath = "drukmakor_assets/";
     public static Controller instance = new Controller();
+
     private Window window = new Window();
+
     public HashMap<Player, Viewable> players = new HashMap<>();
     public HashMap<Field, Viewable> fields = new HashMap<>();
 
@@ -29,7 +31,12 @@ public class Controller {
             players.get(prev).update();
         players.get(selectedPlayer).update();
 
+        // Update the fields that have been deselected
+        Object[] shouldUpdate = selectedFields.toArray();
         selectedFields.clear();
+        for (Object field : shouldUpdate)
+            fields.get(field).update();
+
         window.updateActions();
     }
 
@@ -38,6 +45,8 @@ public class Controller {
         if (!removed) {
             selectedFields.add(selected);
         }
+        fields.get(selected).update();
+
         window.updateActions();
     }
 
