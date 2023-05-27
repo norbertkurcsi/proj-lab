@@ -51,7 +51,7 @@ public class MenuPanel extends JPanel {
         actionPanel.add(new PlacePipeButton());
         actionPanel.add(new PlacePumpButton());
 
-        this.setOpaque(false);
+        setOpaque(false);
         actionPanel.setOpaque(false);
         inventoryPanel.setOpaque(false);
         scorePanel.setOpaque(false);
