@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 
 import GUI.Controller;
 import proto.Field;
-import proto.Mechanic;
 import proto.Pipe;
 import proto.Player;
 
@@ -25,7 +24,7 @@ public class BreakPipeButton extends ActionButton {
             return false;
 
         Player player = Controller.instance.selectedPlayer;
-        if (!(player instanceof Mechanic))
+        if (player == null)
             return false;
 
         if (Controller.instance.selectedFields.size() != 0)
