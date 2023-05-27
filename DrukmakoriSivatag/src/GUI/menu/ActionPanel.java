@@ -1,6 +1,8 @@
 package GUI.menu;
 
-import java.awt.Component;
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
@@ -22,6 +24,17 @@ public class ActionPanel extends JPanel {
         JLabel title = new JLabel("Actions");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
+        try {
+            Font customFont = Font.createFont(Font.TRUETYPE_FONT, new File("Chalkduster.ttf")).deriveFont(30f);
+            GraphicsEnvironment ge =
+                    GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(customFont);
+
+            title.setFont(customFont);
+        } catch (IOException | FontFormatException e) {
+            throw new RuntimeException(e);
+        }
+        
         this.add(title);
 
         buttonsPanel.setOpaque(false);

@@ -1,12 +1,8 @@
 package GUI.menu;
 
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.RenderingHints;
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -85,6 +81,17 @@ public class InventoryPanel extends JPanel {
         buttonsPanel.setOpaque(false);
         buttonsPanel.add(pipeButton);
         buttonsPanel.add(pumpButton);
+
+        try {
+            Font customFont = Font.createFont(Font.TRUETYPE_FONT, new File("Chalkduster.ttf")).deriveFont(30f);
+            GraphicsEnvironment ge =
+                    GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(customFont);
+
+            title.setFont(customFont);
+        } catch (IOException | FontFormatException e) {
+            throw new RuntimeException(e);
+        }
 
         this.add(title);
         this.add(buttonsPanel);
