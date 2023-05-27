@@ -25,6 +25,7 @@ public class PlacePumpButton extends ActionButton {
             return false;
 
         return Controller.instance.selectedFields.size() == 0
-                && player.getPosition() instanceof Pipe && ((Mechanic) player).getPump() != null;
+                && player.getPosition() instanceof Pipe && ((Mechanic) player).getPump() != null && ((Pipe)player.getPosition()).isEmpty()
+                && !((Pipe)player.getPosition()).isBroken();
     }
 }

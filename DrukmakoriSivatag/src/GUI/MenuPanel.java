@@ -70,6 +70,9 @@ public class MenuPanel extends JPanel {
         actionPanel.add(new PlacePipeButton());
         actionPanel.add(new PlacePumpButton());
 
+<<<<<<< HEAD
+        setOpaque(false);
+=======
 
         JButton inventoryPump = new JButton(){
             protected void paintComponent(Graphics g) {
@@ -110,6 +113,7 @@ public class MenuPanel extends JPanel {
 
 
         this.setOpaque(false);
+>>>>>>> abb1f191cf7e0b6429b9a6921dacc1c809da5736
         actionPanel.setOpaque(false);
         inventoryPanel.setOpaque(false);
         scorePanel.setOpaque(false);

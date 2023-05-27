@@ -9,7 +9,7 @@ import java.awt.event.ActionEvent;
 public class SaboteurView extends JButton implements Viewable {
     private Saboteur saboteur;
 
-    private static Image image = new ImageIcon(Controller.assetsPath + "saboteur2.png").getImage();
+    private static Image image = new ImageIcon(Controller.assetsPath + "saboteur.png").getImage();
 
     public SaboteurView(Saboteur saboteur) {
         super();

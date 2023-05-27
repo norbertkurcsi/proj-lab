@@ -110,6 +110,15 @@ public class Pump extends FieldNode implements Tickable {
         }
     }
 
+    //TODO
+    @Override
+    public void disconnect(Pipe p) {
+        if(p == null) return;
+        pipes.remove(p);
+        if(p.equals(pipeIn)) pipeIn = null;
+        if(p.equals(pipeOut)) pipeOut = null;
+    }
+
     /**
      * Egy időegység elteltét jelenti.
      * A pumpa véletlenszerűen elromolhat. Amennyiben a pumpa nincs elromolja, akkor
@@ -123,7 +132,7 @@ public class Pump extends FieldNode implements Tickable {
         }
 
         if(Proto.isRandom) {
-            if(random.nextInt(0, 10) == 0) {
+            if(random.nextInt(0, 20) == 0) {
                 breakPump();
             }
         }

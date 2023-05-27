@@ -1,6 +1,8 @@
 package GUI;
 
+import proto.Field;
 import proto.Mechanic;
+import proto.Pipe;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,7 +11,7 @@ import java.awt.event.ActionEvent;
 public class MechanicView extends JButton implements Viewable {
     private Mechanic mechanic;
 
-    private static Image image = new ImageIcon(Controller.assetsPath + "mechanic2.png").getImage();
+    private static Image image = new ImageIcon(Controller.assetsPath + "mechanic.png").getImage();
 
     public MechanicView(Mechanic mechanic) {
         super();

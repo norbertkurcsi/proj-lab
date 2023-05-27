@@ -7,8 +7,7 @@ import proto.Pump;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.util.List;
 
 public class PipeView extends JPanel implements Viewable {
@@ -19,6 +18,8 @@ public class PipeView extends JPanel implements Viewable {
     private Pipe pipe;
 
     private JButton button;
+
+    private boolean wasCut = false;
 
     private static Image normal = new ImageIcon(Controller.assetsPath + "pipe.png").getImage();
     private static Image normal_selected = new ImageIcon(Controller.assetsPath + "pipe_selected.png").getImage();
@@ -40,15 +41,13 @@ public class PipeView extends JPanel implements Viewable {
 
     public PipeView(Pipe pipe) {
         List<FieldNode> ends = pipe.getEnds();
-        if(ends.size() == 0) {
+        if (ends.size() == 0) {
             end1Position = new Point(50, 50);
             end2Position = new Point(100, 100);
-        }
-        else if(ends.size() == 1) {
+        } else if (ends.size() == 1) {
             end1Position = Controller.instance.fields.get(ends.get(0)).getPosition();
             end2Position = new Point(end1Position.x + 100, end1Position.y + 100);
-        }
-        else {
+        } else {
             end1Position = Controller.instance.fields.get(ends.get(0)).getPosition();
             end2Position = Controller.instance.fields.get(ends.get(1)).getPosition();
         }
@@ -73,6 +72,18 @@ public class PipeView extends JPanel implements Viewable {
             Controller.instance.selectField(pipe);
         });
 
+        button.addMouseMotionListener(new MouseMotionListener() {
+            @Override
+            public void mouseDragged(MouseEvent e) {
+                centerPosition = e.getLocationOnScreen();
+                Controller.instance.window.updateAllViews();
+            }
+
+            @Override
+            public void mouseMoved(MouseEvent e) {
+            }
+        });
+
         add(button);
         button.setPreferredSize(new Dimension(Window.BUTTONSIZE, Window.BUTTONSIZE));
         button.setMinimumSize(button.getPreferredSize());
@@ -81,6 +92,10 @@ public class PipeView extends JPanel implements Viewable {
         button.setContentAreaFilled(false);
         button.setBorderPainted(false);
         button.setRolloverEnabled(true);
+    }
+
+    public void setWasCut(boolean value) {
+        wasCut = value;
     }
 
     @Override
@@ -111,7 +126,7 @@ public class PipeView extends JPanel implements Viewable {
                 actualRollover = normal_rollover;
             }
         }
-        if (pipe.isEmpty()) pipeColor = Color.BLACK;
+        if (!pipe.hasWaterFlown()) pipeColor = Color.BLACK;
         else pipeColor = Color.CYAN;
         updateEnds();
         validate();
@@ -122,24 +137,20 @@ public class PipeView extends JPanel implements Viewable {
 
     private void updateEnds() {
         List<FieldNode> ends = pipe.getEnds();
-        if(ends.size() == 0) {
-//            end1Position = new Point(centerPosition.x - 50, centerPosition.y - 50);
-//            end2Position = new Point(centerPosition.x + 50, centerPosition.y + 50);
+        if (ends.size() == 0) {
             end1Position = centerPosition;
             end2Position = centerPosition;
-        }
-        else if(ends.size() == 1) {
+        } else if (ends.size() == 1) {
             end1Position = Controller.instance.fields.get(ends.get(0)).getPosition();
-            //ez akkor kell, ha akarjuk, h a lecsatlakoztatott cso is latsszon
-//            end2Position.x = (centerPosition.x < end1Position.x) ? centerPosition.x - 50 : centerPosition.x + 50;
-//            end2Position.y = (centerPosition.y < end1Position.y) ? centerPosition.y - 50 : centerPosition.y + 50;
             end2Position = centerPosition;
 
-        }
-        else {
+        } else {
             end1Position = Controller.instance.fields.get(ends.get(0)).getPosition();
             end2Position = Controller.instance.fields.get(ends.get(1)).getPosition();
-            centerPosition = new Point((end1Position.x + end2Position.x) / 2, (end1Position.y + end2Position.y) / 2);
+            if (wasCut) {
+                centerPosition = new Point((end1Position.x + end2Position.x) / 2, (end1Position.y + end2Position.y) / 2);
+                wasCut = false;
+            }
         }
         button.setBounds(centerPosition.x, centerPosition.y, Window.BUTTONSIZE, Window.BUTTONSIZE);
     }
@@ -156,7 +167,8 @@ public class PipeView extends JPanel implements Viewable {
         Graphics2D g2d = (Graphics2D) g;
         g2d.setStroke(new BasicStroke(3.0f));
         g2d.setColor(pipeColor);
-        g2d.drawLine(end1Position.x + Window.BUTTONSIZE / 2, end1Position.y + Window.BUTTONSIZE / 2, end2Position.x + Window.BUTTONSIZE / 2, end2Position.y + Window.BUTTONSIZE / 2);
-//        button.repaint();
+//        g2d.drawLine(end1Position.x + Window.BUTTONSIZE / 2, end1Position.y + Window.BUTTONSIZE / 2, end2Position.x + Window.BUTTONSIZE / 2, end2Position.y + Window.BUTTONSIZE / 2);
+        g2d.drawLine(end1Position.x + Window.BUTTONSIZE / 2, end1Position.y + Window.BUTTONSIZE / 2, centerPosition.x + Window.BUTTONSIZE / 2, centerPosition.y + Window.BUTTONSIZE / 2);
+        g2d.drawLine(centerPosition.x + Window.BUTTONSIZE / 2, centerPosition.y + Window.BUTTONSIZE / 2, end2Position.x + Window.BUTTONSIZE / 2, end2Position.y + Window.BUTTONSIZE / 2);
     }
 }

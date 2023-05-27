@@ -8,7 +8,7 @@ import java.util.Random;
  * Egy csövet reprezentáló osztály.
  */
 public class Pipe extends Field implements Tickable {
-    static final int MAX_VOLUME = 500;
+    static final int MAX_VOLUME = 5000;
     static final int SLIPPERY_TIME = 3;
     static final int STICKY_TIME = 3;
     static final int MAX_BREAKABLE_TIME = 10;
@@ -22,6 +22,7 @@ public class Pipe extends Field implements Tickable {
     private int timeUntilBreakable;
     private int slipperyUntil;
     private int stickyUntil;
+    private boolean hadWater = false;
 
     private List<FieldNode> ends;
 
@@ -102,6 +103,8 @@ public class Pipe extends Field implements Tickable {
         if (0 < timeUntilBreakable)
             return;
         isBroken = true;
+        wastedWater += currentVolume;
+        currentVolume = 0;
     }
 
     /**
@@ -126,10 +129,12 @@ public class Pipe extends Field implements Tickable {
     public int flow(int amount) {
         if (isBroken || ends.size() != 2) {
             wastedWater += Math.min(maxVolume, amount);
+            if(amount > 0) hadWater = true;
             return amount;
         }
 
         int consumed = Math.min(maxVolume - currentVolume, amount);
+        if (consumed > 0) hadWater = true;
         currentVolume += consumed;
         return consumed;
     }
@@ -144,6 +149,11 @@ public class Pipe extends Field implements Tickable {
         int drained = Math.min(currentVolume, amount);
         currentVolume -= drained;
         return drained;
+    }
+
+    //TODO
+    public boolean hasWaterFlown() {
+        return hadWater;
     }
 
     /**
@@ -228,7 +238,7 @@ public class Pipe extends Field implements Tickable {
      * Félbevágja a csövet, ezzel egy új csövet készítve.
      *
      * @return Visszaadja az ujonnan elkészült csövet, ha sikerült a félbevágás
-     *         különben pedig null-t ad vissza.
+     * különben pedig null-t ad vissza.
      */
     public Pipe cut() {
         if (currentVolume != 0 || ends.size() != 2) {
@@ -253,6 +263,8 @@ public class Pipe extends Field implements Tickable {
      */
     @Override
     public void tick() {
+        if (currentVolume == 0)
+            hadWater = false;
         if (0 < timeUntilBreakable)
             timeUntilBreakable--;
 
@@ -310,10 +322,14 @@ public class Pipe extends Field implements Tickable {
     }
 
     // TODO
-    public boolean isSticky() {return stickyUntil > 0;}
+    public boolean isSticky() {
+        return stickyUntil > 0;
+    }
 
     // TODO
-    public boolean isSlippery() {return slipperyUntil > 0;}
+    public boolean isSlippery() {
+        return slipperyUntil > 0;
+    }
 
     // TODO
     public boolean isEmpty() {
