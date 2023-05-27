@@ -82,17 +82,7 @@ public class InventoryPanel extends JPanel {
         buttonsPanel.add(pipeButton);
         buttonsPanel.add(pumpButton);
 
-        try {
-            Font customFont = Font.createFont(Font.TRUETYPE_FONT, new File("Chalkduster.ttf")).deriveFont(30f);
-            GraphicsEnvironment ge =
-                    GraphicsEnvironment.getLocalGraphicsEnvironment();
-            ge.registerFont(customFont);
-
-            title.setFont(customFont);
-        } catch (IOException | FontFormatException e) {
-            throw new RuntimeException(e);
-        }
-
+        MenuPanel.setFontTitle(title);
         this.add(title);
         this.add(buttonsPanel);
         update();

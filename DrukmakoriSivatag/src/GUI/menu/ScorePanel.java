@@ -11,16 +11,7 @@ public class ScorePanel extends JPanel {
         super();
         this.setOpaque(false);
         JLabel title = new JLabel("Scores");
-        try {
-            Font customFont = Font.createFont(Font.TRUETYPE_FONT, new File("Chalkduster.ttf")).deriveFont(30f);
-            GraphicsEnvironment ge =
-                    GraphicsEnvironment.getLocalGraphicsEnvironment();
-            ge.registerFont(customFont);
-
-            title.setFont(customFont);
-        } catch (IOException | FontFormatException e) {
-            throw new RuntimeException(e);
-        }
+        MenuPanel.setFontTitle(title);
         this.add(title);
     }
 }

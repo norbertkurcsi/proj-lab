@@ -43,4 +43,17 @@ public class MenuPanel extends JPanel {
     public void paintComponent(Graphics g) {
         Window.getGraphics2D(g).drawImage(background, -10, -10, getWidth() + 50, getHeight() + 20, null);
     }
+
+    public static void setFontTitle(JLabel title) {
+        try {
+            Font customFont = Font.createFont(Font.TRUETYPE_FONT, new File("Chalkduster.ttf")).deriveFont(30f);
+            GraphicsEnvironment ge =
+                    GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(customFont);
+
+            title.setFont(customFont);
+        } catch (IOException|FontFormatException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
