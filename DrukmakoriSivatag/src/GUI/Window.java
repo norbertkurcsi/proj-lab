@@ -36,6 +36,7 @@ public class Window extends JFrame {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setTitle("Drukmakori sivatag");
         this.setVisible(true);
+        setResizable(false);
         this.setMinimumSize(new Dimension(WIDTH, HEIGHT));
         this.setPreferredSize(getSize());
 
@@ -71,7 +72,8 @@ public class Window extends JFrame {
         return g2d;
     }
 
-    public void updateActions() {
+    public void updateMenu() {
         menu.updateActions();
+        menu.updateInventory();
     }
 }
