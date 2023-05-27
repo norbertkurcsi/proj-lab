@@ -136,14 +136,18 @@ public class PipeView extends JPanel implements Viewable {
             });
 
             this.addMouseMotionListener(new MouseMotionListener() {
+                private Point start = null;
+
                 @Override
                 public void mouseDragged(MouseEvent e) {
-                    centerPosition = e.getLocationOnScreen();
+                    int dx = e.getX() - start.x, dy = e.getY() - start.y;
+                    centerPosition.setLocation(centerPosition.x + dx, centerPosition.y + dy);
                     Controller.instance.window.updateAllViews();
                 }
 
                 @Override
                 public void mouseMoved(MouseEvent e) {
+                    start = e.getPoint();
                 }
             });
 
