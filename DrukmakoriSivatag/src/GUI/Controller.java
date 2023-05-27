@@ -37,7 +37,7 @@ public class Controller {
         for (Object field : shouldUpdate)
             fields.get(field).update();
 
-        window.updateActions();
+        window.updateMenu();
     }
 
     public void selectField(Field selected) {
@@ -47,7 +47,7 @@ public class Controller {
         }
         fields.get(selected).update();
 
-        window.updateActions();
+        window.updateMenu();
     }
 
     public void breakPipe() {
@@ -187,7 +187,7 @@ public class Controller {
         selectedPlayer = null;
         selectedFields.clear();
         window.updateAllViews();
-        window.updateActions();
+        window.updateMenu();
     }
 
     // Kezdo palya felepitese
