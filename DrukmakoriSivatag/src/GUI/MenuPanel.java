@@ -54,19 +54,7 @@ public class MenuPanel extends JPanel {
         } catch (IOException|FontFormatException e) {
             throw new RuntimeException(e);
         }
-        actionPanel.add(new MoveButton());
-        actionPanel.add(new FixPipeButton());
-        actionPanel.add(new FixPumpButton());
-        actionPanel.add(new BreakPipeButton());
-        actionPanel.add(new ChangeFlowButton());
-        actionPanel.add(new MakeStickyButton());
-        actionPanel.add(new MakeSlipperyButton());
-        actionPanel.add(new ConnectPipeButton());
-        actionPanel.add(new DisconnectPipeButton());
-        actionPanel.add(new PickupPumpButton());
-        actionPanel.add(new PickupPipeButton());
-        actionPanel.add(new PlacePipeButton());
-        actionPanel.add(new PlacePumpButton());
+        //TODO megcsinalni hogy rendesen rajzolja ki
         JButton inventoryPump = new JButton(){
             protected void paintComponent(Graphics g) {
                 Player player = Controller.instance.selectedPlayer;
@@ -87,12 +75,26 @@ public class MenuPanel extends JPanel {
                 }
             }
         };
+        actionPanel.add(new MoveButton());
+        actionPanel.add(new FixPipeButton());
+        actionPanel.add(new FixPumpButton());
+        actionPanel.add(new BreakPipeButton());
+        actionPanel.add(new ChangeFlowButton());
+        actionPanel.add(new MakeStickyButton());
+        actionPanel.add(new MakeSlipperyButton());
+        actionPanel.add(new ConnectPipeButton());
+        actionPanel.add(new DisconnectPipeButton());
+        actionPanel.add(new PickupPumpButton());
+        actionPanel.add(new PickupPipeButton());
+        actionPanel.add(new PlacePipeButton());
+        actionPanel.add(new PlacePumpButton());
+
         inventoryPanel.add(inventoryPump);
         inventoryPanel.add(inventoryPipe);
 
         JButton scoreMechanic = new JButton() {
             protected void paintComponent(Graphics g) {
-                    Window.getGraphics2D(g).drawImage(mechanicImage, 0, 0, Window.BUTTONSIZE, Window.BUTTONSIZE, null);
+                    Window.getGraphics2D(g).drawImage(mechanicImage, 0, 0, Window.BUTTONSIZE - 10, Window.BUTTONSIZE - 10, null);
             }
         };
         JButton scoreSaboteur = new JButton() {
@@ -104,11 +106,11 @@ public class MenuPanel extends JPanel {
         scorePanel.add(scoreMechanic);
         scorePanel.add(scoreSaboteur);
 
-
         this.setOpaque(false);
         actionPanel.setOpaque(false);
         inventoryPanel.setOpaque(false);
         scorePanel.setOpaque(false);
+
         this.add(actionLabel);
         this.add(inventoryLabel);
         this.add(scoreLabel);
