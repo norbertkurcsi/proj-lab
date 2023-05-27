@@ -2,14 +2,16 @@ package GUI;
 
 import javax.swing.*;
 
+import GUI.menu.MenuPanel;
+
 import java.awt.*;
 import java.util.HashMap;
 
 public class Window extends JFrame {
-    static final int WIDTH = 1280;
-    static final int HEIGHT = 800;
+    public static final int WIDTH = 1280;
+    public static final int HEIGHT = 800;
 
-    static final int BUTTONSIZE = 50;
+    public static final int BUTTONSIZE = 50;
 
     private static Image background = new ImageIcon(Controller.assetsPath + "background.png").getImage();
     private static HashMap<Class<?>, Integer> zOrder = new HashMap<>();
@@ -73,7 +75,6 @@ public class Window extends JFrame {
     }
 
     public void updateMenu() {
-        menu.updateActions();
-        menu.updateInventory();
+        menu.update();
     }
 }

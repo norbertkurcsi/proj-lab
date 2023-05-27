@@ -12,8 +12,6 @@ public class PickupPumpButton extends ActionButton {
         super();
 
         this.setText("PICKUP PUMP");
-        this.setEnabled(false);
-        this.setVisible(false);
         this.addActionListener((ActionEvent e) -> {
             Controller.instance.pickupPump();
         });

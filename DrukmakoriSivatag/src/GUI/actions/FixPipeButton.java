@@ -13,8 +13,6 @@ public class FixPipeButton extends ActionButton {
         super();
 
         this.setText("FIX PIPE");
-        this.setEnabled(false);
-        this.setVisible(false);
         this.addActionListener((ActionEvent e) -> {
             Controller.instance.fixPipe();
         });

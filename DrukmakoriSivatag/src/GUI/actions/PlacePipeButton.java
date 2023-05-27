@@ -12,8 +12,6 @@ public class PlacePipeButton extends ActionButton {
         super();
 
         this.setText("PLACE PIPE");
-        this.setEnabled(false);
-        this.setVisible(false);
         this.addActionListener((ActionEvent e) -> {
             Controller.instance.placePipe();
         });

@@ -12,8 +12,6 @@ public class MakeSlipperyButton extends ActionButton {
         super();
 
         this.setText("MAKE SLIPPERY");
-        this.setEnabled(false);
-        this.setVisible(false);
         this.addActionListener((ActionEvent e) -> {
             Controller.instance.makeSlippery();
         });

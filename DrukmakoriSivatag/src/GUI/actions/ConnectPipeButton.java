@@ -11,14 +11,15 @@ public class ConnectPipeButton extends ActionButton {
         super();
 
         this.setText("CONNECT PIPE");
-        this.setEnabled(false);
-        this.setVisible(false);
         this.addActionListener((ActionEvent e) -> {
             Controller.instance.connectPipe();
         });
     }
 
     public boolean canPerform() {
+        if (Controller.instance == null)
+            return false;
+
         Player player = Controller.instance.selectedPlayer;
         if (!(player instanceof Mechanic))
             return false;

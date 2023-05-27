@@ -11,8 +11,6 @@ public class MakeStickyButton extends ActionButton {
         super();
 
         this.setText("MAKE STICKY");
-        this.setEnabled(false);
-        this.setVisible(false);
         this.addActionListener((ActionEvent e) -> {
             Controller.instance.makeSticky();
         });

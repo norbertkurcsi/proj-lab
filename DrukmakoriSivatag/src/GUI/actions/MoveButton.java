@@ -12,8 +12,6 @@ public class MoveButton extends ActionButton {
         super();
 
         this.setText("MOVE");
-        this.setEnabled(false);
-        this.setVisible(false);
         this.addActionListener((ActionEvent e) -> {
             Controller.instance.movePlayer();
         });

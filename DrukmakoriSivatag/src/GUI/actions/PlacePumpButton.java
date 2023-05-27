@@ -12,20 +12,22 @@ public class PlacePumpButton extends ActionButton {
         super();
 
         this.setText("PLACE PUMP");
-        this.setEnabled(false);
-        this.setVisible(false);
         this.addActionListener((ActionEvent e) -> {
             Controller.instance.placePump();
         });
     }
 
     public boolean canPerform() {
+        if (Controller.instance == null)
+            return false;
+
         Player player = Controller.instance.selectedPlayer;
         if (!(player instanceof Mechanic))
             return false;
 
         return Controller.instance.selectedFields.size() == 0
-                && player.getPosition() instanceof Pipe && ((Mechanic) player).getPump() != null && ((Pipe)player.getPosition()).isEmpty()
-                && !((Pipe)player.getPosition()).isBroken();
+                && player.getPosition() instanceof Pipe && ((Mechanic) player).getPump() != null
+                && ((Pipe) player.getPosition()).isEmpty()
+                && !((Pipe) player.getPosition()).isBroken();
     }
 }
