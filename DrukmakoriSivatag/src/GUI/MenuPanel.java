@@ -104,8 +104,10 @@ public class MenuPanel extends JPanel {
                 Window.getGraphics2D(g).drawImage(saboteurImage, 0, 0, Window.BUTTONSIZE - 10, Window.BUTTONSIZE - 10, null);
             }
         };
+        //TODO hozzaadni a pontszamokat
         scorePanel.add(scoreMechanic);
         scorePanel.add(scoreSaboteur);
+
 
         this.setOpaque(false);
         actionPanel.setOpaque(false);
