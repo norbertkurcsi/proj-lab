@@ -29,8 +29,6 @@ public class MenuPanel extends JPanel {
         this.setMinimumSize(new Dimension(Window.WIDTH, Window.HEIGHT / 5));
         this.setPreferredSize(getMinimumSize());
         this.setLayout(new GridLayout(2, 3));
-        this.setAlignmentX(Component.CENTER_ALIGNMENT);
-        this.setAlignmentY(Component.CENTER_ALIGNMENT);
 
         actionPanel.setPreferredSize(new Dimension(Window.WIDTH, Window.HEIGHT / 5 ));
         actionPanel.setMinimumSize(getPreferredSize());
@@ -40,8 +38,8 @@ public class MenuPanel extends JPanel {
         scorePanel.setMinimumSize(getPreferredSize());
 
         JLabel actionLabel = new JLabel("          Actions");
-        JLabel inventoryLabel = new JLabel("         Inventory");
-        JLabel scoreLabel = new JLabel("           Score");
+        JLabel inventoryLabel = new JLabel("        Inventory");
+        JLabel scoreLabel = new JLabel("          Score");
 
         //Font beallitas
         try {
@@ -69,11 +67,6 @@ public class MenuPanel extends JPanel {
         actionPanel.add(new PickupPipeButton());
         actionPanel.add(new PlacePipeButton());
         actionPanel.add(new PlacePumpButton());
-
-<<<<<<< HEAD
-        setOpaque(false);
-=======
-
         JButton inventoryPump = new JButton(){
             protected void paintComponent(Graphics g) {
                 Player player = Controller.instance.selectedPlayer;
@@ -113,7 +106,6 @@ public class MenuPanel extends JPanel {
 
 
         this.setOpaque(false);
->>>>>>> abb1f191cf7e0b6429b9a6921dacc1c809da5736
         actionPanel.setOpaque(false);
         inventoryPanel.setOpaque(false);
         scorePanel.setOpaque(false);
