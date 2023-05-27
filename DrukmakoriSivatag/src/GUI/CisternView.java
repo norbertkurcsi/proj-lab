@@ -3,8 +3,12 @@ package GUI;
 import proto.Cistern;
 
 import javax.swing.*;
+import javax.swing.text.View;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
+import java.util.HashMap;
 
 public class CisternView extends JButton implements Viewable {
     private Cistern cistern;

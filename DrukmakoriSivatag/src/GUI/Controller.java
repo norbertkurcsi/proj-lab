@@ -16,7 +16,7 @@ public class Controller {
     public static String assetsPath = "drukmakor_assets/";
     public static Controller instance = new Controller();
 
-    private Window window = new Window();
+    public Window window = new Window();
 
     public HashMap<Player, Viewable> players = new HashMap<>();
     public HashMap<Field, Viewable> fields = new HashMap<>();
@@ -122,10 +122,13 @@ public class Controller {
         Pipe pipe = (Pipe) mechanic.getPosition();
         Pump pump = mechanic.getPump();
         Pipe newPipe = mechanic.placePump(pump, pipe);
-        PumpView pumpView = new PumpView(new Point(fields.get(pipe).getPosition()), pump);
-        addField(pump, pumpView);
-        PipeView newPipeView = new PipeView(newPipe);
-        addField(newPipe, newPipeView);
+        if (newPipe != null) {
+            ((PipeView) fields.get(pipe)).setWasCut(true);
+            PumpView pumpView = new PumpView(new Point(fields.get(pipe).getPosition()), pump);
+            addField(pump, pumpView);
+            PipeView newPipeView = new PipeView(newPipe);
+            addField(newPipe, newPipeView);
+        }
         endAction();
     }
 
@@ -139,13 +142,19 @@ public class Controller {
     }
 
     private void tick() {
+        // Tick all pipes
+        for (Field field : fields.keySet()) {
+            if (field instanceof Pipe)
+                ((Pipe) field).tick();
+        }
         // Contains the fields that we need to tick
         Queue<FieldNode> toSee = new LinkedList<>();
 
         // Gets the springs and adds them to be the first fields that get ticked
         for (Field field : fields.keySet()) {
-            if (field instanceof Spring)
+            if (field instanceof Spring) {
                 toSee.add((FieldNode) field);
+            }
         }
 
         // Contains all of the fields that have
@@ -160,12 +169,6 @@ public class Controller {
                     toSee.add(neighbour);
                 }
             }
-        }
-
-        // Tick all pipes
-        for (Field field : fields.keySet()) {
-            if (field instanceof Pipe)
-                ((Pipe) field).tick();
         }
     }
 
@@ -247,6 +250,17 @@ public class Controller {
         mCistern.connect(mPipe4);
         PipeView vPipe4 = new PipeView(mPipe4);
         addField(mPipe4, vPipe4);
+
+        Mechanic mMech2 = new Mechanic();
+        mMech2.moveTo(mPump1);
+        MechanicView vMech2 = new MechanicView(mMech2);
+
+        Saboteur mSab2 = new Saboteur();
+        mSab2.moveTo(mPump2);
+        SaboteurView vSab2 = new SaboteurView(mSab2);
+
+        addPlayer(mSab2, vSab2);
+        addPlayer(mMech2, vMech2);
         // ---
 
         addPlayer(mSab1, vSab1);
