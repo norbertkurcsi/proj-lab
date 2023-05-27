@@ -9,24 +9,22 @@ import java.awt.event.ActionEvent;
 public class MechanicView extends JButton implements Viewable {
     private Mechanic mechanic;
 
-    private Image image = new ImageIcon(Controller.assetsPath + "mechanic.png").getImage();
-    private Image image_rollover = new ImageIcon(Controller.assetsPath + "mechanic_rollover.png").getImage();
+    private static Image image = new ImageIcon(Controller.assetsPath + "mechanic2.png").getImage();
 
     public MechanicView(Mechanic mechanic) {
         this.mechanic = mechanic;
 
-        addActionListener((ActionEvent e) -> {
+        this.addActionListener((ActionEvent e) -> {
             Controller.instance.selectPlayer(this.mechanic);
         });
 
-        setPreferredSize(new Dimension(Window.BUTTONSIZE / 2, Window.BUTTONSIZE / 2));
-        setMinimumSize(getPreferredSize());
-
+        int size = (int) (Window.BUTTONSIZE * 0.6);
         Point position = getPosition();
-        setBounds((int) position.getX(), (int) position.getY() - 10, Window.BUTTONSIZE / 2, Window.BUTTONSIZE / 2);
-        setContentAreaFilled(false);
-        setBorderPainted(false);
-        setRolloverEnabled(true);
+        this.setBounds((int) position.getX(), (int) position.getY() - 10, size, size);
+
+        this.setContentAreaFilled(false);
+        this.setBorderPainted(false);
+        this.setRolloverEnabled(true);
     }
 
     @Override
@@ -38,7 +36,7 @@ public class MechanicView extends JButton implements Viewable {
     @Override
     public void update() {
         Point position = getPosition();
-        setBounds((int) position.getX(), (int) position.getY() - 10, Window.BUTTONSIZE / 2, Window.BUTTONSIZE / 2);
+        setBounds((int) position.getX(), (int) position.getY() - 10, getWidth(), getHeight());
         validate();
         repaint();
     }
@@ -46,9 +44,24 @@ public class MechanicView extends JButton implements Viewable {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        if (this.getModel().isRollover())
-            Window.getGraphics2D(g).drawImage(image_rollover, 0, 0, Window.BUTTONSIZE / 2, Window.BUTTONSIZE / 2, null);
-        else
-            Window.getGraphics2D(g).drawImage(image, 0, 0, Window.BUTTONSIZE / 2, Window.BUTTONSIZE / 2, null);
+
+        int w = getWidth(), h = getHeight();
+
+        boolean isSelected = Controller.instance.selectedPlayer == mechanic;
+        if (isSelected) {
+            g.setColor(new Color(0, 255, 0, 255));
+            g.fillOval(0, 0, w, h);
+        }
+
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.setRenderingHint(RenderingHints.KEY_ALPHA_INTERPOLATION, RenderingHints.VALUE_ALPHA_INTERPOLATION_QUALITY);
+        g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        g2d.drawImage(image, 2, 2, w - 4, h - 4, null);
+
+        if (this.getModel().isRollover()) {
+            g.setColor(new Color(0, 0, 0, 50));
+            g.fillOval(2, 2, w - 4, h - 4);
+        }
     }
 }

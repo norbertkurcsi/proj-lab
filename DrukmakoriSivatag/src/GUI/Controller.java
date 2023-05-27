@@ -3,7 +3,6 @@ package GUI;
 import proto.*;
 import proto.Spring;
 
-import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,17 +23,14 @@ public class Controller {
     public List<Field> selectedFields = new ArrayList<>();
 
     public void selectPlayer(Player selected) {
+        Player prev = selectedPlayer;
         selectedPlayer = selected;
+        if (prev != null)
+            players.get(prev).update();
+        players.get(selectedPlayer).update();
+
         selectedFields.clear();
         window.updateActions();
-    }
-
-    public boolean isFieldSelected(Field field) {
-        return fields.containsKey(field);
-    }
-
-    public boolean isPlayerSelected(Player player) {
-        return player.equals(selectedPlayer);
     }
 
     public void selectField(Field selected) {
@@ -90,7 +86,7 @@ public class Controller {
 
     public void connectPipe() {
         Mechanic mechanic = (Mechanic) selectedPlayer;
-        mechanic.connectPipe((Pipe)selectedPlayer.getPosition(), (FieldNode) selectedFields.get(0));
+        mechanic.connectPipe((Pipe) selectedPlayer.getPosition(), (FieldNode) selectedFields.get(0));
         endAction();
     }
 
@@ -127,7 +123,7 @@ public class Controller {
     public void placePipe() {
         Mechanic mechanic = (Mechanic) selectedPlayer;
         Pipe pipe = mechanic.getPipe();
-        mechanic.placePipe((FieldNode)mechanic.getPosition());
+        mechanic.placePipe((FieldNode) mechanic.getPosition());
         PipeView pipeView = new PipeView(pipe);
         addField(pipe, pipeView);
         endAction();
@@ -232,7 +228,7 @@ public class Controller {
 
         Saboteur mSab1 = new Saboteur();
         mSab1.moveTo(mPump2);
-        SaboteurView vSab1 = new SaboteurView(vPump2.getPosition(), mSab1);
+        SaboteurView vSab1 = new SaboteurView(mSab1);
 
         // FOR TEST
         Pipe mPipe4 = new Pipe();
@@ -242,7 +238,7 @@ public class Controller {
         mCistern.connect(mPipe4);
         PipeView vPipe4 = new PipeView(mPipe4);
         addField(mPipe4, vPipe4);
-        //---
+        // ---
 
         addPlayer(mSab1, vSab1);
         addPlayer(mMech1, vMech1);
