@@ -11,6 +11,11 @@ public class MoveButton extends ActionButton {
     public MoveButton() {
         super();
 
+        this.setContentAreaFilled(false);
+        this.setRolloverEnabled(true);
+        this.setContentAreaFilled(false);
+        this.setBorderPainted(false);
+        this.setFocusPainted(false);
         this.setText("MOVE");
         this.addActionListener((ActionEvent e) -> {
             Controller.instance.movePlayer();

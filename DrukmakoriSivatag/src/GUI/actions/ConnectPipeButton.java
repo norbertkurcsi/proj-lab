@@ -10,6 +10,11 @@ public class ConnectPipeButton extends ActionButton {
     public ConnectPipeButton() {
         super();
 
+        this.setContentAreaFilled(false);
+        this.setRolloverEnabled(true);
+        this.setContentAreaFilled(false);
+        this.setBorderPainted(false);
+        this.setFocusPainted(false);
         this.setText("CONNECT PIPE");
         this.addActionListener((ActionEvent e) -> {
             Controller.instance.connectPipe();

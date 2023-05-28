@@ -12,6 +12,11 @@ public class FixPumpButton extends ActionButton {
     public FixPumpButton() {
         super();
 
+        this.setContentAreaFilled(false);
+        this.setRolloverEnabled(true);
+        this.setContentAreaFilled(false);
+        this.setBorderPainted(false);
+        this.setFocusPainted(false);
         this.setText("FIX PUMP");
         this.addActionListener((ActionEvent e) -> {
             Controller.instance.fixPump();

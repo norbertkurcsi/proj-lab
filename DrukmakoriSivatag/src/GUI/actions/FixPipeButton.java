@@ -12,6 +12,11 @@ public class FixPipeButton extends ActionButton {
     public FixPipeButton() {
         super();
 
+        this.setContentAreaFilled(false);
+        this.setRolloverEnabled(true);
+        this.setContentAreaFilled(false);
+        this.setBorderPainted(false);
+        this.setFocusPainted(false);
         this.setText("FIX PIPE");
         this.addActionListener((ActionEvent e) -> {
             Controller.instance.fixPipe();

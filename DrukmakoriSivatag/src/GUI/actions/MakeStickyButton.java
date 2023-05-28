@@ -10,6 +10,11 @@ public class MakeStickyButton extends ActionButton {
     public MakeStickyButton() {
         super();
 
+        this.setContentAreaFilled(false);
+        this.setRolloverEnabled(true);
+        this.setContentAreaFilled(false);
+        this.setBorderPainted(false);
+        this.setFocusPainted(false);
         this.setText("MAKE STICKY");
         this.addActionListener((ActionEvent e) -> {
             Controller.instance.makeSticky();

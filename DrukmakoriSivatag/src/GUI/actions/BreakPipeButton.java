@@ -11,6 +11,11 @@ public class BreakPipeButton extends ActionButton {
     public BreakPipeButton() {
         super();
 
+        this.setContentAreaFilled(false);
+        this.setRolloverEnabled(true);
+        this.setContentAreaFilled(false);
+        this.setBorderPainted(false);
+        this.setFocusPainted(false);
         this.setText("BREAK PIPE");
         this.addActionListener((ActionEvent e) -> {
             Controller.instance.breakPipe();

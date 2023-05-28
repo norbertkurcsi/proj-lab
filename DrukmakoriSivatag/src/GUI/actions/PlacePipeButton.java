@@ -11,6 +11,11 @@ public class PlacePipeButton extends ActionButton {
     public PlacePipeButton() {
         super();
 
+        this.setContentAreaFilled(false);
+        this.setRolloverEnabled(true);
+        this.setContentAreaFilled(false);
+        this.setBorderPainted(false);
+        this.setFocusPainted(false);
         this.setText("PLACE PIPE");
         this.addActionListener((ActionEvent e) -> {
             Controller.instance.placePipe();

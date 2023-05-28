@@ -3,6 +3,7 @@ package GUI;
 import proto.Mechanic;
 
 import javax.swing.*;
+import javax.swing.text.Position;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
@@ -22,7 +23,7 @@ public class MechanicView extends JButton implements Viewable {
 
         int size = (int) (Window.BUTTONSIZE * 0.6);
         Point position = getPosition();
-        this.setBounds((int) position.getX(), (int) position.getY() - 10, size, size);
+        this.setBounds((int) position.getX(), (int) position.getY(), size, size);
 
         this.setContentAreaFilled(false);
         this.setBorderPainted(false);
@@ -38,7 +39,7 @@ public class MechanicView extends JButton implements Viewable {
     @Override
     public void update() {
         Point position = getPosition();
-        setBounds((int) position.getX(), (int) position.getY() - 10, getWidth(), getHeight());
+        setBounds((int) position.getX(), (int) position.getY(), getWidth(), getHeight());
         validate();
         repaint();
     }

@@ -10,6 +10,11 @@ public class DisconnectPipeButton extends ActionButton {
     public DisconnectPipeButton() {
         super();
 
+        this.setContentAreaFilled(false);
+        this.setRolloverEnabled(true);
+        this.setContentAreaFilled(false);
+        this.setBorderPainted(false);
+        this.setFocusPainted(false);
         this.setText("DISCONNECT PIPE");
         this.addActionListener((ActionEvent e) -> {
             Controller.instance.disconnectPipe();

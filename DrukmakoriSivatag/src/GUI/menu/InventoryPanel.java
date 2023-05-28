@@ -68,10 +68,14 @@ public class InventoryPanel extends JPanel {
 
         pipeButton.setPreferredSize(new Dimension(Window.BUTTONSIZE, Window.BUTTONSIZE));
         pipeButton.setRolloverEnabled(true);
+        pipeButton.setContentAreaFilled(false);
+        pipeButton.setBorderPainted(false);
         pipeButton.setVisible(false);
 
         pumpButton.setPreferredSize(new Dimension(Window.BUTTONSIZE, Window.BUTTONSIZE));
         pumpButton.setRolloverEnabled(true);
+        pumpButton.setContentAreaFilled(false);
+        pumpButton.setBorderPainted(false);
         pumpButton.setVisible(false);
 
         JPanel buttonsPanel = new JPanel();

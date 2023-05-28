@@ -11,6 +11,11 @@ public class PickupPumpButton extends ActionButton {
     public PickupPumpButton() {
         super();
 
+        this.setContentAreaFilled(false);
+        this.setRolloverEnabled(true);
+        this.setContentAreaFilled(false);
+        this.setBorderPainted(false);
+        this.setFocusPainted(false);
         this.setText("PICKUP PUMP");
         this.addActionListener((ActionEvent e) -> {
             Controller.instance.pickupPump();

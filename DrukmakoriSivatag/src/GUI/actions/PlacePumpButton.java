@@ -11,6 +11,11 @@ public class PlacePumpButton extends ActionButton {
     public PlacePumpButton() {
         super();
 
+        this.setContentAreaFilled(false);
+        this.setRolloverEnabled(true);
+        this.setContentAreaFilled(false);
+        this.setBorderPainted(false);
+        this.setFocusPainted(false);
         this.setText("PLACE PUMP");
         this.addActionListener((ActionEvent e) -> {
             Controller.instance.placePump();

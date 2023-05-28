@@ -13,6 +13,11 @@ public class ChangeFlowButton extends ActionButton {
     public ChangeFlowButton() {
         super();
 
+        this.setContentAreaFilled(false);
+        this.setRolloverEnabled(true);
+        this.setContentAreaFilled(false);
+        this.setBorderPainted(false);
+        this.setFocusPainted(false);
         this.setText("CHANGE FLOW");
         this.addActionListener((ActionEvent e) -> {
             Controller.instance.changeFlow();

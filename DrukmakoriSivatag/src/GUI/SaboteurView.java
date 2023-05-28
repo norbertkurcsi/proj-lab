@@ -22,7 +22,7 @@ public class SaboteurView extends JButton implements Viewable {
 
         int size = (int) (Window.BUTTONSIZE * 0.6);
         Point position = getPosition();
-        this.setBounds((int) position.getX() + 20, (int) position.getY() - 10, size, size);
+        this.setBounds((int) position.getX(), (int) position.getY(), size, size);
 
         this.setContentAreaFilled(false);
         this.setBorderPainted(false);
@@ -32,7 +32,8 @@ public class SaboteurView extends JButton implements Viewable {
     @Override
     public Point getPosition() {
         Viewable view = Controller.instance.fields.get(saboteur.getPosition());
-        return view.getPosition();
+        Point position = view.getPosition();
+        return position;
     }
 
     @Override

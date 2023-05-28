@@ -11,6 +11,11 @@ public class MakeSlipperyButton extends ActionButton {
     public MakeSlipperyButton() {
         super();
 
+        this.setContentAreaFilled(false);
+        this.setRolloverEnabled(true);
+        this.setContentAreaFilled(false);
+        this.setBorderPainted(false);
+        this.setFocusPainted(false);
         this.setText("MAKE SLIPPERY");
         this.addActionListener((ActionEvent e) -> {
             Controller.instance.makeSlippery();
