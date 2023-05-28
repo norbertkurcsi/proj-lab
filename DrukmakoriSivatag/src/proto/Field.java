@@ -18,6 +18,10 @@ public abstract class Field {
 
     public abstract boolean hasNeighbour(Field field);
 
+    public int getPlayerIndex(Player player) {
+        return players.indexOf(player);
+    }
+
     /**
      * Hozzáadja a paraméterként kapott játékost, amelyik a mezőre lép, a játékosok
      * listájához

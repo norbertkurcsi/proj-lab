@@ -1,13 +1,14 @@
 package GUI;
 
+import proto.Field;
 import proto.Mechanic;
 
 import javax.swing.*;
-import javax.swing.text.Position;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
 public class MechanicView extends JButton implements Viewable {
+    private static int SIZE = (int) (Window.BUTTONSIZE * 0.6);
     private Mechanic mechanic;
 
     private static Image image = new ImageIcon(Controller.assetsPath + "mechanic.png").getImage();
@@ -21,9 +22,8 @@ public class MechanicView extends JButton implements Viewable {
             Controller.instance.selectPlayer(this.mechanic);
         });
 
-        int size = (int) (Window.BUTTONSIZE * 0.6);
         Point position = getPosition();
-        this.setBounds((int) position.getX(), (int) position.getY(), size, size);
+        this.setBounds(position.x, position.y, SIZE, SIZE);
 
         this.setContentAreaFilled(false);
         this.setBorderPainted(false);
@@ -32,14 +32,23 @@ public class MechanicView extends JButton implements Viewable {
 
     @Override
     public Point getPosition() {
-        Viewable view = Controller.instance.fields.get(mechanic.getPosition());
-        return view.getPosition();
+        Field field = mechanic.getPosition();
+
+        double index = field.getPlayerIndex(mechanic);
+        double dx = Math.cos(index * Math.PI / 2.0) * Window.BUTTONSIZE / 2,
+                dy = Math.sin(index * Math.PI / 2.0) * Window.BUTTONSIZE / 2;
+
+        Point position = Controller.instance.fields.get(field).getPosition();
+        int cx = position.x + Window.BUTTONSIZE / 2,
+                cy = position.y + Window.BUTTONSIZE / 2;
+
+        return new Point(cx + (int) dx - SIZE / 2, cy + (int) dy - SIZE / 2);
     }
 
     @Override
     public void update() {
         Point position = getPosition();
-        setBounds((int) position.getX(), (int) position.getY(), getWidth(), getHeight());
+        setBounds(position.x, position.y, getWidth(), getHeight());
         validate();
         repaint();
     }

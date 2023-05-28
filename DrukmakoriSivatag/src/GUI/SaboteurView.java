@@ -1,5 +1,6 @@
 package GUI;
 
+import proto.Field;
 import proto.Saboteur;
 
 import javax.swing.*;
@@ -7,6 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 
 public class SaboteurView extends JButton implements Viewable {
+    private static int SIZE = (int) (Window.BUTTONSIZE * 0.6);
     private Saboteur saboteur;
 
     private static Image image = new ImageIcon(Controller.assetsPath + "saboteur.png").getImage();
@@ -20,9 +22,8 @@ public class SaboteurView extends JButton implements Viewable {
             Controller.instance.selectPlayer(saboteur);
         });
 
-        int size = (int) (Window.BUTTONSIZE * 0.6);
         Point position = getPosition();
-        this.setBounds((int) position.getX(), (int) position.getY(), size, size);
+        this.setBounds(position.x, position.y, SIZE, SIZE);
 
         this.setContentAreaFilled(false);
         this.setBorderPainted(false);
@@ -31,15 +32,23 @@ public class SaboteurView extends JButton implements Viewable {
 
     @Override
     public Point getPosition() {
-        Viewable view = Controller.instance.fields.get(saboteur.getPosition());
-        Point position = view.getPosition();
-        return position;
+        Field field = saboteur.getPosition();
+
+        double index = field.getPlayerIndex(saboteur);
+        double dx = Math.cos(index * Math.PI / 2.0) * Window.BUTTONSIZE / 2,
+                dy = Math.sin(index * Math.PI / 2.0) * Window.BUTTONSIZE / 2;
+
+        Point position = Controller.instance.fields.get(field).getPosition();
+        int cx = position.x + Window.BUTTONSIZE / 2,
+                cy = position.y + Window.BUTTONSIZE / 2;
+
+        return new Point(cx + (int) dx - SIZE / 2, cy + (int) dy - SIZE / 2);
     }
 
     @Override
     public void update() {
         Point position = getPosition();
-        setBounds((int) position.getX() + 20, (int) position.getY() - 10, getWidth(), getHeight());
+        setBounds(position.x, position.y, getWidth(), getHeight());
         validate();
         repaint();
     }
