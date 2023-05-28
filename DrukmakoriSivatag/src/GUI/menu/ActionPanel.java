@@ -8,9 +8,15 @@ import javax.swing.JPanel;
 
 import GUI.actions.*;
 
+/**
+ * Az akciókat reprezentáló panel.
+ */
 public class ActionPanel extends JPanel {
     private JPanel buttonsPanel = new JPanel();
 
+    /**
+     * Konstruktor.
+     */
     public ActionPanel() {
         super();
 
@@ -44,8 +50,10 @@ public class ActionPanel extends JPanel {
         update();
     }
 
+    /**
+     * Frissíti az elérhető akciók paneljét, és csak azon akciógombok jelennek meg, amelyek elvégezhetőek.
+     */
     public void update() {
-        // Adjust ActionButtons to only display those that can be performed
         for (Component component : buttonsPanel.getComponents()) {
             if (!(component instanceof ActionButton))
                 continue;

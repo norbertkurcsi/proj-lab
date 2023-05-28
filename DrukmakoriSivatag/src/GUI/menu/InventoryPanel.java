@@ -13,6 +13,9 @@ import GUI.actions.PlacePipeButton;
 import GUI.actions.PlacePumpButton;
 import proto.Mechanic;
 
+/**
+ * A játékos eszköztárát reprezentáló panel.
+ */
 public class InventoryPanel extends JPanel {
     private static Image pumpImage = new ImageIcon(Controller.assetsPath + "pump.png").getImage();
     private static Image pipeImage = new ImageIcon(Controller.assetsPath + "pipe.png").getImage();
@@ -57,6 +60,9 @@ public class InventoryPanel extends JPanel {
         }
     };
 
+    /**
+     * Konstruktor.
+     */
     public InventoryPanel() {
         super();
         this.setOpaque(false);
@@ -89,6 +95,9 @@ public class InventoryPanel extends JPanel {
         update();
     }
 
+    /**
+     * Frissíti az eszköztár tartalmát.
+     */
     public void update() {
         if (Controller.instance == null)
             return;

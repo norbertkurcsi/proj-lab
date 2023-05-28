@@ -9,14 +9,18 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * A játék menüjét reprezentáló panel.
+ */
 public class MenuPanel extends JPanel {
-
     private static Image background = new ImageIcon(Controller.assetsPath + "panel.png").getImage();
-
     private ActionPanel actionPanel = new ActionPanel();
     private InventoryPanel inventoryPanel = new InventoryPanel();
     private ScorePanel scorePanel = new ScorePanel();
 
+    /**
+     * Konstruktor.
+     */
     public MenuPanel() {
         super();
 
@@ -29,17 +33,27 @@ public class MenuPanel extends JPanel {
         this.add(scorePanel);
     }
 
+    /**
+     * Frissíti a menü tartalmát.
+     */
     public void update() {
         actionPanel.update();
         inventoryPanel.update();
         scorePanel.update();
     }
 
+    /**
+     * A menüpanel háttérképért felelős felüldefiniált kirajzolófüggvény.
+     */
     @Override
     public void paintComponent(Graphics g) {
         Window.getGraphics2D(g).drawImage(background, -10, -10, getWidth() + 50, getHeight() + 20, null);
     }
 
+    /**
+     * Beállítja a paraméterként kapott JLabel szöveget Chalkduster típusú fontra.
+     * @param title - JLabel, a szöveg, amelynek beállítjuk a fonttípusát
+     */
     public static void setFontTitle(JLabel title) {
         try {
             Font customFont = Font.createFont(Font.TRUETYPE_FONT, new File("Chalkduster.ttf")).deriveFont(30f);

@@ -13,6 +13,9 @@ import javax.swing.border.EmptyBorder;
 import GUI.Controller;
 import GUI.Window;
 
+/**
+ * A csapatok pontszámát reprezentáló panel.
+ */
 public class ScorePanel extends JPanel {
     private static ImageIcon mechanicImage = new ImageIcon(Controller.assetsPath + "mechanic.png");
     private static ImageIcon saboteurImage = new ImageIcon(Controller.assetsPath + "saboteur.png");
@@ -26,6 +29,9 @@ public class ScorePanel extends JPanel {
     JLabel mechanicScore = new JLabel(mechanicImage);
     JLabel saboteurScore = new JLabel(saboteurImage);
 
+    /**
+     * Konstruktor.
+     */
     public ScorePanel() {
         super();
 
@@ -60,6 +66,9 @@ public class ScorePanel extends JPanel {
         this.add(panel);
     }
 
+    /**
+     * Frissíti a panelt, ezen belül a csapatok pontszámát.
+     */
     public void update() {
         mechanicScore.setText(Integer.toString(Controller.instance.getMechanicScore()));
         saboteurScore.setText(Integer.toString(Controller.instance.getSaboteurScore()));
