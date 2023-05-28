@@ -7,6 +7,9 @@ import GUI.menu.MenuPanel;
 import java.awt.*;
 import java.util.HashMap;
 
+/**
+ * A játék ablakát reprezentáló osztály.
+ */
 public class Window extends JFrame {
     public static final int WIDTH = 1280;
     public static final int HEIGHT = 800;
@@ -32,6 +35,9 @@ public class Window extends JFrame {
         }
     };
 
+    /**
+     * Konstruktor.
+     */
     public Window() {
         super();
 
@@ -74,6 +80,9 @@ public class Window extends JFrame {
         return g2d;
     }
 
+    /**
+     * Frissíti a menüpanel tartalmát.
+     */
     public void updateMenu() {
         menu.update();
     }
