@@ -132,7 +132,7 @@ public class Pump extends FieldNode implements Tickable {
         }
 
         if(Proto.isRandom) {
-            if(random.nextInt(0, 20) == 0) {
+            if(random.nextInt(0, 123) == 0) {
                 breakPump();
             }
         }

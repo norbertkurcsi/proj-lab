@@ -34,6 +34,6 @@ public class BreakPipeButton extends ActionButton {
             return false;
 
         Field position = player.getPosition();
-        return position instanceof Pipe && !((Pipe) position).isBroken();
+        return position instanceof Pipe && !((Pipe) position).isBroken() && ((Pipe) position).isBreakable();
     }
 }

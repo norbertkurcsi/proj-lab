@@ -24,6 +24,8 @@ public class Controller {
     public Player selectedPlayer = null;
     public List<Field> selectedFields = new ArrayList<>();
 
+    private final Object syncObject = new Object();
+
     public void selectPlayer(Player selected) {
         Player prev = selectedPlayer;
         selectedPlayer = selected;
@@ -51,97 +53,126 @@ public class Controller {
     }
 
     public void breakPipe() {
-        Pipe pipe = (Pipe) selectedPlayer.getPosition();
-        selectedPlayer.breakPipe(pipe);
-        endAction();
+        synchronized (syncObject) {
+            Pipe pipe = (Pipe) selectedPlayer.getPosition();
+            selectedPlayer.breakPipe(pipe);
+            endAction();
+        }
     }
 
     public void fixPipe() {
-        Mechanic mechanic = (Mechanic) selectedPlayer;
-        mechanic.fixPipe((Pipe) mechanic.getPosition());
-        endAction();
+        synchronized (syncObject) {
+            Mechanic mechanic = (Mechanic) selectedPlayer;
+            mechanic.fixPipe((Pipe) mechanic.getPosition());
+            endAction();
+        }
     }
 
     public void fixPump() {
-        if (selectedPlayer == null)
-            return;
-        Pump pump = (Pump) selectedPlayer.getPosition();
-        ((Mechanic) selectedPlayer).fixPump(pump);
-        endAction();
+        synchronized (syncObject) {
+            if (selectedPlayer == null)
+                return;
+            Pump pump = (Pump) selectedPlayer.getPosition();
+            ((Mechanic) selectedPlayer).fixPump(pump);
+            endAction();
+        }
     }
 
     public void movePlayer() {
-        selectedPlayer.moveTo(selectedFields.get(0));
-        endAction();
+        synchronized (syncObject) {
+            selectedPlayer.moveTo(selectedFields.get(0));
+            endAction();
+        }
     }
 
     public void changeFlow() {
-        Pump pump = (Pump) selectedPlayer.getPosition();
-        selectedPlayer.setPumpDirection(pump, (Pipe) selectedFields.get(0), (Pipe) selectedFields.get(1));
-        endAction();
+        synchronized (syncObject) {
+            Pump pump = (Pump) selectedPlayer.getPosition();
+            selectedPlayer.setPumpDirection(pump, (Pipe) selectedFields.get(0), (Pipe) selectedFields.get(1));
+            endAction();
+        }
     }
 
     public void makeSticky() {
-        Pipe pipe = (Pipe) selectedPlayer.getPosition();
-        selectedPlayer.makeSticky(pipe);
-        endAction();
+        synchronized (syncObject) {
+            Pipe pipe = (Pipe) selectedPlayer.getPosition();
+            selectedPlayer.makeSticky(pipe);
+            endAction();
+        }
     }
 
     public void makeSlippery() {
-        Saboteur saboteur = (Saboteur) selectedPlayer;
-        saboteur.makeSlippery((Pipe) saboteur.getPosition());
-        endAction();
+        synchronized (syncObject) {
+            Saboteur saboteur = (Saboteur) selectedPlayer;
+            saboteur.makeSlippery((Pipe) saboteur.getPosition());
+            endAction();
+        }
     }
 
     public void connectPipe() {
-        Mechanic mechanic = (Mechanic) selectedPlayer;
-        mechanic.connectPipe((Pipe) selectedPlayer.getPosition(), (FieldNode) selectedFields.get(0));
-        endAction();
+        synchronized (syncObject) {
+            Mechanic mechanic = (Mechanic) selectedPlayer;
+            try {
+                mechanic.connectPipe((Pipe) selectedPlayer.getPosition(), (FieldNode) selectedFields.get(0));
+            } catch (Exception e) {
+            }
+            endAction();
+        }
     }
 
     public void disconnectPipe() {
-        Mechanic mechanic = (Mechanic) selectedPlayer;
-        mechanic.disconnectPipe((Pipe) selectedPlayer.getPosition(), (FieldNode) selectedFields.get(0));
-        endAction();
+        synchronized (syncObject) {
+            Mechanic mechanic = (Mechanic) selectedPlayer;
+            mechanic.disconnectPipe((Pipe) selectedPlayer.getPosition(), (FieldNode) selectedFields.get(0));
+            endAction();
+        }
     }
 
     public void pickupPump() {
-        Mechanic mechanic = (Mechanic) selectedPlayer;
-        mechanic.pickupPump();
-        endAction();
+        synchronized (syncObject) {
+            Mechanic mechanic = (Mechanic) selectedPlayer;
+            mechanic.pickupPump();
+            endAction();
+        }
     }
 
     public void pickupPipe() {
-        Mechanic mechanic = (Mechanic) selectedPlayer;
-        mechanic.pickupPipe();
-        endAction();
+        synchronized (syncObject) {
+            Mechanic mechanic = (Mechanic) selectedPlayer;
+            mechanic.pickupPipe();
+            endAction();
+        }
     }
 
     public void placePump() {
-        Mechanic mechanic = (Mechanic) selectedPlayer;
-        Pipe pipe = (Pipe) mechanic.getPosition();
-        Pump pump = mechanic.getPump();
-        Pipe newPipe = mechanic.placePump(pump, pipe);
-        if (newPipe != null) {
-            ((PipeView) fields.get(pipe)).setWasCut(true);
-            PumpView pumpView = new PumpView(new Point(fields.get(pipe).getPosition()), pump);
-            addField(pump, pumpView);
-            PipeView newPipeView = new PipeView(newPipe);
-            addField(newPipe, newPipeView);
+        synchronized (syncObject) {
+            Mechanic mechanic = (Mechanic) selectedPlayer;
+            Pipe pipe = (Pipe) mechanic.getPosition();
+            Pump pump = mechanic.getPump();
+            Pipe newPipe = mechanic.placePump(pump, pipe);
+            if (newPipe != null) {
+                ((PipeView) fields.get(pipe)).setWasCut(true);
+                PumpView pumpView = new PumpView(new Point(fields.get(pipe).getPosition()), pump);
+                addField(pump, pumpView);
+                PipeView newPipeView = new PipeView(newPipe);
+                addField(newPipe, newPipeView);
+            }
+            endAction();
         }
-        endAction();
     }
 
     public void placePipe() {
-        Mechanic mechanic = (Mechanic) selectedPlayer;
-        Pipe pipe = mechanic.getPipe();
-        mechanic.placePipe((FieldNode) mechanic.getPosition());
-        PipeView pipeView = new PipeView(pipe);
-        addField(pipe, pipeView);
-        endAction();
+        synchronized (syncObject) {
+            Mechanic mechanic = (Mechanic) selectedPlayer;
+            Pipe pipe = mechanic.getPipe();
+            mechanic.placePipe((FieldNode) mechanic.getPosition());
+            PipeView pipeView = new PipeView(pipe);
+            addField(pipe, pipeView);
+            endAction();
+        }
     }
 
-    private void tick() {
+    public void tick() {
         // Tick all pipes
         for (Field field : fields.keySet()) {
             if (field instanceof Pipe)
@@ -173,13 +204,13 @@ public class Controller {
     }
 
     public void addField(Field field, Viewable view) {
-        fields.put(field, view);
-        window.addViewable(view);
+            fields.put(field, view);
+            window.addViewable(view);
     }
 
     public void addPlayer(Player player, Viewable view) {
-        players.put(player, view);
-        window.addViewable(view);
+            players.put(player, view);
+            window.addViewable(view);
     }
 
     public int getMechanicScore() {
@@ -203,7 +234,7 @@ public class Controller {
     }
 
     private void endAction() {
-        tick();
+//        tick();
         selectedPlayer = null;
         selectedFields.clear();
         window.updateAllViews();
@@ -289,5 +320,19 @@ public class Controller {
 
     public static void main(String args[]) {
         Controller.instance.initModel();
+        new Thread(() -> {
+            try {
+                while (true) {
+                    synchronized (Controller.instance.syncObject) {
+                        Controller.instance.tick();
+                    }
+                    Controller.instance.window.updateAllViews();
+                    Controller.instance.window.updateMenu();
+                    Thread.sleep(1000);
+                }
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }).start();
     }
 }

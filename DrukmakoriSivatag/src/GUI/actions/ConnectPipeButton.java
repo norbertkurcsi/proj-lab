@@ -39,6 +39,6 @@ public class ConnectPipeButton extends ActionButton {
         Pipe pipe = (Pipe)player.getPosition();
         Field node = selectedFields.get(0); // The FieldNode to connect the pipe to
 
-        return !pipe.hasNeighbour(node);
+        return !pipe.hasNeighbour(node) && pipe.getEnds().size() < 2;
     }
 }

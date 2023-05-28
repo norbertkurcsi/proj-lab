@@ -8,9 +8,9 @@ import java.util.Random;
  * Egy csövet reprezentáló osztály.
  */
 public class Pipe extends Field implements Tickable {
-    static final int MAX_VOLUME = 5000;
-    static final int SLIPPERY_TIME = 3;
-    static final int STICKY_TIME = 3;
+    static final int MAX_VOLUME = 1000;
+    static final int SLIPPERY_TIME = 10;
+    static final int STICKY_TIME = 10;
     static final int MAX_BREAKABLE_TIME = 10;
 
     private Random random = new Random();
@@ -339,5 +339,10 @@ public class Pipe extends Field implements Tickable {
     // TODO
     public int getWastedWater() {
       return wastedWater;
+    }
+
+    //TODO
+    public boolean isBreakable() {
+        return timeUntilBreakable == 0;
     }
 }

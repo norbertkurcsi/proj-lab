@@ -7,6 +7,7 @@ import java.util.Random;
  */
 public class Cistern extends FieldNode {
     private int drainedWater;
+    // Seconds until creating pipe
     private int pipeAvailable;
 
     /**
@@ -17,7 +18,7 @@ public class Cistern extends FieldNode {
      */
     public Cistern() {
         drainedWater = 0;
-        pipeAvailable = 10;
+        pipeAvailable = 20;
     }
 
     /**
@@ -40,7 +41,7 @@ public class Cistern extends FieldNode {
         if (pipeAvailable != 0) {
             return null;
         }
-        pipeAvailable = 5;
+        pipeAvailable = 20;
         return new Pipe();
     }
 
