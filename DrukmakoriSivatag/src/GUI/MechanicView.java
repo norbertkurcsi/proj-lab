@@ -1,8 +1,6 @@
 package GUI;
 
-import proto.Field;
 import proto.Mechanic;
-import proto.Pipe;
 
 import javax.swing.*;
 import java.awt.*;

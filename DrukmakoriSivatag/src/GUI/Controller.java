@@ -182,6 +182,26 @@ public class Controller {
         window.addViewable(view);
     }
 
+    public int getMechanicScore() {
+        int sum = 0;
+        for (Field field : fields.keySet()) {
+            if (field instanceof Cistern) {
+                sum += ((Cistern) field).getDrainedWater();
+            }
+        }
+        return sum;
+    }
+
+    public int getSaboteurScore() {
+        int sum = 0;
+        for (Field field : fields.keySet()) {
+            if (field instanceof Pipe) {
+                sum += ((Pipe) field).getWastedWater();
+            }
+        }
+        return sum;
+    }
+
     private void endAction() {
         tick();
         selectedPlayer = null;

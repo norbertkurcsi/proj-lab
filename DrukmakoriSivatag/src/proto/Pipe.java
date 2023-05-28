@@ -335,4 +335,9 @@ public class Pipe extends Field implements Tickable {
     public boolean isEmpty() {
         return currentVolume == 0;
     }
+
+    // TODO
+    public int getWastedWater() {
+      return wastedWater;
+    }
 }

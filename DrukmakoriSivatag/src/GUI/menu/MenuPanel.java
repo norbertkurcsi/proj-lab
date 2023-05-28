@@ -4,9 +4,6 @@ import javax.swing.*;
 
 import GUI.Controller;
 import GUI.Window;
-import GUI.actions.*;
-import proto.Mechanic;
-import proto.Player;
 
 import java.awt.*;
 import java.io.File;
@@ -18,7 +15,7 @@ public class MenuPanel extends JPanel {
 
     private ActionPanel actionPanel = new ActionPanel();
     private InventoryPanel inventoryPanel = new InventoryPanel();
-    private JPanel scorePanel = new ScorePanel();
+    private ScorePanel scorePanel = new ScorePanel();
 
     public MenuPanel() {
         super();
@@ -26,8 +23,6 @@ public class MenuPanel extends JPanel {
         this.setMinimumSize(new Dimension(Window.WIDTH, Window.HEIGHT / 5));
         this.setPreferredSize(getMinimumSize());
         this.setLayout(new GridLayout(1, 3));
-        this.setMinimumSize(new Dimension(Window.WIDTH, Window.HEIGHT / 5));
-        this.setPreferredSize(getMinimumSize());
 
         this.add(actionPanel);
         this.add(inventoryPanel);
@@ -37,6 +32,7 @@ public class MenuPanel extends JPanel {
     public void update() {
         actionPanel.update();
         inventoryPanel.update();
+        scorePanel.update();
     }
 
     @Override

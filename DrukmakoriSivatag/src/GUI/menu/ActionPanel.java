@@ -1,13 +1,10 @@
 package GUI.menu;
 
 import java.awt.*;
-import java.io.File;
-import java.io.IOException;
 
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
 import GUI.actions.*;
 
