@@ -11,12 +11,25 @@ import java.util.HashMap;
  * A játék ablakát reprezentáló osztály.
  */
 public class Window extends JFrame {
+    /**
+     * A játék ablakának szélessége.
+     */
     public static final int WIDTH = 1280;
+    /**
+     * A játék ablakának magassága.
+     */
     public static final int HEIGHT = 800;
-
+    /**
+     * A játékban megjelenő gombok mérete.
+     */
     public static final int BUTTONSIZE = 50;
-
+    /**
+     * A játékfelület háttere (sivatag)
+     */
     private static Image background = new ImageIcon(Controller.assetsPath + "background.png").getImage();
+    /**
+     * A megjelenítendő objektumok tárolója
+     */
     private static HashMap<Class<?>, Integer> zOrder = new HashMap<>();
     static {
         zOrder.put(MechanicView.class, 2);
@@ -26,8 +39,13 @@ public class Window extends JFrame {
         zOrder.put(SpringView.class, 1);
         zOrder.put(PipeView.class, 0);
     }
-
+    /**
+     * A játékmenüt megjelenítő panel.
+     */
     private MenuPanel menu = new MenuPanel();
+    /**
+     * A játékfelület megjelenítésére szolgáló panel.
+     */
     private JLayeredPane map = new JLayeredPane() {
         @Override
         public void paintComponent(Graphics g) {
@@ -55,14 +73,19 @@ public class Window extends JFrame {
         this.add(map);
         this.add(menu, BorderLayout.SOUTH);
     }
-
+    /**
+     * Hozzáad egy megjelenítendő objektumot a játékfelülethez és ki is rajzoltatja.
+     * @param view A megjelenítendő objektum.
+     */
     public void addViewable(Viewable view) {
         Component component = (Component) view;
         map.add(component, zOrder.get(view.getClass()));
         map.validate();
         map.repaint();
     }
-
+    /**
+     * Frissíti az összes megjelenítendő objektumot nézetét, azaz újrarajzoltatja őket..
+     */
     public void updateAllViews() {
         map.repaint();
         for (Viewable view : Controller.instance.fields.values())
@@ -72,6 +95,11 @@ public class Window extends JFrame {
             view.update();
     }
 
+    /**
+     * Visszaadja a megadott grafikus objektumot, amit a megfelelő beállításokkal a kirajzoláshoz használunk.
+     * @param g A grafikus objektum.
+     * @return A grafikus objektum.
+     */
     static public Graphics2D getGraphics2D(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         g2d.setRenderingHint(RenderingHints.KEY_ALPHA_INTERPOLATION, RenderingHints.VALUE_ALPHA_INTERPOLATION_QUALITY);

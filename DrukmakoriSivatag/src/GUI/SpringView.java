@@ -5,15 +5,29 @@ import proto.Spring;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-
+/**
+ * A forrás (Spring) megjelenítéséért felelős osztály.
+ */
 public class SpringView extends JButton implements Viewable {
+    /**
+     * A megjelenítendő forrás.
+     */
     private Spring spring;
+    /**
+     * A forrás pozíciója.
+     */
     private Point position;
-
+    /**
+     * A forrás képe.
+     */
     private static Image image = new ImageIcon(Controller.assetsPath + "spring.png").getImage();
     // private static Image normal_rollover = new ImageIcon(Controller.assetsPath +
     // "spring_rollover.png").getImage();
-
+    /**
+     * Konstruktor.
+     * @param position A megjelenítendő forrás pozíciója.
+     * @param spring A megjelenítendő forrás.
+     */
     public SpringView(Point position, Spring spring) {
         super();
 
@@ -29,18 +43,27 @@ public class SpringView extends JButton implements Viewable {
         this.setBorderPainted(false);
         this.setRolloverEnabled(true);
     }
-
+    /**
+     * Visszaadja a forrás pozícióját.
+     * @return A forrás pozíciója.
+     */
     @Override
     public Point getPosition() {
         return position;
     }
 
+    /**
+     * A forrás megjelenítésének frissítése, újrarajzolása.
+     */
     @Override
     public void update() {
         validate();
         repaint();
     }
-
+    /**
+     * A forrást kirajzoló metódus.
+     * @param g az <code>Graphics</code> objektum, amit a kirajzoláshoz használunk.
+     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);

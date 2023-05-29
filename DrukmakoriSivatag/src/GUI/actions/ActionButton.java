@@ -4,9 +4,19 @@ import javax.swing.JButton;
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 
+/**
+ * Gomb ősosztály, amiből az akciókat reprezentáló gombok származnak le.
+ */
 public abstract class ActionButton extends JButton {
+    /**
+     * Konstruktor.
+     */
     public abstract boolean canPerform();
 
+    /**
+     * A gomb kirajzolása.
+     * @param g a <code>Graphics</code> objektum, amit a komponens kirajzolásához használunk.
+     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);

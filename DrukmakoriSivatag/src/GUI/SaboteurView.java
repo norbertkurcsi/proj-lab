@@ -7,12 +7,26 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
+/**
+ * A szabotőr (Saboteur) megjelenítéséért felelős osztály.
+ */
 public class SaboteurView extends JButton implements Viewable {
+    /**
+     * A megjelenített szabotőr ikon mérete.
+     */
     private static int SIZE = (int) (Window.BUTTONSIZE * 0.6);
+    /**
+     * A játékbeli megjelenítendő szabotőr.
+     */
     private Saboteur saboteur;
-
+    /**
+     * A szabotőr ikonja.
+     */
     private static Image image = new ImageIcon(Controller.assetsPath + "saboteur.png").getImage();
-
+    /**
+     * Konstruktor.
+     * @param saboteur A megjelenítendő szabotőr.
+     */
     public SaboteurView(Saboteur saboteur) {
         super();
 
@@ -29,7 +43,10 @@ public class SaboteurView extends JButton implements Viewable {
         this.setBorderPainted(false);
         this.setRolloverEnabled(true);
     }
-
+    /**
+     * Visszaadja a szabotőr pozícióját.
+     * @return A szabotőr pozíciója.
+     */
     @Override
     public Point getPosition() {
         Field field = saboteur.getPosition();
@@ -44,7 +61,10 @@ public class SaboteurView extends JButton implements Viewable {
 
         return new Point(cx + (int) dx - SIZE / 2, cy + (int) dy - SIZE / 2);
     }
-
+    /**
+     * A szabotőr megjelenítésének frissítése a modellbeli változások alapján.
+     * A szabotőr pozíciója változhat a játék során.
+     */
     @Override
     public void update() {
         Point position = getPosition();
@@ -52,7 +72,10 @@ public class SaboteurView extends JButton implements Viewable {
         validate();
         repaint();
     }
-
+    /**
+     * A szabotőrt kirajzoló metódus.
+     * @param g az <code>Graphics</code> objektum, amit a kirajzoláshoz használunk.
+     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);

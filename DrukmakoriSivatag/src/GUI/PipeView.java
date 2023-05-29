@@ -8,26 +8,72 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.List;
 
+/**
+ * A cső (Pipe) megjelenítéséért felelős osztály.
+ */
 public class PipeView extends JPanel implements Viewable {
+    /**
+     * A cső első végének pozíciója.
+     */
     private Point end1Position;
+    /**
+     * A cső második végének pozíciója.
+     */
     private Point end2Position;
+    /**
+     * A cső középpontjának pozíciója.
+     */
     private Point centerPosition;
+    /**
+     * A cső objektum, amit meg kell jeleníteni.
+     */
     private Pipe pipe;
-
+    /**
+     * A csőhöz tartozó gomb.
+     */
     private PipeButton pipeButton = new PipeButton();
-
+    /**
+     * Logikai változó, ami azt jelzi, hogy a csőt elvágták-e.
+     */
     private boolean wasCut = false;
-
+    /**
+     * A cső normál állapotbeli képe.
+     */
     private static Image normal = new ImageIcon(Controller.assetsPath + "pipe.png").getImage();
+    /**
+     * A cső törött állapotbeli képe.
+     */
     private static Image broken = new ImageIcon(Controller.assetsPath + "pipe_broken.png").getImage();
+    /**
+     * A cső csúszós és törött állapotbeli képe.
+     */
     private static Image slippery_broken = new ImageIcon(Controller.assetsPath + "pipe_slippery_broken.png").getImage();
+    /**
+     * A cső csúszós és normal, azaz nem törött állapotbeli képe.
+     */
     private static Image slippery_normal = new ImageIcon(Controller.assetsPath + "pipe_slippery.png").getImage();
+    /**
+     * A cső ragacsos és törött állapotbeli képe.
+     */
     private static Image sticky_broken = new ImageIcon(Controller.assetsPath + "pipe_sticky_broken.png").getImage();
+    /**
+     * A cső ragacsos és normal, azaz nem törött állapotbeli képe.
+     */
     private static Image sticky_normal = new ImageIcon(Controller.assetsPath + "pipe_sticky.png").getImage();
-
+    /**
+     * A cső épp megjelenítendő képe.
+     * Alapértelmezetten normal.
+     */
     public Image actual = normal;
+    /**
+     * A cső színe.
+     * Alapértelmezetten fekete.
+     */
     private Color pipeColor = Color.BLACK;
-
+    /**
+     * Konstruktor.
+     * @param pipe A megjelenítendő cső.
+     */
     public PipeView(Pipe pipe) {
         super();
 
@@ -53,10 +99,18 @@ public class PipeView extends JPanel implements Viewable {
         this.add(pipeButton);
     }
 
+    /**
+     * Beállítja, hogy a csőt elvágták-e.
+     * @param value igaz, ha elvágták, hamis, ha nem.
+     */
     public void setWasCut(boolean value) {
         wasCut = value;
     }
-
+    /**
+     * Frissíti a cső megjelenítését a modellbeli állapotának megfelelően.
+     * A cső lehet normál, csúszós, ragacsos, törött, csúszós és törött, ragacsos és törött.
+     * A cső színe fekete, ha nem folyt át rajta víz, kék, ha átfolyt rajta víz.
+     */
     @Override
     public void update() {
         boolean isBroken = pipe.isBroken();
@@ -89,7 +143,11 @@ public class PipeView extends JPanel implements Viewable {
         repaint();
         pipeButton.repaint();
     }
-
+    /**
+     * Frissíti a cső végpontjainak pozícióját.
+     * Ha a csőnek nincs végpontja, akkor a középpontját állítja be.
+     * Ha a csőnek egy végpontja van, akkor a másik végpontja a középpont.
+     */
     private void updateEnds() {
         List<FieldNode> ends = pipe.getEnds();
         if (ends.size() == 0) {
@@ -110,12 +168,19 @@ public class PipeView extends JPanel implements Viewable {
         }
         pipeButton.setBounds(centerPosition.x, centerPosition.y, Window.BUTTONSIZE, Window.BUTTONSIZE);
     }
-
+    /**
+     * Visszaadja a cső pozícióját.
+     * @return A cső középpontjának pozíciója.
+     */
     @Override
     public Point getPosition() {
         return centerPosition;
     }
 
+    /**
+     * Kirajzolja a cső mezőt.
+     * @param g a <code>Graphics</code> objektum, amit rajzoláshoz használ.
+     */
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -128,7 +193,13 @@ public class PipeView extends JPanel implements Viewable {
         g2d.drawLine(centerPosition.x + Window.BUTTONSIZE / 2, centerPosition.y + Window.BUTTONSIZE / 2,
                 end2Position.x + Window.BUTTONSIZE / 2, end2Position.y + Window.BUTTONSIZE / 2);
     }
-
+    /**
+     * A csövet, mint gombot reprezentáló osztály.
+     * A cső kattinthatő a jatékban.
+     * A cső gombja a cső középpontjában helyezkedik el.
+     * A cső gombjára kattintva a cső kiválasztható.
+     * A cső gombját húzva a cső mozgatható.
+     */
     private class PipeButton extends JButton {
         public PipeButton() {
             this.addActionListener((ActionEvent e) -> {
@@ -137,7 +208,10 @@ public class PipeView extends JPanel implements Viewable {
 
             this.addMouseMotionListener(new MouseMotionListener() {
                 private Point start = null;
-
+                /**
+                 * A cső mozgatását megvalósító metódus.
+                 * @param e a mozgatás eseménye.
+                 */
                 @Override
                 public void mouseDragged(MouseEvent e) {
                     int dx = e.getX() - start.x, dy = e.getY() - start.y;
@@ -155,7 +229,10 @@ public class PipeView extends JPanel implements Viewable {
             this.setBorderPainted(false);
             this.setRolloverEnabled(true);
         }
-
+        /**
+         * A cső gombja kirajzolását megvalósító metódus.
+         * @param g a <code>Graphics</code> objektum, amit rajzoláshoz használ.
+         */
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);

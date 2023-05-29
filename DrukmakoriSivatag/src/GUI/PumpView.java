@@ -5,16 +5,36 @@ import proto.Pump;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-
+/**
+ * A pumpa (Pump) megjelenítéséért felelős osztály.
+ */
 public class PumpView extends JButton implements Viewable {
+    /**
+     * A pumpa pozíciója.
+     */
     private Point position;
+    /**
+     * A megjelenítendő pumpa.
+     */
     private Pump pump;
-
+    /**
+     * A normál állapotú pumpa képe.
+     */
     private static Image normal = new ImageIcon(Controller.assetsPath + "pump.png").getImage();
+    /**
+     * A törött pumpa képe.
+     */
     private static Image broken = new ImageIcon(Controller.assetsPath + "pump_broken.png").getImage();
-
+    /**
+     * A pumpa épp megjelenítendő képe.
+     * Lehet normal vagy broken, alapértelmezetten normal.
+     */
     private Image actual = normal;
-
+    /**
+     * Konstruktor.
+     * @param position A megjelenítendő pumpa pozíciója.
+     * @param pump A megjelenítendő pumpa.
+     */
     public PumpView(Point position, Pump pump) {
         super();
 
@@ -29,18 +49,28 @@ public class PumpView extends JButton implements Viewable {
         this.setBorderPainted(false);
         this.setRolloverEnabled(true);
     }
-
+    /**
+     * A pumpa megjelenítésének frissítése.
+     * A pumpa törött, vagy normál állapotától függően a megfelelő képet állítja be.
+     */
     @Override
     public void update() {
         actual = pump.isBroken() ? broken : normal;
         validate();
         repaint();
     }
-
+    /**
+     * Visszaadja a pumpa pozícióját.
+     * @return A pumpa pozíciója.
+     */
     public Point getPosition() {
         return position;
     }
 
+    /**
+     * A pumpát kirajzoló metódus.
+     * @param g az <code>Graphics</code> objektum, amit a kirajzoláshoz használunk.
+     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);

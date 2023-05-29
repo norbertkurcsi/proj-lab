@@ -6,8 +6,14 @@ import java.util.List;
 import GUI.Controller;
 import proto.Field;
 import proto.Player;
-
+/**
+ * Gomb a játékos mozgatásához.
+ */
 public class MoveButton extends ActionButton {
+    /**
+     * Konstruktor.
+     * Alap kinézet és tualjdonságok beállítása.
+     */
     public MoveButton() {
         super();
 
@@ -21,7 +27,13 @@ public class MoveButton extends ActionButton {
             Controller.instance.movePlayer();
         });
     }
-
+    /**
+     * Metódus, ami megmondja, hogy a gomb használható, megjeleníthető-e.
+     * Ha a kiválasztott játékos nem null, és a kiválasztott mezők száma 1,
+     * és a kiválasztott mező a kiválasztott játékos pozíciójának szomszédja,
+     * akkor igazat ad vissza.
+     * @return igaz, ha a gomb használható, hamis, ha nem.
+     */
     public boolean canPerform() {
         if (Controller.instance == null)
             return false;

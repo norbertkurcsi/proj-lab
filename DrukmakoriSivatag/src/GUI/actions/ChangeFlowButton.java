@@ -9,7 +9,14 @@ import proto.Pipe;
 import proto.Player;
 import proto.Pump;
 
+/**
+ * Gomb a víz áramlásának megváltoztatásához.
+ */
 public class ChangeFlowButton extends ActionButton {
+    /**
+     * Konstruktor.
+     * Alap kinézet beállítása.
+     */
     public ChangeFlowButton() {
         super();
 
@@ -23,7 +30,13 @@ public class ChangeFlowButton extends ActionButton {
             Controller.instance.changeFlow();
         });
     }
-
+    /**
+     * Metódus, ami megmondja, hogy a gomb használható, megjeleníthető-e.
+     * Ha a kiválasztott játékos nem null, és a kiválasztott mezők száma 2,
+     * és a kiválasztott játékos pozíciója pumpa, és a kiválasztott mezők csők,
+     * és a kiválasztott mezők szomszédosak a játékos pozíciójával, akkor igazat ad vissza.
+     * @return igaz, ha a gomb használható, hamis, ha nem.
+     */
     public boolean canPerform() {
         if (Controller.instance == null)
             return false;

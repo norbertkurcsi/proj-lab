@@ -11,21 +11,48 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 import java.util.Set;
-
+/**
+ * A játék irányításáért, a játék logikája és a megjelenítés közti kommunikáció biztosításáért felelős osztály.
+ */
 public class Controller {
+    /**
+     * A játék megjelenítéséhez használt fájlok elérési útja.
+     */
     public static String assetsPath = "drukmakor_assets/";
+    /**
+     * A játék irányításáért felelős osztály egyetlen példánya.
+     */
     public static Controller instance = new Controller();
-
+    /**
+     * A játék megjelenítéséért felelős ablak.
+     */
     public Window window = new Window();
-
+    /**
+     * A játékban résztvevő játékosokat tároló hash map.
+     */
     public HashMap<Player, Viewable> players = new HashMap<>();
+    /**
+     * A játékban résztvevő pályaelemeket tároló hash map.
+     */
     public HashMap<Field, Viewable> fields = new HashMap<>();
-
+    /**
+     * A játékban aktuálisan kiválasztott játékos.
+     */
     public Player selectedPlayer = null;
+    /**
+     * A játékban aktuálisan kiválasztott pályaelemek listája.
+     */
     public List<Field> selectedFields = new ArrayList<>();
-
+    /**
+     * Szinkronizációs objektum a szálbiztos működéshez.
+     */
     private final Object syncObject = new Object();
 
+    /**
+     * Játékos kiválasztása és a játékoshoz tartozó menü megjelenítése.
+     * A játékos kiválasztásával együtt a korábban kiválasztott elemek kijelölését is megszünteti.
+     * @param selected A kiválasztott játékos.
+     */
     public void selectPlayer(Player selected) {
         Player prev = selectedPlayer;
         selectedPlayer = selected;
@@ -41,7 +68,11 @@ public class Controller {
 
         window.updateMenu();
     }
-
+    /**
+     * Pályaelem kiválasztása. A kiválasztott pályaelem nézetének frissítése.
+     * A menü frissítése.
+     * @param selected A kiválasztott pályaelem.
+     */
     public void selectField(Field selected) {
         boolean removed = selectedFields.remove(selected);
         if (!removed) {
@@ -52,6 +83,9 @@ public class Controller {
         window.updateMenu();
     }
 
+    /**
+     * A cső eltörése
+     */
     public void breakPipe() {
         synchronized (syncObject) {
             Pipe pipe = (Pipe) selectedPlayer.getPosition();
@@ -60,6 +94,9 @@ public class Controller {
         }
     }
 
+    /**
+     * A cső megjavítása
+     */
     public void fixPipe() {
         synchronized (syncObject) {
             Mechanic mechanic = (Mechanic) selectedPlayer;
@@ -68,6 +105,9 @@ public class Controller {
         }
     }
 
+    /**
+     * A pumpa megjavítása
+     */
     public void fixPump() {
         synchronized (syncObject) {
             if (selectedPlayer == null)
@@ -78,6 +118,9 @@ public class Controller {
         }
     }
 
+    /**
+     * A játékos mozgatása
+     */
     public void movePlayer() {
         synchronized (syncObject) {
             selectedPlayer.moveTo(selectedFields.get(0));
@@ -85,6 +128,9 @@ public class Controller {
         }
     }
 
+    /**
+     * A pumpa pumpálási/folyatási irányának megváltoztatása
+     */
     public void changeFlow() {
         synchronized (syncObject) {
             Pump pump = (Pump) selectedPlayer.getPosition();
@@ -93,6 +139,9 @@ public class Controller {
         }
     }
 
+    /**
+     * A cső ragadóssá tétele
+     */
     public void makeSticky() {
         synchronized (syncObject) {
             Pipe pipe = (Pipe) selectedPlayer.getPosition();
@@ -100,7 +149,9 @@ public class Controller {
             endAction();
         }
     }
-
+    /**
+     * A cső csúszóssá tétele
+     */
     public void makeSlippery() {
         synchronized (syncObject) {
             Saboteur saboteur = (Saboteur) selectedPlayer;
@@ -109,6 +160,9 @@ public class Controller {
         }
     }
 
+    /**
+     * A cső egy végének felcsatlakoztatása a kiválasztott pályaelemhez
+     */
     public void connectPipe() {
         synchronized (syncObject) {
             Mechanic mechanic = (Mechanic) selectedPlayer;
@@ -119,7 +173,9 @@ public class Controller {
             endAction();
         }
     }
-
+    /**
+     * A cső egy végének leválasztása a kiválasztott pályaelemről
+     */
     public void disconnectPipe() {
         synchronized (syncObject) {
             Mechanic mechanic = (Mechanic) selectedPlayer;
@@ -128,6 +184,9 @@ public class Controller {
         }
     }
 
+    /**
+     * A pumpa felvétele a játékos eszköztárába
+     */
     public void pickupPump() {
         synchronized (syncObject) {
             Mechanic mechanic = (Mechanic) selectedPlayer;
@@ -135,7 +194,9 @@ public class Controller {
             endAction();
         }
     }
-
+    /**
+     * A cső felvétele a játékos eszköztárába
+     */
     public void pickupPipe() {
         synchronized (syncObject) {
             Mechanic mechanic = (Mechanic) selectedPlayer;
@@ -144,6 +205,9 @@ public class Controller {
         }
     }
 
+    /**
+     * A pumpa lerakása a pályán
+     */
     public void placePump() {
         synchronized (syncObject) {
             Mechanic mechanic = (Mechanic) selectedPlayer;
@@ -160,7 +224,9 @@ public class Controller {
             endAction();
         }
     }
-
+    /**
+     * A cső lerakása a pályán
+     */
     public void placePipe() {
         synchronized (syncObject) {
             Mechanic mechanic = (Mechanic) selectedPlayer;
@@ -172,6 +238,9 @@ public class Controller {
         }
     }
 
+    /**
+     * A pályaelemek tickelése, azaz az idő múlásával járó változások végrehajtása
+     */
     public void tick() {
         // Tick all pipes
         for (Field field : fields.keySet()) {
@@ -203,16 +272,29 @@ public class Controller {
         }
     }
 
+    /**
+     * Egy új játékelem hozzáadása a játékhoz
+     * @param field a pályaelem
+     * @param view a pályaelem nézete
+     */
     public void addField(Field field, Viewable view) {
             fields.put(field, view);
             window.addViewable(view);
     }
-
+    /**
+     * Egy új játékos hozzáadása a játékhoz
+     * @param player a játékos
+     * @param view a játkos nézete
+     */
     public void addPlayer(Player player, Viewable view) {
             players.put(player, view);
             window.addViewable(view);
     }
 
+    /**
+     * A Szerelők csapat pontjainak összegzése
+     * @return a szerelők csapatának pontszáma
+     */
     public int getMechanicScore() {
         int sum = 0;
         for (Field field : fields.keySet()) {
@@ -222,7 +304,10 @@ public class Controller {
         }
         return sum;
     }
-
+    /**
+     * A Szabotőrök csapat pontjainak összegzése
+     * @return a szabotőrök csapatának pontszáma
+     */
     public int getSaboteurScore() {
         int sum = 0;
         for (Field field : fields.keySet()) {
@@ -233,6 +318,10 @@ public class Controller {
         return sum;
     }
 
+    /**
+     * Egy -egy játékban megtörtént akció-esemény után lefuttatandó metódus.
+     * A kiválasztott játékos és pályaelemek törlése, a nézetek frissítése.
+     */
     private void endAction() {
 //        tick();
         selectedPlayer = null;
@@ -242,6 +331,9 @@ public class Controller {
     }
 
     // Kezdo palya felepitese
+    /**
+     * A játék kezdőpályájának felépítése
+     */
     public void initModel() {
         // m - model, v - view
         Spring mSpring = new Spring();
@@ -318,6 +410,12 @@ public class Controller {
         addPlayer(mMech1, vMech1);
     }
 
+    /**
+     * Az alkalmazás belépési pontja és a fővezérlési logika kezdőpontja.
+     *
+     * Inicializálja a Model-t, majd elindít egy új szálat, ami ciklikusan végrehajtja a vezérlő cselekvéseket.
+     * A cselekvések között frissíti a nézeteket, majd vár egy másodpercet, mielőtt újra futna.
+     */
     public static void main(String args[]) {
         Controller.instance.initModel();
         new Thread(() -> {

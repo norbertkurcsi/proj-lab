@@ -7,8 +7,14 @@ import proto.Field;
 import proto.Mechanic;
 import proto.Player;
 import proto.Pump;
-
+/**
+ * Gomb a pumpa javításához.
+ */
 public class FixPumpButton extends ActionButton {
+    /**
+     * Konstruktor.
+     * Alap kinézet és tualjdonságok beállítása.
+     */
     public FixPumpButton() {
         super();
 
@@ -22,7 +28,13 @@ public class FixPumpButton extends ActionButton {
             Controller.instance.fixPump();
         });
     }
-
+    /**
+     * Metódus, ami megmondja, hogy a gomb használható, megjeleníthető-e.
+     * Ha a kiválasztott játékos nem null, és a kiválasztott mezők száma 0,
+     * és a kiválasztott játékos pozíciója pumpa, és a pumpa törött,
+     * akkor igazat ad vissza.
+     * @return igaz, ha a gomb használható, hamis, ha nem.
+     */
     public boolean canPerform() {
         if (Controller.instance == null)
             return false;

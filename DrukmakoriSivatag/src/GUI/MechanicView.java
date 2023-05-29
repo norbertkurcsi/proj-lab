@@ -6,13 +6,27 @@ import proto.Mechanic;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-
+/**
+ * A Mechanic osztály megjelenítéséért felelős osztály.
+ * A MechanicView egy klikkelhető gomb, amivel a játékos kiválaszthatja a Mechanic-ot, ezért a JButton-ből származik.
+ */
 public class MechanicView extends JButton implements Viewable {
+    /**
+     * A megjelnített Mechanic képének mérete.
+     */
     private static int SIZE = (int) (Window.BUTTONSIZE * 0.6);
+    /**
+     * A játékbeli megjelenítendő Mechanic.
+     */
     private Mechanic mechanic;
-
+    /**
+     * A Mechanic képe.
+     */
     private static Image image = new ImageIcon(Controller.assetsPath + "mechanic.png").getImage();
-
+    /**
+     * Konstruktor.
+     * @param mechanic A megjelenítendő Mechanic.
+     */
     public MechanicView(Mechanic mechanic) {
         super();
 
@@ -29,7 +43,10 @@ public class MechanicView extends JButton implements Viewable {
         this.setBorderPainted(false);
         this.setRolloverEnabled(true);
     }
-
+    /**
+     * Visszaadja a megjelenítendő objektum pozícióját.
+     * @return A megjelenítendő objektum pozíciója.
+     */
     @Override
     public Point getPosition() {
         Field field = mechanic.getPosition();
@@ -44,7 +61,10 @@ public class MechanicView extends JButton implements Viewable {
 
         return new Point(cx + (int) dx - SIZE / 2, cy + (int) dy - SIZE / 2);
     }
-
+    /**
+     * A megjelenítendő objektumot rajzoltatja újra, a megváltozott adatok alapján.
+     * A Mechanic pozíciója változhat a játék során.
+     */
     @Override
     public void update() {
         Point position = getPosition();
@@ -52,7 +72,10 @@ public class MechanicView extends JButton implements Viewable {
         validate();
         repaint();
     }
-
+    /**
+     * Kirajzolja a Mechanic-ot.
+     * @param g a <code>Graphics</code> objektum, amit rajzoláshoz használunk.
+     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);

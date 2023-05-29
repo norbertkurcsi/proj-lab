@@ -6,8 +6,14 @@ import GUI.Controller;
 import proto.Cistern;
 import proto.Mechanic;
 import proto.Player;
-
+/**
+ * Gomb a cső felvételéhez.
+ */
 public class PickupPipeButton extends ActionButton {
+    /**
+     * Konstruktor.
+     * Alap kinézet és tualjdonságok beállítása.
+     */
     public PickupPipeButton() {
         super();
 
@@ -21,7 +27,13 @@ public class PickupPipeButton extends ActionButton {
             Controller.instance.pickupPipe();
         });
     }
-
+    /**
+     * Metódus, ami megmondja, hogy a gomb használható, megjeleníthető-e.
+     * Ha a kiválasztott játékos nem null, és a kiválasztott mezők száma 0,
+     * és a kiválasztott játékos pozíciója ciszterna, és a ciszternánál van cső,
+     * és a játékosnál nincs cső, akkor igazat ad vissza.
+     * @return igaz, ha a gomb használható, hamis, ha nem.
+     */
     public boolean canPerform() {
         if (Controller.instance == null)
             return false;

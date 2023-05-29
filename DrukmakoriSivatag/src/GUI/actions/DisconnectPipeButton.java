@@ -6,7 +6,14 @@ import java.util.List;
 import GUI.Controller;
 import proto.*;
 
+/**
+ * Gomb a cső lecsatlakoztatásához.
+ */
 public class DisconnectPipeButton extends ActionButton {
+    /**
+     * Konstruktor.
+     * Alap kinézet és tualjdonságok beállítása.
+     */
     public DisconnectPipeButton() {
         super();
 
@@ -21,6 +28,13 @@ public class DisconnectPipeButton extends ActionButton {
         });
     }
 
+    /**
+     * Metódus, ami megmondja, hogy a gomb használható, megjeleníthető-e.
+     * Ha a kiválasztott játékos nem null, és a kiválasztott mezők száma 1,
+     * és a kiválasztott játékos pozíciója cső, és a játékos egy Mechanic, és a cső üres,
+     * ahonnan lecsatlakoztatjuk valójában egyik vége a csőnek, akkor igazat ad vissza.
+     * @return igaz, ha a gomb használható, hamis, ha nem.
+     */
     public boolean canPerform() {
         if (Controller.instance == null)
             return false;

@@ -5,8 +5,14 @@ import java.util.List;
 
 import GUI.Controller;
 import proto.*;
-
+/**
+ * Gomb a cső felcsatolásához.
+ */
 public class ConnectPipeButton extends ActionButton {
+    /**
+     * Konstruktor.
+     * Alap kinézet beállítása.
+     */
     public ConnectPipeButton() {
         super();
 
@@ -20,7 +26,13 @@ public class ConnectPipeButton extends ActionButton {
             Controller.instance.connectPipe();
         });
     }
-
+    /**
+     * Metódus, ami megmondja, hogy a gomb használható, megjeleníthető-e.
+     * Ha a kiválasztott játékos nem null, és a kiválasztott mezők száma 1,
+     * és a kiválasztott játékos pozíciója cső, és a csőnek nincs még mind a két vége csatlakoztatva,
+     * és a kiválasztott mező egy FieldNode, ami nem cső, akkor igazat ad vissza.
+     * @return igaz, ha a gomb használható, hamis, ha nem.
+     */
     public boolean canPerform() {
         if (Controller.instance == null)
             return false;

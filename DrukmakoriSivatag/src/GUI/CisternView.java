@@ -10,15 +10,38 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 import java.util.HashMap;
 
+/**
+ * A Ciszterna megjelenítéséért felelős osztály.
+ */
+
 public class CisternView extends JButton implements Viewable {
+    /**
+     * A ciszterna objektum, amit meg kell jeleníteni.
+     */
     private Cistern cistern;
+    /**
+     * A ciszterna pozíciója.
+     */
     private Point position;
-
+    /**
+     * A normál állapotú ciszterna képe.
+     */
     private static Image normal = new ImageIcon(Controller.assetsPath + "cistern.png").getImage();
+    /**
+     * A csővel rendelkező ciszterna képe.
+     */
     private static Image pipeAvailable = new ImageIcon(Controller.assetsPath + "cistern_pipe.png").getImage();
-
+    /**
+     * A ciszterna épp megjelnítendő képe.
+     * Lehet normal vagy pipeAvailable.
+     */
     private Image image = normal;
 
+    /**
+     * Konstruktor.
+     * @param position A ciszterna pozíciója.
+     * @param cistern A megjelenítendő ciszterna.
+     */
     public CisternView(Point position, Cistern cistern) {
         super();
 
@@ -34,12 +57,18 @@ public class CisternView extends JButton implements Viewable {
         this.setBorderPainted(false);
         this.setRolloverEnabled(true);
     }
-
+    /**
+     * Visszaadja a megjelenítendő objektum pozícióját.
+     * @return A megjelenítendő objektum pozíciója.
+     */
     @Override
     public Point getPosition() {
         return position;
     }
-
+    /**
+     * A megjelenítendő objektumot rajzoltatja újra, a megváltozott adatok alapján.
+     * A ciszterna képe változik, ha a rajta lévő cső elérhető.
+     */
     @Override
     public void update() {
         image = cistern.isPipeAvailable() ? pipeAvailable : normal;
@@ -47,6 +76,10 @@ public class CisternView extends JButton implements Viewable {
         repaint();
     }
 
+    /**
+     * Kirajzolja a ciszerna mezőt.
+     * @param g a <code>Graphics</code> objektum, amit rajzoláshoz használunk.
+     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
