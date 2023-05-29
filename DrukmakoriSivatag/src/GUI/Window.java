@@ -5,6 +5,7 @@ import javax.swing.*;
 import GUI.menu.MenuPanel;
 
 import java.awt.*;
+import java.awt.event.WindowEvent;
 import java.util.HashMap;
 
 /**
@@ -31,6 +32,7 @@ public class Window extends JFrame {
      * A megjelenítendő objektumok tárolója
      */
     private static HashMap<Class<?>, Integer> zOrder = new HashMap<>();
+
     static {
         zOrder.put(MechanicView.class, 2);
         zOrder.put(SaboteurView.class, 2);
@@ -39,6 +41,7 @@ public class Window extends JFrame {
         zOrder.put(SpringView.class, 1);
         zOrder.put(PipeView.class, 0);
     }
+
     /**
      * A játékmenüt megjelenítő panel.
      */
@@ -73,8 +76,10 @@ public class Window extends JFrame {
         this.add(map);
         this.add(menu, BorderLayout.SOUTH);
     }
+
     /**
      * Hozzáad egy megjelenítendő objektumot a játékfelülethez és ki is rajzoltatja.
+     *
      * @param view A megjelenítendő objektum.
      */
     public void addViewable(Viewable view) {
@@ -83,6 +88,7 @@ public class Window extends JFrame {
         map.validate();
         map.repaint();
     }
+
     /**
      * Frissíti az összes megjelenítendő objektumot nézetét, azaz újrarajzoltatja őket..
      */
@@ -97,6 +103,7 @@ public class Window extends JFrame {
 
     /**
      * Visszaadja a megadott grafikus objektumot, amit a megfelelő beállításokkal a kirajzoláshoz használunk.
+     *
      * @param g A grafikus objektum.
      * @return A grafikus objektum.
      */
@@ -113,5 +120,33 @@ public class Window extends JFrame {
      */
     public void updateMenu() {
         menu.update();
+    }
+
+    /**
+     * Ellenőrzi, hogy véget ért-e a játék.
+     * Amennyiben igen, megjelenít egy dialógusablakot, kiírva a nyertes csapatot.
+     */
+    public void checkGameEnded() {
+        int mechanicScore = Controller.instance.getMechanicScore();
+        int saboteurScore = Controller.instance.getSaboteurScore();
+        if (mechanicScore <= Controller.MAX_SCORE && saboteurScore <= Controller.MAX_SCORE) {
+            return;
+        }
+        String text = null;
+        ImageIcon icon = null;
+        if (mechanicScore > Controller.MAX_SCORE && saboteurScore > Controller.MAX_SCORE) {
+            text = "It's a tie!";
+        } else if (mechanicScore > Controller.MAX_SCORE) {
+            text = "The Mechanic team won the game!";
+            icon = new ImageIcon(MechanicView.image.getScaledInstance(BUTTONSIZE, BUTTONSIZE, Image.SCALE_SMOOTH));
+        } else {
+            text = "The Saboteur team won the game!";
+            icon = new ImageIcon(SaboteurView.image.getScaledInstance(BUTTONSIZE, BUTTONSIZE, Image.SCALE_SMOOTH));
+        }
+        if (icon == null)
+            JOptionPane.showMessageDialog(this, text, "The game has ended", JOptionPane.INFORMATION_MESSAGE);
+        else
+            JOptionPane.showMessageDialog(this, text, "The game has ended", JOptionPane.INFORMATION_MESSAGE, icon);
+        dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
     }
 }

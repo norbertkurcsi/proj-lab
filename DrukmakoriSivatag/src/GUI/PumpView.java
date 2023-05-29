@@ -5,6 +5,9 @@ import proto.Pump;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
+
 /**
  * A pumpa (Pump) megjelenítéséért felelős osztály.
  */
@@ -44,7 +47,26 @@ public class PumpView extends JButton implements Viewable {
         this.addActionListener((ActionEvent e) -> {
             Controller.instance.selectField(this.pump);
         });
-        this.setBounds((int) position.getX(), (int) position.getY(), Window.BUTTONSIZE, Window.BUTTONSIZE);
+
+        this.addMouseMotionListener(new MouseMotionListener() {
+            private Point start = null;
+            /**
+             * A pumpa mozgatását megvalósító metódus.
+             * @param e a mozgatás eseménye.
+             */
+            @Override
+            public void mouseDragged(MouseEvent e) {
+                int dx = e.getX() - start.x, dy = e.getY() - start.y;
+                ((PumpView)e.getComponent()).setPosition(new Point(getPosition().x + dx, getPosition().y + dy));
+                Controller.instance.window.updateAllViews();
+            }
+
+            @Override
+            public void mouseMoved(MouseEvent e) {
+                start = e.getPoint();
+            }
+        });
+        this.setBounds(getPosition().x, getPosition().y, Window.BUTTONSIZE, Window.BUTTONSIZE);
         this.setContentAreaFilled(false);
         this.setBorderPainted(false);
         this.setRolloverEnabled(true);
@@ -55,6 +77,7 @@ public class PumpView extends JButton implements Viewable {
      */
     @Override
     public void update() {
+        this.setBounds(getPosition().x, getPosition().y, Window.BUTTONSIZE, Window.BUTTONSIZE);
         actual = pump.isBroken() ? broken : normal;
         validate();
         repaint();
@@ -65,6 +88,14 @@ public class PumpView extends JButton implements Viewable {
      */
     public Point getPosition() {
         return position;
+    }
+
+    /**
+     * Beállítja a pumpa pozícióját.
+     * @param position Az új pozíció
+     */
+    public void setPosition(Point position) {
+        this.position = position;
     }
 
     /**

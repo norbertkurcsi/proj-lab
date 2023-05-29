@@ -28,6 +28,10 @@ public class Controller {
      */
     public Window window = new Window();
     /**
+     * A pontszám, amely elérése szükséges a játék megnyeréséért.
+     */
+    public static int MAX_SCORE  = 100;
+    /**
      * A játékban résztvevő játékosokat tároló hash map.
      */
     public HashMap<Player, Viewable> players = new HashMap<>();
@@ -270,6 +274,8 @@ public class Controller {
                 }
             }
         }
+
+        window.checkGameEnded();
     }
 
     /**
@@ -302,7 +308,7 @@ public class Controller {
                 sum += ((Cistern) field).getDrainedWater();
             }
         }
-        return sum;
+        return sum / 1000;
     }
     /**
      * A Szabotőrök csapat pontjainak összegzése
@@ -315,7 +321,7 @@ public class Controller {
                 sum += ((Pipe) field).getWastedWater();
             }
         }
-        return sum;
+        return sum / 1000;
     }
 
     /**

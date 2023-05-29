@@ -22,7 +22,7 @@ public class SaboteurView extends JButton implements Viewable {
     /**
      * A szabotőr ikonja.
      */
-    private static Image image = new ImageIcon(Controller.assetsPath + "saboteur.png").getImage();
+    public static Image image = new ImageIcon(Controller.assetsPath + "saboteur.png").getImage();
     /**
      * Konstruktor.
      * @param saboteur A megjelenítendő szabotőr.
