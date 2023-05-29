@@ -11,6 +11,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 import java.util.Set;
+
 /**
  * A játék irányításáért, a játék logikája és a megjelenítés közti kommunikáció biztosításáért felelős osztály.
  */
@@ -30,7 +31,7 @@ public class Controller {
     /**
      * A pontszám, amely elérése szükséges a játék megnyeréséért.
      */
-    public static int MAX_SCORE  = 100;
+    public static int MAX_SCORE = 100;
     /**
      * A játékban résztvevő játékosokat tároló hash map.
      */
@@ -55,6 +56,7 @@ public class Controller {
     /**
      * Játékos kiválasztása és a játékoshoz tartozó menü megjelenítése.
      * A játékos kiválasztásával együtt a korábban kiválasztott elemek kijelölését is megszünteti.
+     *
      * @param selected A kiválasztott játékos.
      */
     public void selectPlayer(Player selected) {
@@ -76,6 +78,7 @@ public class Controller {
     /**
      * Pályaelem kiválasztása. A kiválasztott pályaelem nézetének frissítése.
      * A menü frissítése.
+     *
      * @param selected A kiválasztott pályaelem.
      */
     public void selectField(Field selected) {
@@ -153,6 +156,7 @@ public class Controller {
             endAction();
         }
     }
+
     /**
      * Egy cső csúszóssá tétele.
      */
@@ -177,6 +181,7 @@ public class Controller {
             endAction();
         }
     }
+
     /**
      * A cső egy végének lecsatlakoztatása a kiválasztott pályaelemről.
      */
@@ -198,6 +203,7 @@ public class Controller {
             endAction();
         }
     }
+
     /**
      * Egy cső felvétele a játékos eszköztárába.
      */
@@ -228,6 +234,7 @@ public class Controller {
             endAction();
         }
     }
+
     /**
      * Egy cső lehelyezése a pályán.
      */
@@ -280,25 +287,29 @@ public class Controller {
 
     /**
      * Egy új játékelem hozzáadása a játékhoz.
+     *
      * @param field a pályaelem
-     * @param view a pályaelem nézete
+     * @param view  a pályaelem nézete
      */
     public void addField(Field field, Viewable view) {
-            fields.put(field, view);
-            window.addViewable(view);
+        fields.put(field, view);
+        window.addViewable(view);
     }
+
     /**
      * Egy új játékos hozzáadása a játékhoz.
+     *
      * @param player a játékos
-     * @param view a játkos nézete
+     * @param view   a játkos nézete
      */
     public void addPlayer(Player player, Viewable view) {
-            players.put(player, view);
-            window.addViewable(view);
+        players.put(player, view);
+        window.addViewable(view);
     }
 
     /**
      * A Szerelők csapat pontjainak összegzése.
+     *
      * @return a szerelők csapatának pontszáma
      */
     public int getMechanicScore() {
@@ -310,8 +321,10 @@ public class Controller {
         }
         return sum / 1000;
     }
+
     /**
      * A Szabotőrök csapat pontjainak összegzése
+     *
      * @return a szabotőrök csapatának pontszáma
      */
     public int getSaboteurScore() {
@@ -346,31 +359,47 @@ public class Controller {
         Pipe mPipe1 = new Pipe();
         Pipe mPipe2 = new Pipe();
         Pipe mPipe3 = new Pipe();
+        Pipe mPipe4 = new Pipe();
+        Pipe mPipe5 = new Pipe();
+
         Pump mPump1 = new Pump();
         Pump mPump2 = new Pump();
+        Pump mPump3 = new Pump();
 
-        mPipe1.connect(mPump1);
+        mPipe1.connect(mSpring);
         mPipe1.connect(mPump2);
-        mPump1.connect(mPipe1);
+        mSpring.connect(mPipe1);
         mPump2.connect(mPipe1);
 
-        mPipe2.connect(mSpring);
-        mSpring.connect(mPipe2);
         mPipe2.connect(mPump1);
+        mPipe2.connect(mPump2);
         mPump1.connect(mPipe2);
+        mPump2.connect(mPipe2);
 
-        mPipe3.connect(mCistern);
         mPipe3.connect(mPump2);
-        mCistern.connect(mPipe3);
+        mPipe3.connect(mPump3);
         mPump2.connect(mPipe3);
+        mPump3.connect(mPipe3);
 
-        PumpView vPump1 = new PumpView(new Point(100, 300), mPump1);
-        PumpView vPump2 = new PumpView(new Point(550, 350), mPump2);
+        mPipe4.connect(mPump1);
+        mPipe4.connect(mCistern);
+        mPump1.connect(mPipe4);
+        mCistern.connect(mPipe4);
+
+        mPipe5.connect(mPump3);
+        mPipe5.connect(mCistern);
+        mPump3.connect(mPipe5);
+        mCistern.connect(mPipe5);
+
+        PumpView vPump1 = new PumpView(new Point(150, Window.HEIGHT / 3), mPump1);
+        PumpView vPump2 = new PumpView(new Point(Window.WIDTH / 2 - 25, Window.HEIGHT / 3), mPump2);
+        PumpView vPump3 = new PumpView(new Point(Window.WIDTH - 200, Window.HEIGHT / 3), mPump3);
         addField(mPump1, vPump1);
         addField(mPump2, vPump2);
+        addField(mPump3, vPump3);
 
-        SpringView vSpring = new SpringView(new Point(300, 30), mSpring);
-        CisternView vCistern = new CisternView(new Point(400, 450), mCistern);
+        SpringView vSpring = new SpringView(new Point(Window.WIDTH / 2 - 25, 30), mSpring);
+        CisternView vCistern = new CisternView(new Point(Window.WIDTH / 2 - 25, 500), mCistern);
         addField(mSpring, vSpring);
         addField(mCistern, vCistern);
 
@@ -380,42 +409,35 @@ public class Controller {
         addField(mPipe2, vPipe2);
         PipeView vPipe3 = new PipeView(mPipe3);
         addField(mPipe3, vPipe3);
+        PipeView vPipe4 = new PipeView(mPipe4);
+        addField(mPipe4, vPipe4);
+        PipeView vPipe5 = new PipeView(mPipe5);
+        addField(mPipe5, vPipe5);
 
         Mechanic mMech1 = new Mechanic();
         mMech1.moveTo(mPump1);
         MechanicView vMech1 = new MechanicView(mMech1);
-
-        Saboteur mSab1 = new Saboteur();
-        mSab1.moveTo(mPump2);
-        SaboteurView vSab1 = new SaboteurView(mSab1);
-
-        // FOR TEST
-        Pipe mPipe4 = new Pipe();
-        mPipe4.connect(mPump1);
-        mPipe4.connect(mCistern);
-        mPump1.connect(mPipe4);
-        mCistern.connect(mPipe4);
-        PipeView vPipe4 = new PipeView(mPipe4);
-        addField(mPipe4, vPipe4);
+        addPlayer(mMech1, vMech1);
 
         Mechanic mMech2 = new Mechanic();
         mMech2.moveTo(mPump1);
         MechanicView vMech2 = new MechanicView(mMech2);
-
-        Saboteur mSab2 = new Saboteur();
-        mSab2.moveTo(mPump2);
-        SaboteurView vSab2 = new SaboteurView(mSab2);
-
-        addPlayer(mSab2, vSab2);
         addPlayer(mMech2, vMech2);
 
+        Saboteur mSab1 = new Saboteur();
+        mSab1.moveTo(mPump3);
+        SaboteurView vSab1 = new SaboteurView(mSab1);
         addPlayer(mSab1, vSab1);
-        addPlayer(mMech1, vMech1);
+
+        Saboteur mSab2 = new Saboteur();
+        mSab2.moveTo(mPump3);
+        SaboteurView vSab2 = new SaboteurView(mSab2);
+        addPlayer(mSab2, vSab2);
     }
 
     /**
      * Az alkalmazás belépési pontja és a fővezérlési logika kezdőpontja.
-     *
+     * <p>
      * Inicializálja a Model-t, majd elindít egy új szálat, ami ciklikusan végrehajtja a vezérlő cselekvéseket.
      * A cselekvések között frissíti a nézeteket, majd vár egy másodpercet, mielőtt újra futna.
      */
