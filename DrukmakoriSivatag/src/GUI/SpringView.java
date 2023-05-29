@@ -5,6 +5,9 @@ import proto.Spring;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
+
 /**
  * A forrás (Spring) megjelenítéséért felelős osztály.
  */
@@ -38,7 +41,25 @@ public class SpringView extends JButton implements Viewable {
             Controller.instance.selectField(spring);
         });
 
-        this.setBounds((int) position.getX(), (int) position.getY(), Window.BUTTONSIZE, Window.BUTTONSIZE);
+        this.addMouseMotionListener(new MouseMotionListener() {
+            private Point start = null;
+            /**
+             * A pumpa mozgatását megvalósító metódus.
+             * @param e a mozgatás eseménye.
+             */
+            @Override
+            public void mouseDragged(MouseEvent e) {
+                int dx = e.getX() - start.x, dy = e.getY() - start.y;
+                ((SpringView)e.getComponent()).setPosition(new Point(getPosition().x + dx, getPosition().y + dy));
+                Controller.instance.window.updateAllViews();
+            }
+
+            @Override
+            public void mouseMoved(MouseEvent e) {
+                start = e.getPoint();
+            }
+        });
+        this.setBounds(getPosition().x, getPosition().y, Window.BUTTONSIZE, Window.BUTTONSIZE);
         this.setContentAreaFilled(false);
         this.setBorderPainted(false);
         this.setRolloverEnabled(true);
@@ -53,10 +74,19 @@ public class SpringView extends JButton implements Viewable {
     }
 
     /**
+     * Beállítja a forrás pozícióját.
+     * @param position Az új pozíció
+     */
+    public void setPosition(Point position) {
+        this.position = position;
+    }
+
+    /**
      * A forrás megjelenítésének frissítése, újrarajzolása.
      */
     @Override
     public void update() {
+        this.setBounds(getPosition().x, getPosition().y, Window.BUTTONSIZE, Window.BUTTONSIZE);
         validate();
         repaint();
     }

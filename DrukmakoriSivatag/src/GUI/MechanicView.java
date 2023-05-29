@@ -22,7 +22,7 @@ public class MechanicView extends JButton implements Viewable {
     /**
      * A Mechanic képe.
      */
-    private static Image image = new ImageIcon(Controller.assetsPath + "mechanic.png").getImage();
+    public static Image image = new ImageIcon(Controller.assetsPath + "mechanic.png").getImage();
     /**
      * Konstruktor.
      * @param mechanic A megjelenítendő Mechanic.

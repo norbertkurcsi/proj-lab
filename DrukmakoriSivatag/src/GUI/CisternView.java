@@ -52,7 +52,25 @@ public class CisternView extends JButton implements Viewable {
             Controller.instance.selectField(cistern);
         });
 
-        this.setBounds((int) position.getX(), (int) position.getY(), Window.BUTTONSIZE, Window.BUTTONSIZE);
+        this.addMouseMotionListener(new MouseMotionListener() {
+            private Point start = null;
+            /**
+             * A pumpa mozgatását megvalósító metódus.
+             * @param e a mozgatás eseménye.
+             */
+            @Override
+            public void mouseDragged(MouseEvent e) {
+                int dx = e.getX() - start.x, dy = e.getY() - start.y;
+                ((CisternView)e.getComponent()).setPosition(new Point(getPosition().x + dx, getPosition().y + dy));
+                Controller.instance.window.updateAllViews();
+            }
+
+            @Override
+            public void mouseMoved(MouseEvent e) {
+                start = e.getPoint();
+            }
+        });
+        this.setBounds(getPosition().x, getPosition().y, Window.BUTTONSIZE, Window.BUTTONSIZE);
         this.setContentAreaFilled(false);
         this.setBorderPainted(false);
         this.setRolloverEnabled(true);
@@ -65,12 +83,22 @@ public class CisternView extends JButton implements Viewable {
     public Point getPosition() {
         return position;
     }
+
+    /**
+     * Beállítja a ciszterna pozícióját.
+     * @param position Az új pozíció
+     */
+    public void setPosition(Point position) {
+        this.position = position;
+    }
+
     /**
      * A megjelenítendő objektumot rajzoltatja újra, a megváltozott adatok alapján.
      * A ciszterna képe változik, ha a rajta lévő cső elérhető.
      */
     @Override
     public void update() {
+        this.setBounds(getPosition().x, getPosition().y, Window.BUTTONSIZE, Window.BUTTONSIZE);
         image = cistern.isPipeAvailable() ? pipeAvailable : normal;
         validate();
         repaint();
