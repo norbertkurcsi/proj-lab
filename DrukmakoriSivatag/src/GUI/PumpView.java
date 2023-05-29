@@ -60,7 +60,11 @@ public class PumpView extends JButton implements Viewable {
                 ((PumpView)e.getComponent()).setPosition(new Point(getPosition().x + dx, getPosition().y + dy));
                 Controller.instance.window.updateAllViews();
             }
-
+            /**
+             * Az egér mozgatása során ha elhúzunk egy mezőt a helyéről a mozgás kezdőpontja az lesz,
+             * ahova az egeret a húzás előtt éppen elmozgattuk.
+             * Ez a metódus ezt a pontot tárolja el.
+             */
             @Override
             public void mouseMoved(MouseEvent e) {
                 start = e.getPoint();

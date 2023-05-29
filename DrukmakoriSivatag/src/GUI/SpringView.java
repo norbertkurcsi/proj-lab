@@ -54,6 +54,12 @@ public class SpringView extends JButton implements Viewable {
                 Controller.instance.window.updateAllViews();
             }
 
+            /**
+             * Az egér mozgatása során ha elhúzunk egy mezőt a helyéről a mozgás kezdőpontja az lesz,
+             * ahova az egeret a húzás előtt éppen elmozgattuk.
+             * Ez a metódus ezt a pontot tárolja el.
+             * @param e a mozgás eseménye.
+             */
             @Override
             public void mouseMoved(MouseEvent e) {
                 start = e.getPoint();

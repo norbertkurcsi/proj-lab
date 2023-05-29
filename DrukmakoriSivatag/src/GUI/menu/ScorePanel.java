@@ -33,7 +33,13 @@ public class ScorePanel extends JPanel {
                 .getScaledInstance(Window.BUTTONSIZE, Window.BUTTONSIZE, Image.SCALE_AREA_AVERAGING));
     }
 
+    /**
+     * A szerelők csapatának pontszámát reprezentáló címke.
+     */
     JLabel mechanicScore = new JLabel(mechanicImage);
+    /**
+     * A szabotőrök csapatának pontszámát reprezentáló címke.
+     */
     JLabel saboteurScore = new JLabel(saboteurImage);
 
     /**
