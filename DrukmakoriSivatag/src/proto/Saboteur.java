@@ -19,6 +19,9 @@ public class Saboteur extends Player {
         p.makeSlippery();
     }
 
+    /**
+     *{@inheritDoc}
+     */
     @Override
     public String toString() {
 

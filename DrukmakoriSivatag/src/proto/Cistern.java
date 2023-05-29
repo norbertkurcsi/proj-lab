@@ -6,8 +6,13 @@ import java.util.Random;
  * A ciszternákért felelős osztály
  */
 public class Cistern extends FieldNode {
+    /**
+     * A ciszterna vizének mennyisége
+     */
     private int drainedWater;
-    // Seconds until creating pipe
+    /**
+     * Az idő másodpercekben, ami után egy cső újra elérhető lesz a ciszternánál
+     */
     private int pipeAvailable;
 
     /**
@@ -64,11 +69,22 @@ public class Cistern extends FieldNode {
         return drainedWater;
     }
 
-    //TODO
+    /**
+     * Függvény, ami megmondja, hogy cső elérhető-e a ciszternánál.
+     *
+     * @return true, ha a cső elérhető, false, ha nem.
+     */
     public boolean isPipeAvailable() {
         return pipeAvailable == 0;
     }
-
+    /**
+     * Függvény, ami lekérdezi, hogy a paraméterként átadott mező szomszédos-e a
+     * ciszternával, azaz a ciszternára csatlakoztatott cső-e.
+     *
+     * @param field a vizsgált mező
+     * @return true, ha a paraméterként átadott mező szomszédos a ciszternával,
+     * false, ha nem.
+     */
     @Override
     public boolean hasNeighbour(Field field) {
         return pipes.contains(field);
@@ -91,6 +107,10 @@ public class Cistern extends FieldNode {
         }
     }
 
+    /**
+     * Visszaadja a ciszterna string reprezentációját.
+     * @return a ciszterna string reprezentációja
+     */
     @Override
     public String toString() {
         String playerList = "";

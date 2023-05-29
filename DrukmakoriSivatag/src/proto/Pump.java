@@ -6,10 +6,25 @@ import java.util.Random;
  * A Pump osztálya.
  */
 public class Pump extends FieldNode implements Tickable {
+    /**
+     * A random számok generálásához használt objektum.
+     */
     static Random random = new Random();
+    /**
+     * A pumpa tartályának maximális kapacitására egy előre meghatározozz érték.
+     */
     static final int MAX_VOLUME = 500;
+    /**
+     * logikai változó, amely jelzi, hogy a pumpa működik-e, vagy elromlott.
+     */
     boolean isBroken;
+    /**
+     * A pumpa tartályának maximális kapacitása.
+     */
     int maxVolume;
+    /**
+     * A pumpa tartályában lévő vízmennyiség.
+     */
     int currentVolume;
 
     /**
@@ -110,7 +125,10 @@ public class Pump extends FieldNode implements Tickable {
         }
     }
 
-    //TODO
+    /**
+     * A paraméterként kapott csövet lecsatlakoztatja a pumpáról.
+     * @param p - A cső amelyiket lecsatlakoztatjuk.
+     */
     @Override
     public void disconnect(Pipe p) {
         if(p == null) return;
@@ -148,16 +166,28 @@ public class Pump extends FieldNode implements Tickable {
         }
     }
 
-    //TODO
+    /**
+     * Megadja, hogy a pumpa elromlott-e.
+     * @return - true, ha elromlott, false, ha nem.
+     */
     public boolean isBroken() {
         return isBroken;
     }
 
+    /**
+     * Visszaadja hogy a paraméterként kapott mező szomszédja e a pumpának, azaz megtalálható
+     * a pumpa csővei között, vagy nem.
+     * @param field - A mező amiről eldöntjük, hogy szomszédja e a pumpának.
+     * @return igaaz, ha szomszédja, hamis, ha nem.
+     */
     @Override
     public boolean hasNeighbour(Field field) {
         return pipes.contains(field);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         String playerList = "";

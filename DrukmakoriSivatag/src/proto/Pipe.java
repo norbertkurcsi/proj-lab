@@ -8,22 +8,61 @@ import java.util.Random;
  * Egy csövet reprezentáló osztály.
  */
 public class Pipe extends Field implements Tickable {
+    /**
+     * A cső maximális vízmennyiségére egy érték.
+     */
     static final int MAX_VOLUME = 1000;
+    /**
+     * Az az idő másodpercekben, ameddig a cső csúszós.
+     */
     static final int SLIPPERY_TIME = 10;
+    /**
+     * Az az idő másodpercekben, ameddig a cső ragadós.
+     */
     static final int STICKY_TIME = 10;
+    /**
+     * Az az idő másodpercekben, ameddig a cső nem lyukasztható.
+     */
     static final int MAX_BREAKABLE_TIME = 10;
-
+    /**
+     * Random számok generálására használt objektum.
+     */
     private Random random = new Random();
-
+    /**
+     * A cső ki van-e lyukadva.
+     */
     private boolean isBroken;
+    /**
+     * A cső maximális vízmennyisége.
+     */
     private int maxVolume;
+    /**
+     * A csőben lévő víz mennyisége.
+     */
     private int currentVolume;
+    /**
+     * A csőben elpazarolt víz mennyisége.
+     */
     private int wastedWater;
+    /**
+     * Az az idő, ameddig a cső nem lyukasztható.
+     */
     private int timeUntilBreakable;
+    /**
+     * Az az idő, ameddig a cső csúszós.
+     */
     private int slipperyUntil;
+    /**
+     * Az az idő, ameddig a cső ragadós.
+     */
     private int stickyUntil;
+    /**
+     * Logikai változó, ami azt jelzi, hogy a csőben volt-e víz.
+     */
     private boolean hadWater = false;
-
+    /**
+     * A cső végpontjai.
+     */
     private List<FieldNode> ends;
 
     /**
@@ -46,6 +85,10 @@ public class Pipe extends Field implements Tickable {
         ends = new ArrayList<>(2);
     }
 
+    /**
+     * A cső végpontjait adja vissza egy listában.
+     * @return a cső végpontjai.
+     */
     public List<FieldNode> getEnds() {
         return ends;
     }
@@ -151,7 +194,10 @@ public class Pipe extends Field implements Tickable {
         return drained;
     }
 
-    //TODO
+    /**
+     * Metódus, ami visszaadja, hogy a csőben volt-e víz.
+     * @return igaz, ha volt víz a csőben, hamis, ha nem volt.
+     */
     public boolean hasWaterFlown() {
         return hadWater;
     }
@@ -275,11 +321,16 @@ public class Pipe extends Field implements Tickable {
             stickyUntil--;
     }
 
+    /**
+     *{@inheritDoc}
+     */
     @Override
     public boolean hasNeighbour(Field field) {
         return ends.contains(field);
     }
-
+    /**
+     *{@inheritDoc}
+     */
     @Override
     public String toString() {
         String playerList = "";
@@ -316,32 +367,47 @@ public class Pipe extends Field implements Tickable {
                 (players.size() < 1 ? "null" : Proto.findName(players.get(0)));
     }
 
-    // TODO
+    /**
+     * Metódus, ami visszaadja, hogy a cső lyukas-e.
+     * @return igaz, ha lyukas, hamis, ha nem.
+     */
     public boolean isBroken() {
         return isBroken;
     }
 
-    // TODO
+    /**
+     * Metódus, ami visszaadja, hogy a cső ragadós-e.
+     * @return igaz, ha ragadós, hamis, ha nem.
+     */
     public boolean isSticky() {
         return stickyUntil > 0;
     }
-
-    // TODO
+    /**
+     * Metódus, ami visszaadja, hogy a cső csúszós-e.
+     * @return igaz, ha csúszós, hamis, ha nem.
+     */
     public boolean isSlippery() {
         return slipperyUntil > 0;
     }
-
-    // TODO
+    /**
+     * Metódus, ami visszaadja, hogy a csőben van-e víz.
+     * @return igaz, ha nincs víz, hamis, ha a csőben a vízmennyiség nem 0.
+     */
     public boolean isEmpty() {
         return currentVolume == 0;
     }
 
-    // TODO
+    /**
+     * Metódus, ami visszaadja a csőből elfolyt, elpazarolt víz mennységét.
+     * @return a csőből elfolyt víz mennyisége.
+     */
     public int getWastedWater() {
       return wastedWater;
     }
-
-    //TODO
+    /**
+     * Metódus, ami visszaadja, hogy a cső törhető-e.
+     * @return igaz, ha törhető, hamis, ha nem.
+     */
     public boolean isBreakable() {
         return timeUntilBreakable == 0;
     }

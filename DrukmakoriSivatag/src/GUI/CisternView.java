@@ -64,7 +64,10 @@ public class CisternView extends JButton implements Viewable {
                 ((CisternView)e.getComponent()).setPosition(new Point(getPosition().x + dx, getPosition().y + dy));
                 Controller.instance.window.updateAllViews();
             }
-
+            /**
+             * A pumpa mozgatásának kezdőpontját eltároló metódus.
+             * @param e a mozgatás eseménye.
+             */
             @Override
             public void mouseMoved(MouseEvent e) {
                 start = e.getPoint();

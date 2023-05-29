@@ -119,7 +119,6 @@ public class Mechanic extends Player {
             return null;
         }
 
-        // TODO
         Proto.names.put("newPipe", newPipe);
         pipe.connect(pump);
         pump.connect(pipe);
@@ -184,6 +183,10 @@ public class Mechanic extends Player {
         return this.pipe;
     }
 
+    /**
+     * A szerelő string reprezentációját adja vissza.
+     * @return A szerelő string reprezentációja.
+     */
     @Override
     public String toString() {
 
