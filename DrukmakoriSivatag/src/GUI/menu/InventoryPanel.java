@@ -17,9 +17,19 @@ import proto.Mechanic;
  * A játékos eszköztárát reprezentáló panel.
  */
 public class InventoryPanel extends JPanel {
+    /**
+     * Egy pumpát reprezentáló kép.
+     */
     private static Image pumpImage = new ImageIcon(Controller.assetsPath + "pump.png").getImage();
+
+    /**
+     * Egy csövet reprezentáló kép.
+     */
     private static Image pipeImage = new ImageIcon(Controller.assetsPath + "pipe.png").getImage();
 
+    /**
+     * A cső, mint gomb, amelyre ha egy megfelelő helyen rákattintunk, akkor lehelyezhetjük a csövet.
+     */
     private PlacePipeButton pipeButton = new PlacePipeButton() {
         @Override
         protected void paintComponent(Graphics g) {
@@ -40,6 +50,10 @@ public class InventoryPanel extends JPanel {
         }
     };
 
+    /**
+     * A pumpa, mint gomb, amelyre ha rákattintunk, és egy csövön állunk,
+     * akkor lehelyezhetjük a pumpát, a csövet kettévágva.
+     */
     private PlacePumpButton pumpButton = new PlacePumpButton() {
         @Override
         protected void paintComponent(Graphics g) {

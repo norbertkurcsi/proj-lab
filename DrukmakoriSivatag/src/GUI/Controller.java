@@ -68,6 +68,7 @@ public class Controller {
 
         window.updateMenu();
     }
+
     /**
      * Pályaelem kiválasztása. A kiválasztott pályaelem nézetének frissítése.
      * A menü frissítése.
@@ -79,12 +80,11 @@ public class Controller {
             selectedFields.add(selected);
         }
         fields.get(selected).update();
-
         window.updateMenu();
     }
 
     /**
-     * A cső eltörése
+     * Egy cső eltörése.
      */
     public void breakPipe() {
         synchronized (syncObject) {
@@ -95,7 +95,7 @@ public class Controller {
     }
 
     /**
-     * A cső megjavítása
+     * Egy cső megjavítása.
      */
     public void fixPipe() {
         synchronized (syncObject) {
@@ -106,7 +106,7 @@ public class Controller {
     }
 
     /**
-     * A pumpa megjavítása
+     * Egy pumpa megjavítása.
      */
     public void fixPump() {
         synchronized (syncObject) {
@@ -119,7 +119,7 @@ public class Controller {
     }
 
     /**
-     * A játékos mozgatása
+     * Egy játékos mozgatása.
      */
     public void movePlayer() {
         synchronized (syncObject) {
@@ -129,7 +129,7 @@ public class Controller {
     }
 
     /**
-     * A pumpa pumpálási/folyatási irányának megváltoztatása
+     * A pumpa pumpálási/folyatási irányának megváltoztatása.
      */
     public void changeFlow() {
         synchronized (syncObject) {
@@ -140,7 +140,7 @@ public class Controller {
     }
 
     /**
-     * A cső ragadóssá tétele
+     * Egy cső ragadóssá tétele.
      */
     public void makeSticky() {
         synchronized (syncObject) {
@@ -150,7 +150,7 @@ public class Controller {
         }
     }
     /**
-     * A cső csúszóssá tétele
+     * Egy cső csúszóssá tétele.
      */
     public void makeSlippery() {
         synchronized (syncObject) {
@@ -161,7 +161,7 @@ public class Controller {
     }
 
     /**
-     * A cső egy végének felcsatlakoztatása a kiválasztott pályaelemhez
+     * A cső egy végének felcsatlakoztatása a kiválasztott pályaelemre.
      */
     public void connectPipe() {
         synchronized (syncObject) {
@@ -174,7 +174,7 @@ public class Controller {
         }
     }
     /**
-     * A cső egy végének leválasztása a kiválasztott pályaelemről
+     * A cső egy végének lecsatlakoztatása a kiválasztott pályaelemről.
      */
     public void disconnectPipe() {
         synchronized (syncObject) {
@@ -185,7 +185,7 @@ public class Controller {
     }
 
     /**
-     * A pumpa felvétele a játékos eszköztárába
+     * Egy pumpa felvétele a játékos eszköztárába.
      */
     public void pickupPump() {
         synchronized (syncObject) {
@@ -195,7 +195,7 @@ public class Controller {
         }
     }
     /**
-     * A cső felvétele a játékos eszköztárába
+     * Egy cső felvétele a játékos eszköztárába.
      */
     public void pickupPipe() {
         synchronized (syncObject) {
@@ -206,7 +206,7 @@ public class Controller {
     }
 
     /**
-     * A pumpa lerakása a pályán
+     * Egy pumpa lehelyezése a pályán.
      */
     public void placePump() {
         synchronized (syncObject) {
@@ -225,7 +225,7 @@ public class Controller {
         }
     }
     /**
-     * A cső lerakása a pályán
+     * Egy cső lehelyezése a pályán.
      */
     public void placePipe() {
         synchronized (syncObject) {
@@ -239,7 +239,7 @@ public class Controller {
     }
 
     /**
-     * A pályaelemek tickelése, azaz az idő múlásával járó változások végrehajtása
+     * A pályaelemek tickelése, azaz az idő múlásával járó változások végrehajtása.
      */
     public void tick() {
         // Tick all pipes
@@ -273,7 +273,7 @@ public class Controller {
     }
 
     /**
-     * Egy új játékelem hozzáadása a játékhoz
+     * Egy új játékelem hozzáadása a játékhoz.
      * @param field a pályaelem
      * @param view a pályaelem nézete
      */
@@ -282,7 +282,7 @@ public class Controller {
             window.addViewable(view);
     }
     /**
-     * Egy új játékos hozzáadása a játékhoz
+     * Egy új játékos hozzáadása a játékhoz.
      * @param player a játékos
      * @param view a játkos nézete
      */
@@ -292,7 +292,7 @@ public class Controller {
     }
 
     /**
-     * A Szerelők csapat pontjainak összegzése
+     * A Szerelők csapat pontjainak összegzése.
      * @return a szerelők csapatának pontszáma
      */
     public int getMechanicScore() {
@@ -323,16 +323,14 @@ public class Controller {
      * A kiválasztott játékos és pályaelemek törlése, a nézetek frissítése.
      */
     private void endAction() {
-//        tick();
         selectedPlayer = null;
         selectedFields.clear();
         window.updateAllViews();
         window.updateMenu();
     }
 
-    // Kezdo palya felepitese
     /**
-     * A játék kezdőpályájának felépítése
+     * A játék kezdőpályájának felépítése.
      */
     public void initModel() {
         // m - model, v - view
@@ -404,7 +402,6 @@ public class Controller {
 
         addPlayer(mSab2, vSab2);
         addPlayer(mMech2, vMech2);
-        // ---
 
         addPlayer(mSab1, vSab1);
         addPlayer(mMech1, vMech1);

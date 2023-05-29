@@ -12,6 +12,9 @@ import GUI.actions.*;
  * Az akciókat reprezentáló panel.
  */
 public class ActionPanel extends JPanel {
+    /**
+     * Az akciógombokat tartalmazó panel.
+     */
     private JPanel buttonsPanel = new JPanel();
 
     /**
@@ -22,7 +25,6 @@ public class ActionPanel extends JPanel {
 
         this.setOpaque(false);
         this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-        // this.setBorder(new EmptyBorder(2, 0, 0, 0));
 
         JLabel title = new JLabel("Actions");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);

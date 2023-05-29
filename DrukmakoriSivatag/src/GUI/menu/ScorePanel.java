@@ -17,7 +17,14 @@ import GUI.Window;
  * A csapatok pontszámát reprezentáló panel.
  */
 public class ScorePanel extends JPanel {
+    /**
+     * A szerelők csapatát reprezentáló kép.
+     */
     private static ImageIcon mechanicImage = new ImageIcon(Controller.assetsPath + "mechanic.png");
+
+    /**
+     * A szabotőrök csapatát reprezentáló kép.
+     */
     private static ImageIcon saboteurImage = new ImageIcon(Controller.assetsPath + "saboteur.png");
     static {
         mechanicImage = new ImageIcon(mechanicImage.getImage()

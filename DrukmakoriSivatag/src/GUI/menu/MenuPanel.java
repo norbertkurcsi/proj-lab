@@ -13,9 +13,21 @@ import java.io.IOException;
  * A játék menüjét reprezentáló panel.
  */
 public class MenuPanel extends JPanel {
+    /**
+     * A menüpanel háttérképe.
+     */
     private static Image background = new ImageIcon(Controller.assetsPath + "panel.png").getImage();
+    /**
+     * Az akciókat reprezentáló akciópanel.
+     */
     private ActionPanel actionPanel = new ActionPanel();
+    /**
+     * Az eszköztárt reprezentáló eszköztárpanel.
+     */
     private InventoryPanel inventoryPanel = new InventoryPanel();
+    /**
+     * A pontokat reprezentáló panel.
+     */
     private ScorePanel scorePanel = new ScorePanel();
 
     /**
