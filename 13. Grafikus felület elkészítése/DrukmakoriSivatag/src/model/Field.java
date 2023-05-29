@@ -7,6 +7,9 @@ import java.util.List;
  * Egy mezőt reprezentáló absztrakt osztály.
  */
 public abstract class Field {
+    /**
+     * A mezőn álló játékosok listája.
+     */
     protected List<Player> players;
 
     /**
@@ -16,8 +19,19 @@ public abstract class Field {
         players = new ArrayList<>();
     }
 
+    /**
+     * Metódus ami eldönti, hogy a paraméterként kapott mező szomédja-e magának a mezőnek,
+     * amelyik példányban ez a metódus meghívódik.
+     * @param field - A mező amiről eldöntjük, hogy szomszédja e a
+     * @return true, ha a paraméterként kapott mező szomszédja a mezőnek.
+     */
     public abstract boolean hasNeighbour(Field field);
-
+    /**
+     * A paraméterként kapott játékos indexét adja vissza a játékosok listájában.
+     *
+     * @param player - A játékos akinek az indexét vissza akarjuk kapni.
+     * @return a játékos indexe a játékosok listájában.
+     */
     public int getPlayerIndex(Player player) {
         return players.indexOf(player);
     }

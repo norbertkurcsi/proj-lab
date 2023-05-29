@@ -22,9 +22,14 @@ public class Spring extends FieldNode implements Tickable {
         }
     }
 
+    /**
+     * Eldönti, hogy a paraméterként kapott mező szomszédja e a forrásnak, azaz a forráshoz
+     * csatlakoztatott cső-e vagy nem.
+     * @param field - A mező amiről eldöntjük, hogy szomszédja e a
+     * @return igaz, ha szomszédja, hamis, ha nem.
+     */
     @Override
     public boolean hasNeighbour(Field field) {
         return pipes.contains(field);
     }
-
 }

@@ -29,7 +29,10 @@ public abstract class FieldNode extends Field implements Tickable {
     public void disconnect(Pipe p) {
         pipes.remove(p);
     }
-
+    /**
+     * A csomóponthoz csatlakoztatott másik csomópontok listáját adja vissza.
+     * @return A csomóponthoz csatlakoztatott másik csomópontok listája.
+     */
     public List<FieldNode> getConnectedNodes() {
         List<FieldNode> nodes = new ArrayList<>();
         for (int i = 0; i < pipes.size(); i++) {
@@ -44,5 +47,8 @@ public abstract class FieldNode extends Field implements Tickable {
         return nodes;
     }
 
+    /**
+     * A csomópont tickelése, adatainak léptetése.
+     */
     public abstract void tick();
 }

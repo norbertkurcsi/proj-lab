@@ -219,6 +219,10 @@ public class PipeView extends JPanel implements Viewable {
                     Controller.instance.window.updateAllViews();
                 }
 
+                /**
+                 * A cső mozgatásának kezdetét eltároló metódus.
+                 * @param e a mozgatás eseménye.
+                 */
                 @Override
                 public void mouseMoved(MouseEvent e) {
                     start = e.getPoint();

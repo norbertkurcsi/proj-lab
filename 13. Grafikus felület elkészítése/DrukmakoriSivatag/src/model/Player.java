@@ -73,7 +73,10 @@ public abstract class Player {
         p.makeSticky();
     }
 
-    //TODO
+    /**
+     * Metódus, amely visszaadja a játékos pozícióját, azaz azt a mezőt, amin a játékos áll.
+     * @return A játékos pozíciója.
+     */
     public Field getPosition() {
         return position;
     }
